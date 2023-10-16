@@ -1,2 +1,1 @@
-# movies-explorer-frontend
-Яндекс Практикум
+https://github.com/Vova-iz-Tambova/movies-explorer-frontend
