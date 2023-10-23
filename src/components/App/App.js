@@ -9,6 +9,7 @@ import Login from '../Login/Login';
 import Register from '../Register/Register';
 import PageNotFound from '../PageNotFound/PageNotFound';
 import Header from '../Header/Header';
+import Footer from '../Footer/Footer';
 
 function App() {
   return (
@@ -23,6 +24,7 @@ function App() {
         <Route path='/signup' element={<Register />} />
         <Route path='*' element={<PageNotFound />} />
       </Routes>
+      <Footer />
     </div>
   );
 }

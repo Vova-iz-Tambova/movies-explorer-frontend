@@ -18,15 +18,12 @@ function Header() {
             setLoggedIn={setLoggedIn} />
         </div>
       </div>
-      {loggedIn
+      {/* {loggedIn
         ? <>
         </>
         :
-        <>
-          <div className='header__cover'></div>
-          <div className='header__nav'></div>
-        </>
-      }
+
+      } */}
 
     </header >
   )
