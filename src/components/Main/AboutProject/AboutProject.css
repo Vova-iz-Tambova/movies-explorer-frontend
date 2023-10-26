@@ -30,8 +30,13 @@
   letter-spacing: -0.04em;
   text-align: left;
   color: #FFFFFF;
-  padding-top: 70px;
-  padding-bottom: 26px;
+  padding-top: 68px;
+  padding-bottom: 23px;
+  padding-left: 0;
+}
+
+.project__table-title:last-of-type {
+  padding-left: 20px;
 }
 
 .project__cell {
@@ -42,8 +47,13 @@
   letter-spacing: 0em;
   text-align: left;
   color: #FFFFFF;
-  padding-bottom: 110px;
+  padding-bottom: 108px;
   padding-right: 15px;
+  padding-left: 0;
+}
+
+.project__cell:last-of-type {
+  padding-left: 20px;
 }
 
 .project__timeline {

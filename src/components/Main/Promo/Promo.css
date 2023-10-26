@@ -4,7 +4,7 @@
   height: 524px;
   background-image: url(../../../images/cover.svg);
   background-repeat: no-repeat;
-  background-position: center;
+  background-position: 50% 40%;
   display: flex;
   background-color: #073042;
 }
@@ -19,5 +19,5 @@
   line-height: 58px;
   /* 116% */
   letter-spacing: -2px;
-  margin: auto;
+  margin: 184px auto 224px;
 }
