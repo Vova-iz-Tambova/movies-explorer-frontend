@@ -3,8 +3,8 @@ import { Link } from 'react-router-dom';
 
 function AboutMe() {
   return (
-    <section className='me'>
-      <h3 className='me__title' id='me'>Студент</h3>
+    <section className='me' id='me'>
+      <h3 className='me__title'>Студент</h3>
       <div className='me__line' />
       <div className='me__card'>
         <div className='me__info'>
@@ -18,7 +18,7 @@ function AboutMe() {
         <div className='me__photo' />
       </div>
     </section>
-  )
+  );
 };
 
 export default AboutMe;
