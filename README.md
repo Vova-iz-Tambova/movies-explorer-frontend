@@ -4,7 +4,7 @@
 
 Адрес репозитория: https://github.com/Vova-iz-Tambova/movies-explorer-frontend
 
----
+Aдрес Vercel: https://movies-explorer-frontend-git-level-2-vova-iz-tambovas-projects.vercel.app/
 
 ## Ссылки на проект
 
