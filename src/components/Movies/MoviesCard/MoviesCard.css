@@ -9,6 +9,7 @@
 .card__preview {
   width: 100%;
   height: 203px;
+  cursor: pointer;
 }
 
 .card__title {
@@ -23,6 +24,7 @@
   text-overflow: ellipsis;
   white-space: nowrap;
   overflow: hidden;
+  cursor: pointer;
 }
 
 .card__duration {
