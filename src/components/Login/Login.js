@@ -20,7 +20,12 @@ function Login() {
       <p className='login__error'>Что-то пошло не так...</p>
       <div className='login__submit'>Войти</div>
       <div className='login__nav'>
-        <p >Ещё не зарегистрированы? <NavLink to="/signup">Регистрация</NavLink></p>
+        <p >Ещё не зарегистрированы? <NavLink to="/signup"
+          style={{
+            textDecoration: "none",
+            color: "#4285F4"
+          }}
+        >Регистрация</NavLink></p>
       </div>
     </section>
   )
