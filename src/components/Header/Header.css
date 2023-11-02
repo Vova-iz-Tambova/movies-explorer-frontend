@@ -6,3 +6,7 @@
   padding: 18px 70px;
   box-sizing: border-box;
 }
+
+.header_dark {
+  background-color: #202020;
+}

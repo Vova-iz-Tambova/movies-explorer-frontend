@@ -1,9 +1,9 @@
 import './Header.css'
 import Navigation from '../Navigation/Navigation';
 
-function Header() {
+function Header({ profile }) {
   return (
-    <header className="header">
+    <header className={!profile ? "header" : "header  header_dark"}>
       <Navigation />
     </header >
   )

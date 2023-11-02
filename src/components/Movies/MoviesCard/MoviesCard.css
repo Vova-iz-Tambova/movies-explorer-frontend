@@ -47,17 +47,25 @@
   cursor: pointer;
 }
 
-.card__unsave {
-  width: 30px;
-  height: 30px;
+.card__remove {
+  width: 364px;
+  height: 78px;
   position: absolute;
-  right: 16px;
-  bottom: 40px;
+  right: 0;
+  bottom: 0;
   cursor: pointer;
   transition: .2s ease-in-out;
   opacity: 0;
 }
 
-.card__unsave:hover {
+.card__remove:hover {
   opacity: 1;
+}
+
+.card__unsave {
+  width: 30px;
+  height: 30px;
+  background-image: url(../../../images/unsave.svg);
+  margin-left: 318px;
+  margin-top: 9px;
 }

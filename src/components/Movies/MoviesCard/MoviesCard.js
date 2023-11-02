@@ -1,8 +1,8 @@
 import './MoviesCard.css';
-import preview from '../../../images/avatar.jpg'
-import saveOff from '../../../images/save4d.svg'
-import saveOn from '../../../images/save4.svg'
-import unsave from '../../../images/unsave.svg'
+import preview from '../../../images/avatar.jpg';
+import saveOff from '../../../images/save4d.svg';
+import saveOn from '../../../images/save4.svg';
+import unsave from '../../../images/unsave.svg';
 
 function MoviesCard(props) {
   return (
@@ -23,11 +23,9 @@ function MoviesCard(props) {
           }}
         />
         :
-        <div className='card__unsave'
-          style={{
-            backgroundImage: `url(${unsave})`,
-          }}
-        />
+        <div className='card__remove'>
+          <div className='card__unsave'></div>
+        </div>
       }
     </section>
   )

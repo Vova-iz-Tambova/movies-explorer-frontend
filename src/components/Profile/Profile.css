@@ -1,0 +1,69 @@
+.profile {
+  height: 626px;
+  width: 410px;
+  display: flex;
+  flex-direction: column;
+
+}
+
+.profile__greeting {
+  font-family: Inter;
+  font-size: 24px;
+  font-weight: 500;
+  line-height: 29px;
+  letter-spacing: 0em;
+  text-align: center;
+  color: #fff;
+  margin: 74px 0 123px 0;
+  padding: 0;
+}
+
+.profile__name {
+  height: 30px;
+  display: flex;
+  justify-content: space-between;
+  border-bottom: 1px solid #fff;
+}
+
+.profile__email {
+  margin-top: 18px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.profile__info {
+  margin-top: 0;
+  font-family: Inter;
+  font-size: 11px;
+  font-weight: 500;
+  line-height: 13px;
+  letter-spacing: 0px;
+  text-align: left;
+  color: #fff;
+}
+
+.profile__edit {
+  margin: 0 auto;
+  font-family: Inter;
+  font-size: 13px;
+  font-weight: 400;
+  line-height: 16px;
+  letter-spacing: 0px;
+  text-align: center;
+  color: #fff;
+  margin-top: 209px;
+  cursor: pointer;
+}
+
+.profile__logout {
+  margin: 0 auto;
+  font-family: Inter;
+  font-size: 13px;
+  font-weight: 500;
+  line-height: 16px;
+  letter-spacing: 0px;
+  text-align: center;
+  color: #EE3465;
+  margin-top: 16px;
+  cursor: pointer;
+}
