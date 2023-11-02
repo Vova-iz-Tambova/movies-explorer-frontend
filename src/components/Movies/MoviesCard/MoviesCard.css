@@ -46,3 +46,18 @@
   bottom: 40px;
   cursor: pointer;
 }
+
+.card__unsave {
+  width: 30px;
+  height: 30px;
+  position: absolute;
+  right: 16px;
+  bottom: 40px;
+  cursor: pointer;
+  transition: .2s ease-in-out;
+  opacity: 0;
+}
+
+.card__unsave:hover {
+  opacity: 1;
+}

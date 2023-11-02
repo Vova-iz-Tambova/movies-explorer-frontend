@@ -8,9 +8,9 @@ function SavedMovies() {
     <section className='saved'>
       <SearchForm />
       <div className='saved__list'>
-        <MoviesCard />
-        <MoviesCard />
-        <MoviesCard />
+        <MoviesCard savedMovies={false} />
+        <MoviesCard savedMovies={false} />
+        <MoviesCard savedMovies={false} />
       </div>
       <div className='saved__pagination'>
         {/* <button className='saved__more'>Ещё</button> */}

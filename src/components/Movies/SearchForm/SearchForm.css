@@ -39,7 +39,7 @@
   margin: 6px 7px;
   background-image: url(../../../images/find.svg);
   background-repeat: no-repeat;
-  background-size: cover;
+  background-size: contain;
   background-position: center;
   border-radius: 50%;
   background-color: transparent;

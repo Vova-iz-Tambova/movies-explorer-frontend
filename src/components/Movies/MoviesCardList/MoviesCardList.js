@@ -4,18 +4,15 @@ import MoviesCard from '../MoviesCard/MoviesCard';
 function MoviesCardList() {
   return (
     <section className='list'>
-      <MoviesCard />
-      <MoviesCard />
-      <MoviesCard />
-      <MoviesCard />
-      <MoviesCard />
-      <MoviesCard />
-      <MoviesCard />
-      <MoviesCard />
-      <MoviesCard />
-      <MoviesCard />
-      <MoviesCard />
-      <MoviesCard />
+      <MoviesCard savedMovies={true} />
+      <MoviesCard savedMovies={true} />
+      <MoviesCard savedMovies={true} />
+      <MoviesCard savedMovies={true} />
+      <MoviesCard savedMovies={true} />
+      <MoviesCard savedMovies={true} />
+      <MoviesCard savedMovies={true} />
+      <MoviesCard savedMovies={true} />
+      <MoviesCard savedMovies={true} />
     </section>
   )
 };

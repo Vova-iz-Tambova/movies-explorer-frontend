@@ -5,6 +5,7 @@ import { NavLink } from 'react-router-dom';
 
 function Navigation() {
   const [loggedIn, setLoggedIn] = React.useState(false);
+  const [savedMovies, setSavedMovies] = React.useState(false);
 
   return (
     <section className="nav">
@@ -13,8 +14,12 @@ function Navigation() {
       {loggedIn
         ? <div className='nav__panel'>
           <div className='nav__action'>
-            <NavLink to="/movies" className="nav__link">Фильмы</NavLink>
-            <NavLink to="/saved-movies" className="nav__link">Сохранённые фильмы</NavLink>
+            <NavLink to="/movies"
+              className="nav__link"
+              onClick={() => setSavedMovies(false)}>Фильмы</NavLink>
+            <NavLink to="/saved-movies"
+              className="nav__link"
+              onClick={() => setSavedMovies(true)}>Сохранённые фильмы</NavLink>
           </div>
           <div className="nav__user">
             <NavLink to="/profile" className="nav__link">Аккаунт</NavLink>
