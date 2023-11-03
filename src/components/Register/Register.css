@@ -79,6 +79,7 @@
   box-sizing: border-box;
   margin-top: 71px;
   cursor: pointer;
+  text-decoration: none;
 }
 
 .register__nav {

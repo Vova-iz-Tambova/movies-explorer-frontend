@@ -2,7 +2,7 @@ import './Login.css';
 import { NavLink } from 'react-router-dom';
 import logo from '../../images/logo.svg';
 
-function Login() {
+function Login({ setLoggedIn }) {
   return (
     <section className='login'>
       <NavLink to="/" className="login__logo">
@@ -18,7 +18,8 @@ function Login() {
         <div className='login__input'></div>
       </div>
       <p className='login__error'>Что-то пошло не так...</p>
-      <div className='login__submit'>Войти</div>
+      <NavLink to='/movies' className='login__submit'
+        onClick={() => setLoggedIn(true)}>Войти</NavLink>
       <div className='login__nav'>
         <p >Ещё не зарегистрированы? <NavLink to="/signup"
           style={{

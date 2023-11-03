@@ -3,23 +3,18 @@ import React from 'react';
 import logo from '../../images/logo.svg';
 import { NavLink } from 'react-router-dom';
 
-function Navigation() {
-  const [loggedIn, setLoggedIn] = React.useState(false);
-  const [savedMovies, setSavedMovies] = React.useState(false);
-
+function Navigation({ loggedIn }) {
   return (
     <section className="nav">
-      <NavLink to="/" className="nav__logo" onClick={() => setLoggedIn(false)}>
+      <NavLink to="/" className="nav__logo">
         <img src={logo} alt="логотип" /></NavLink>
       {loggedIn
         ? <div className='nav__panel'>
           <div className='nav__action'>
             <NavLink to="/movies"
-              className="nav__link"
-              onClick={() => setSavedMovies(false)}>Фильмы</NavLink>
+              className="nav__link">Фильмы</NavLink>
             <NavLink to="/saved-movies"
-              className="nav__link"
-              onClick={() => setSavedMovies(true)}>Сохранённые фильмы</NavLink>
+              className="nav__link">Сохранённые фильмы</NavLink>
           </div>
           <div className="nav__user">
             <NavLink to="/profile" className="nav__link">Аккаунт</NavLink>
@@ -30,8 +25,7 @@ function Navigation() {
         <div className='nav__welcome'>
           <NavLink to="/signup" className="nav__link">Регистрация</NavLink>
           <NavLink to="/signin"
-            className="nav__link"
-            onClick={() => setLoggedIn(true)}>
+            className="nav__link">
             <div className="nav__button">Войти</div>
           </NavLink>
         </div>

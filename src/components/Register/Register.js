@@ -23,7 +23,7 @@ function Register() {
         <div className='register__input'>••••••••••••••</div>
       </div>
       <p className='register__error'>Что-то пошло не так...</p>
-      <div className='register__submit'>Зарегистрироваться</div>
+      <NavLink to="/signin" className='register__submit'>Зарегистрироваться</NavLink>
       <div className='register__nav'>
         <p >Уже зарегистрированы? <NavLink to="/signin"
           style={{

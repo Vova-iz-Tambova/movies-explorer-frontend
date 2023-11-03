@@ -12,6 +12,8 @@ import Header from '../Header/Header';
 import Footer from '../Footer/Footer';
 
 function App() {
+  const [loggedIn, setLoggedIn] = React.useState(false);
+
   return (
     <div className="page">
       <Routes>
@@ -24,26 +26,26 @@ function App() {
         } />
         <Route path='/movies' element={
           <>
-            <Header />
+            <Header loggedIn={loggedIn} />
             <Movies />
             <Footer />
           </>
         } />
         <Route path='/saved-movies' element={
           <>
-            <Header />
+            <Header loggedIn={loggedIn} />
             <SavedMovies />
             <Footer />
           </>
         } />
         <Route path='/profile' element={
           <>
-            <Header
+            <Header loggedIn={loggedIn}
               profile={true} />
-            <Profile />
+            <Profile setLoggedIn={setLoggedIn} />
           </>
         } />
-        <Route path='/signin' element={<Login />} />
+        <Route path='/signin' element={<Login setLoggedIn={setLoggedIn} />} />
         <Route path='/signup' element={<Register />} />
         <Route path='*' element={<PageNotFound />} />
       </Routes>

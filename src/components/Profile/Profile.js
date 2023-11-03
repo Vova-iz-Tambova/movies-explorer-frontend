@@ -1,6 +1,7 @@
 import './Profile.css';
+import { NavLink } from 'react-router-dom';
 
-function Profile() {
+function Profile({ setLoggedIn }) {
   return (
     <section className="profile">
       <h2 className='profile__greeting'>Привет, Виталий!</h2>
@@ -13,7 +14,8 @@ function Profile() {
         <p className='profile__info'>pochta@yandex.ru</p>
       </div>
       <div className='profile__edit'>Редактировать</div>
-      <div className='profile__logout'>Выйти из аккаунта</div>
+      <NavLink to='/' className='profile__logout'
+        onClick={() => setLoggedIn(false)}>Выйти из аккаунта</NavLink>
     </section>
   )
 }

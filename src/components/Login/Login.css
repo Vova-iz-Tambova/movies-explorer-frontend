@@ -79,6 +79,7 @@
   box-sizing: border-box;
   margin-top: 159px;
   cursor: pointer;
+  text-decoration: none;
 }
 
 .login__nav {
