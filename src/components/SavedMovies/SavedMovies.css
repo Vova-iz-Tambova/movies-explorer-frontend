@@ -37,3 +37,19 @@
   border: none;
   color: #fff;
 }
+
+@media screen and (max-width:920px) {
+  .saved {
+    max-width: 768px;
+    padding: 0 30px;
+  }
+
+  .saved__list {
+    gap: 30px;
+    box-sizing: border-box;
+  }
+
+  .saved__pagination {
+    height: 162px;
+  }
+}

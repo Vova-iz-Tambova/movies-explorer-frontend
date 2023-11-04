@@ -1,9 +1,9 @@
 import './Header.css'
 import Navigation from '../Navigation/Navigation';
 
-function Header({ loggedIn, editProfile }) {
+function Header({ loggedIn, isLanding }) {
   return (
-    <header className={`${editProfile ? "header  header_dark": "header"}`}>
+    <header className={`${isLanding ? "header" : "header  header_dark"}`}>
       <Navigation loggedIn={loggedIn} />
     </header >
   )

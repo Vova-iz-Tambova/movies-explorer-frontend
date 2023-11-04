@@ -103,7 +103,7 @@
   background-position: 43% 50%;
 }
 
-@media screen and (max-width: 1300px) {
+@media screen and (max-width: 1267px) {
   .me {
     max-width: 768px;
     padding: 90px 50px 83px;

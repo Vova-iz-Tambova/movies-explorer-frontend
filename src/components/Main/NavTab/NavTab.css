@@ -28,7 +28,7 @@
   text-decoration: none;
 }
 
-@media screen and (max-width: 800px) {
+@media screen and (max-width:920px) {
   .panel__nav {
     max-width: 768px;
   }

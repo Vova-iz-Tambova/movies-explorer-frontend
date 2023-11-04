@@ -1,4 +1,4 @@
-.login {
+.register {
   width: 396px;
   display: flex;
   flex-direction: column;
@@ -90,4 +90,15 @@
   letter-spacing: 0em;
   text-align: center;
   color: #8B8B8B;
+}
+
+@media screen and (max-width:920px) {
+  .register {
+    max-width: 768px;
+    height: 1024px;
+  }
+
+  .register__logo {
+    margin-top: 232px;
+  }
 }

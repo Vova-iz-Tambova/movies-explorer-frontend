@@ -91,3 +91,14 @@
   text-align: center;
   color: #8B8B8B;
 }
+
+@media screen and (max-width:920px) {
+  .login {
+    max-width: 768px;
+    height: 1024px;
+  }
+
+  .login__logo {
+    margin-top: 232px;
+  }
+}

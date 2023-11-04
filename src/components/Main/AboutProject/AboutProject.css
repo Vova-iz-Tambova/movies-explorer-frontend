@@ -110,7 +110,7 @@
   margin-top: 14px;
 }
 
-@media screen and (max-width: 800px) {
+@media screen and (max-width:920px) {
   .project {
     max-width: 768px;
     min-height: 585px;

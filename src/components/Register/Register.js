@@ -4,7 +4,7 @@ import logo from '../../images/logo.svg';
 
 function Register() {
   return (
-    <section className='login'>
+    <section className='register'>
       <NavLink to="/" className="register__logo">
         <img src={logo} alt="логотип" /></NavLink>
       <h2 className='register__title'>Добро пожаловать!</h2>

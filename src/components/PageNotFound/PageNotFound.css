@@ -40,3 +40,14 @@
   margin-top: 168px;
   text-decoration: none;
 }
+
+@media screen and (max-width:920px) {
+  .not-found {
+    max-width: 768px;
+    height: 1024px;
+  }
+
+  .not-found__title {
+    margin-top: 408px;
+  }
+}

@@ -5,3 +5,10 @@
   padding: 70px 0 10px 0;
   box-sizing: border-box;
 }
+
+@media screen and (max-width:920px) {
+  .list {
+    gap: 30px;
+    padding-bottom: 32px;
+  }
+}

@@ -13,18 +13,21 @@ import Footer from '../Footer/Footer';
 
 function App() {
   const [loggedIn, setLoggedIn] = React.useState(false);
-  const [editProfile, setEditProfile] = React.useState(false);
+  const [isLanding, setIsLanding] = React.useState(true);
 
   useEffect(() => {
-    setEditProfile(true)
-  }, [editProfile])
+    setIsLanding(true)
+  }, [isLanding])
 
   return (
     <div className="page">
       <Routes>
         <Route path='/' element={
           <>
-            <Header loggedIn={loggedIn} />
+            <Header
+              isLanding={isLanding}
+              loggedIn={loggedIn}
+            />
             <Main />
             <Footer />
           </>
@@ -45,10 +48,7 @@ function App() {
         } />
         <Route path='/profile' element={
           <>
-            <Header
-              loggedIn={loggedIn}
-              editProfile={editProfile}
-            />
+            <Header loggedIn={loggedIn} />
             <Profile setLoggedIn={setLoggedIn} />
           </>
         } />

@@ -3,7 +3,6 @@
   width: 410px;
   display: flex;
   flex-direction: column;
-
 }
 
 .profile__greeting {
@@ -67,4 +66,19 @@
   margin-top: 16px;
   cursor: pointer;
   text-decoration: none;
+}
+
+@media screen and (max-width:920px) {
+  .profile {
+    max-width: 768px;
+    height: 950px;
+  }
+
+  .profile__greeting {
+    margin: 236px 0 96px 0;
+
+  }
+  .profile__edit {
+    margin-top: 200px;
+  }
 }
