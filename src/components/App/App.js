@@ -1,5 +1,5 @@
 import './App.css';
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Route, Routes } from 'react-router-dom';
 import Main from '../Main/Main';
 import Movies from '../Movies/Movies';
@@ -13,13 +13,18 @@ import Footer from '../Footer/Footer';
 
 function App() {
   const [loggedIn, setLoggedIn] = React.useState(false);
+  const [editProfile, setEditProfile] = React.useState(false);
+
+  useEffect(() => {
+    setEditProfile(true)
+  }, [editProfile])
 
   return (
     <div className="page">
       <Routes>
         <Route path='/' element={
           <>
-            <Header />
+            <Header loggedIn={loggedIn} />
             <Main />
             <Footer />
           </>
@@ -40,8 +45,10 @@ function App() {
         } />
         <Route path='/profile' element={
           <>
-            <Header loggedIn={loggedIn}
-              profile={true} />
+            <Header
+              loggedIn={loggedIn}
+              editProfile={editProfile}
+            />
             <Profile setLoggedIn={setLoggedIn} />
           </>
         } />

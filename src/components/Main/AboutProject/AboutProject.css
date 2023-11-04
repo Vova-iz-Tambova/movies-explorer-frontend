@@ -16,7 +16,6 @@
 }
 
 .project__table {
-  width: 100%;
   border-top: 1px solid #dadada;
   margin-top: 23px;
 }
@@ -57,11 +56,12 @@
 }
 
 .project__timeline {
+  width: 100%;
   display: flex;
 }
 
 .project__backend {
-  width: calc(100%/5);
+  width: 20%;
   height: 36px;
   font-family: Inter;
   font-size: 14px;
@@ -74,7 +74,7 @@
 }
 
 .project__backend-title {
-  width: calc(100%/5);
+  width: 20%;
   font-family: Inter;
   font-size: 14px;
   font-weight: 500;
@@ -86,7 +86,7 @@
 }
 
 .project__frontend {
-  width: calc(100%/5*4);
+  width: 80%;
   height: 36px;
   font-family: Inter;
   font-size: 14px;
@@ -99,7 +99,7 @@
 }
 
 .project__frontend-title {
-  width: calc(100%/5*4);
+  width: 80%;
   font-family: Inter;
   font-size: 14px;
   font-weight: 500;
@@ -108,4 +108,54 @@
   text-align: center;
   color: #8B8B8B;
   margin-top: 14px;
+}
+
+@media screen and (max-width: 800px) {
+  .project {
+    max-width: 768px;
+    min-height: 585px;
+    padding: 0 50px;
+  }
+
+  .project__title {
+    padding-top: 90px;
+  }
+
+  .project__table-title {
+    padding-top: 68px;
+    padding-bottom: 20px;
+    padding-left: 0;
+  }
+
+  .project__table-title:last-of-type {
+    padding-left: 14px;
+  }
+
+  .project__cell {
+    font-family: Inter;
+    font-size: 12px;
+    font-weight: 400;
+    line-height: 18px;
+    letter-spacing: 0em;
+    text-align: left;
+    padding-bottom: 90px;
+    padding-right: 15px;
+    padding-left: 0;
+  }
+
+  .project__cell:last-of-type {
+    padding-left: 14px;
+  }
+
+  .project__timeline {
+    margin-left: 1px;
+  }
+
+  .project__backend {
+    width: 21%;
+  }
+
+  .project__backend-title {
+    width: 21%;
+  }
 }

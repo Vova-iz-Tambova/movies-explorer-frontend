@@ -3,6 +3,7 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+  box-sizing: border-box;
 }
 
 .me__title {
@@ -63,6 +64,7 @@
 }
 
 .me__biography {
+  width: 100%;
   max-width: 600px;
   min-width: 550px;
   font-family: Inter;
@@ -98,5 +100,52 @@
   border-radius: 10px;
   background-image: url(../../../images/avatar.jpg);
   background-size: cover;
-  background-position: 40% 50%;
+  background-position: 43% 50%;
+}
+
+@media screen and (max-width: 1300px) {
+  .me {
+    max-width: 768px;
+    padding: 90px 50px 83px;
+  }
+
+  .me__name {
+    font-family: Inter;
+    font-size: 40px;
+    font-weight: 400;
+    line-height: 40px;
+    letter-spacing: -0.04em;
+    text-align: left;
+  }
+
+  .me__career {
+    font-family: Inter;
+    font-size: 12px;
+    font-weight: 500;
+    line-height: 18px;
+    letter-spacing: 0px;
+    text-align: left;
+    margin: 16px 0 0;
+  }
+
+  .me__biography {
+    min-width: 390px;
+    font-family: Inter;
+    font-size: 12px;
+    font-weight: 400;
+    line-height: 18px;
+    letter-spacing: 0px;
+    text-align: left;
+    margin: 20px 0 0;
+    text-align: justify;
+  }
+
+  .me__photo {
+    min-width: 255px;
+    height: 307px;
+  }
+
+  .me__card {
+    gap: 20px;
+  }
 }

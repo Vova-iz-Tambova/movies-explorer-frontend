@@ -52,3 +52,19 @@
   color: #FFFFFF;
   text-decoration: none;
 }
+
+@media screen and (max-width: 800px) {
+  .me {
+    max-width: 768px;
+  }
+
+  .footer__copyrigth {
+    left: 30px;
+    bottom: 20px;
+  }
+
+  .footer__nav {
+    right: 30px;
+    bottom: 20px;
+  }
+}

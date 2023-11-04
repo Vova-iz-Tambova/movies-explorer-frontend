@@ -1,7 +1,12 @@
-.header__cover {
+.promo {
   width: 100%;
   max-width: 1280px;
   height: 524px;
+}
+
+.promo__cover {
+  width: 100%;
+  height: 100%;
   background-image: url(../../../images/cover.svg);
   background-repeat: no-repeat;
   background-position: 50% 40%;
@@ -9,7 +14,7 @@
   background-color: #073042;
 }
 
-.header__title {
+.promo__title {
   color: #FFF;
   text-align: center;
   font-family: Inter;
@@ -19,5 +24,20 @@
   line-height: 58px;
   /* 116% */
   letter-spacing: -2px;
-  margin: 184px auto 224px;
+  margin: 184px auto;
+}
+
+@media screen and (max-width: 800px) {
+  .promo {
+    max-width: 768px;
+    height: 784px;
+  }
+
+  .promo__cover {
+    background-position: 50% 48%;
+  }
+
+  .promo__title {
+    margin: 326px auto;
+  }
 }
