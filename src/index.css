@@ -1,2 +1,10 @@
 @import url(./vendor/normalize.css);
 @import url(./vendor/fonts/inter.css);
+
+.animation {
+  transition: opacity .4s ease-in-out;
+}
+
+.animation:hover {
+  opacity: .8;
+}

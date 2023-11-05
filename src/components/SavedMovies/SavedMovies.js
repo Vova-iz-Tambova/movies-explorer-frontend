@@ -13,7 +13,7 @@ function SavedMovies() {
         {/* <MoviesCard savedMovies={false} /> */}
       </div>
       <div className='saved__pagination'>
-        {/* <button className='saved__more'>Ещё</button> */}
+        {/* <button className='saved__more  animation'>Ещё</button> */}
       </div>
     </section>
   )

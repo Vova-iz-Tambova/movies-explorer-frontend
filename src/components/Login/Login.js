@@ -18,10 +18,11 @@ function Login({ setLoggedIn }) {
         <div className='login__input'></div>
       </div>
       <p className='login__error'>Что-то пошло не так...</p>
-      <NavLink to='/movies' className='login__submit'
+      <NavLink to='/movies' className='login__submit  animation'
         onClick={() => setLoggedIn(true)}>Войти</NavLink>
       <div className='login__nav'>
-        <p >Ещё не зарегистрированы? <NavLink to="/signup"
+        <p >Ещё не зарегистрированы? <NavLink className='animation'
+        to="/signup"
           style={{
             textDecoration: "none",
             color: "#4285F4"

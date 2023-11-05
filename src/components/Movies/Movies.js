@@ -9,8 +9,9 @@ function Movies() {
       <SearchForm />
       <MoviesCardList />
       <div className='movies__pagination'>
-        <button className='movies__more'>Ещё</button>
+        <button className='movies__more  animation'>Ещё</button>
       </div>
+      {/* <Preloader /> */}
     </section>
   )
 }

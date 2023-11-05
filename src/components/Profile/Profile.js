@@ -13,8 +13,8 @@ function Profile({ setLoggedIn }) {
         <p className='profile__info'>E-mail</p>
         <p className='profile__info'>pochta@yandex.ru</p>
       </div>
-      <div className='profile__edit'>Редактировать</div>
-      <NavLink to='/' className='profile__logout'
+      <div className='profile__edit  animation'>Редактировать</div>
+      <NavLink to='/' className='profile__logout  animation'
         onClick={() => setLoggedIn(false)}>Выйти из аккаунта</NavLink>
     </section>
   )

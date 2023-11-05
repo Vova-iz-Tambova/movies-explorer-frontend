@@ -32,7 +32,7 @@
 }
 
 .active {
-  text-decoration: underline;
+  font-weight: 500;
 }
 
 .nav__account {
@@ -43,10 +43,6 @@
   line-height: 18px;
   text-decoration: none;
   color: #FFF;
-}
-
-.active {
-  text-decoration: underline;
 }
 
 .nav__button {
