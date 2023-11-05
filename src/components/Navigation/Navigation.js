@@ -37,7 +37,7 @@ function Navigation({ loggedIn }) {
                   <NavLink to="/saved-movies" className="menu__link">Сохранённые фильмы</NavLink>
                 </div>
                 <div className="nav__user">
-                  <NavLink to="/profile" className="nav__link">Аккаунт</NavLink>
+                  <NavLink to="/profile" className="nav__account">Аккаунт</NavLink>
                   <div className="nav__profile" />
                 </div>
               </div>

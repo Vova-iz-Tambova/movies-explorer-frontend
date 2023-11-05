@@ -108,3 +108,70 @@
   }
 
 }
+
+@media screen and (max-width:700px) {
+
+  .techs {
+    max-width: 320px;
+    height: 651px;
+    padding: 71px 18px 70px;
+    background-color: #202020;
+  }
+
+  .techs__name {
+    font-family: Inter;
+    font-size: 18px;
+    font-weight: 400;
+    line-height: 22px;
+    letter-spacing: -0.04em;
+    text-align: left;
+  }
+
+  .techs__line {
+    border-bottom: 1px solid #000;
+    margin-top: 27px;
+    margin-bottom: 60px;
+  }
+
+  .techs__title {
+    font-family: Inter;
+    font-size: 30px;
+    font-weight: 400;
+    line-height: 36px;
+    letter-spacing: -0.04em;
+    text-align: center;
+
+  }
+
+  .techs__description {
+    width: 100%;
+    font-family: Inter;
+    font-size: 11px;
+    font-weight: 400;
+    line-height: 16px;
+    letter-spacing: -0.04em;
+    text-align: center;
+    margin: 24px 0 0;
+  }
+
+  .techs__list {
+    width: 178px;
+    display: flex;
+    gap: 10px;
+    margin-top: 50px;
+    flex-wrap: wrap;
+  }
+
+  .techs__tech {
+    width: 84px;
+    height: 57px;
+    font-family: Inter;
+    font-size: 12px;
+    font-weight: 400;
+    line-height: 58px;
+    letter-spacing: -0.04em;
+    text-align: center;
+
+    color: #FFFFFF;
+  }
+}

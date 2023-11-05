@@ -35,6 +35,20 @@
   text-decoration: underline;
 }
 
+.nav__account {
+  font-family: Inter;
+  font-size: 13px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 18px;
+  text-decoration: none;
+  color: #FFF;
+}
+
+.active {
+  text-decoration: underline;
+}
+
 .nav__button {
   width: 76px;
   height: 32px;
@@ -43,6 +57,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  color: #000;
 }
 
 .nav__welcome {
@@ -83,12 +98,12 @@
 }
 
 @media screen and (max-width:920px) {
-
   .nav__panel {
     display: none;
   }
 
   .nav__menu {
+    display: block;
     min-width: 44px;
     min-height: 44px;
     background-image: url(../../images/menu.svg);
@@ -135,7 +150,6 @@
   }
 
   .menu__nav {
-    height: 400px;
     display: flex;
     flex-direction: column;
     gap: 28px;
@@ -155,6 +169,65 @@
   .active {
     text-decoration: underline;
     text-underline-offset: 10px;
+  }
+
+}
+
+@media screen and (max-width:700px) {
+  .nav__button {
+    width: 54px;
+    height: 26px;
+  }
+
+  .nav__link {
+    font-family: Inter;
+    font-size: 10px;
+    font-weight: 500;
+    line-height: 16px;
+    letter-spacing: 0px;
+    text-align: right;
+  }
+
+  .nav__welcome {
+    gap: 14px;
+  }
+
+  .nav__menu {
+    min-width: 40px;
+    min-height: 42px;
+    background-size: contain;
+  }
+
+  .menu {
+    width: 320px;
+    height: 780px;
+    right: calc(50% - 320px / 2);
+    top: 0;
+    padding: 144px 0 46px 0;
+  }
+
+  .menu__close {
+    top: 12px;
+    right: calc(50% - (320px / 2) + 15px);
+  }
+
+  .menu__nav {
+    gap: 24px;
+  }
+
+  .nav__account {
+    font-family: Inter;
+    font-size: 13px;
+    font-weight: 500;
+    line-height: 12px;
+    letter-spacing: 0px;
+    text-align: left;
+    color: #FFF;
+  }
+
+  .active {
+    text-decoration: underline;
+    text-underline-offset: 12px;
   }
 
 }

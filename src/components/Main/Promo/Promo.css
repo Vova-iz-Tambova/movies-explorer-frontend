@@ -15,6 +15,7 @@
 }
 
 .promo__title {
+  width: 730px;
   color: #FFF;
   text-align: center;
   font-family: Inter;
@@ -39,5 +40,27 @@
 
   .promo__title {
     margin: 326px auto;
+  }
+}
+
+@media screen and (max-width:700px) {
+  .promo {
+    max-width: 320px;
+    height: 570px;
+  }
+
+  .promo__cover {
+    background-size: 248px;
+    background-position: 50% 45%;
+  }
+
+  .promo__title {
+    font-family: Inter;
+    font-size: 31px;
+    font-weight: 400;
+    line-height: 39px;
+    letter-spacing: -0.04em;
+    text-align: center;
+    margin: 207px auto;
   }
 }

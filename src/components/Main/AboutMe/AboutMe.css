@@ -102,7 +102,7 @@
   background-position: 43% 50%;
 }
 
-@media screen and (max-width: 1000px) {
+@media screen and (max-width: 999px) {
   .me {
     max-width: 768px;
     padding: 90px 50px 83px;
@@ -147,4 +147,73 @@
   .me__card {
     gap: 20px;
   }
+}
+
+
+@media screen and (max-width: 700px) {
+  .me {
+    max-width: 320px;
+    height: 998px;
+    padding: 71px 14px 100px;
+  }
+
+  .me__title {
+    font-family: Inter;
+    font-size: 18px;
+    font-weight: 400;
+    line-height: 22px;
+    letter-spacing: -0.04em;
+    text-align: left;
+  }
+
+  .me__line {
+    margin-top: 27px;
+    margin-bottom: 60px;
+  }
+
+  .me__card {
+    flex-direction: column-reverse;
+    gap: 40px;
+  }
+
+  .me__name {
+    font-family: Inter;
+    font-size: 30px;
+    font-weight: 400;
+    line-height: 36px;
+    letter-spacing: -0.04em;
+    text-align: left;
+  }
+
+  .me__career {
+    font-family: Inter;
+    font-size: 11px;
+    font-weight: 500;
+    line-height: 16px;
+    letter-spacing: 0px;
+    text-align: left;
+    margin: 20px 0 0;
+  }
+
+  .me__biography {
+    min-width: 100%;
+    font-family: Inter;
+    font-size: 11px;
+    font-weight: 400;
+    line-height: 16px;
+    letter-spacing: 0px;
+    text-align: left;
+    margin: 20px 0 0;
+    text-align: left;
+  }
+
+  .me__photo {
+    min-width: 292px;
+    height: 352px;
+  }
+
+  .me__info {
+    height: 357px;
+  }
+
 }
