@@ -1,4 +1,5 @@
 .me {
+  width: 100%;
   padding: 110px 70px 83px;
   display: flex;
   flex-direction: column;
@@ -30,7 +31,7 @@
   width: 100%;
   height: 100%;
   display: flex;
-  gap: 30px;
+  gap: 20px;
   justify-content: space-between;
 }
 
@@ -65,8 +66,7 @@
 
 .me__biography {
   width: 100%;
-  max-width: 600px;
-  min-width: 550px;
+  min-width: 581px;
   font-family: Inter;
   font-size: 14px;
   font-weight: 400;
@@ -94,7 +94,6 @@
 }
 
 .me__photo {
-  width: 510px;
   min-width: 270px;
   height: 327px;
   border-radius: 10px;
@@ -103,7 +102,7 @@
   background-position: 43% 50%;
 }
 
-@media screen and (max-width: 1267px) {
+@media screen and (max-width: 1000px) {
   .me {
     max-width: 768px;
     padding: 90px 50px 83px;
