@@ -12,3 +12,10 @@
     padding-bottom: 32px;
   }
 }
+
+@media screen and (max-width:700px) {
+  .list {
+    gap: 14px;
+    padding: 40px 0 26px 0;
+  }
+}

@@ -9,9 +9,9 @@ function MoviesCardList() {
       <MoviesCard savedMovies={true} />
       <MoviesCard savedMovies={true} />
       <MoviesCard savedMovies={true} />
+      {/* <MoviesCard savedMovies={true} />
       <MoviesCard savedMovies={true} />
-      <MoviesCard savedMovies={true} />
-      <MoviesCard savedMovies={true} />
+      <MoviesCard savedMovies={true} /> */}
       {/* <MoviesCard savedMovies={true} />
       <MoviesCard savedMovies={true} />
       <MoviesCard savedMovies={true} />

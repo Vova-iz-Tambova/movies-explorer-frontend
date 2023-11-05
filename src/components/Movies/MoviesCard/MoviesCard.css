@@ -99,6 +99,50 @@
 
   .card__unsave {
     margin-left: 295px;
-    /* margin-top: 8px; */
+  }
+}
+
+@media screen and (max-width:700px) {
+  .card {
+    width: 300px;
+    height: 237px;
+  }
+
+  .card__preview {
+    height: 168px;
+  }
+
+  .card__save {
+    right: 10px;
+    bottom: 32px;
+  }
+
+  .card__title {
+    font-family: Inter;
+    font-size: 12px;
+    font-weight: 500;
+    line-height: 15px;
+    letter-spacing: 0px;
+    text-align: left;
+    margin: 16px 55px 14px 14px;
+  }
+
+  .card__duration {
+    font-family: Inter;
+    font-size: 10px;
+    font-weight: 400;
+    line-height: 12px;
+    letter-spacing: 0px;
+    text-align: left;
+    margin: 0 16px;
+  }
+
+  .card__remove {
+    width: 300px;
+    height: 69px;
+  }
+
+  .card__unsave {
+    margin-left: 260px;
   }
 }
