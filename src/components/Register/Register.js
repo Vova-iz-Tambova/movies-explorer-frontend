@@ -25,11 +25,11 @@ function Register() {
       <p className='register__error'>Что-то пошло не так...</p>
       <NavLink to="/signin" className='register__submit  animation'>Зарегистрироваться</NavLink>
       <div className='register__nav'>
-        <p >Уже зарегистрированы? <NavLink to="/signin" className='link__effect'
-          style={{
-            textDecoration: "none",
-            color: "#4285F4"
-          }}
+        <p >Уже зарегистрированы? <NavLink to="/signin" className='register__redirect  link__effect'
+          // style={{
+          //   textDecoration: "none",
+          //   color: "#4285F4"
+          // }}
         >Войти</NavLink></p>
       </div>
     </section >

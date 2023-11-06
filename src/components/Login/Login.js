@@ -21,12 +21,12 @@ function Login({ setLoggedIn }) {
       <NavLink to='/movies' className='login__submit  animation'
         onClick={() => setLoggedIn(true)}>Войти</NavLink>
       <div className='login__nav'>
-        <p >Ещё не зарегистрированы? <NavLink className='link__effect'
+        <p >Ещё не зарегистрированы? <NavLink className='login__redirect  link__effect'
         to="/signup"
-          style={{
-            textDecoration: "none",
-            color: "#4285F4"
-          }}
+          // style={{
+          //   textDecoration: "none",
+          //   color: "#4285F4"
+          // }}
         >Регистрация</NavLink></p>
       </div>
     </section>

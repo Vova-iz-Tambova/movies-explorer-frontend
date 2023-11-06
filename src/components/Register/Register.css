@@ -92,6 +92,11 @@
   color: #8B8B8B;
 }
 
+.register__redirect {
+  text-decoration: none;
+  color: #4285F4;
+}
+
 @media screen and (max-width:920px) {
   .register {
     max-width: 768px;
