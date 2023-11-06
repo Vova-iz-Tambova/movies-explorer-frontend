@@ -10,7 +10,7 @@ function Register() {
       <h2 className='register__title'>Добро пожаловать!</h2>
       <p className='register__description'>Имя</p>
       <div className='register__field'>
-        <div className='register__input'>Виталий</div>
+        <div className='register__input'>Александр</div>
       </div>
       <p className='register__error'>Что-то пошло не так...</p>
       <p className='register__description'>E-mail</p>
@@ -25,7 +25,7 @@ function Register() {
       <p className='register__error'>Что-то пошло не так...</p>
       <NavLink to="/signin" className='register__submit  animation'>Зарегистрироваться</NavLink>
       <div className='register__nav'>
-        <p >Уже зарегистрированы? <NavLink to="/signin" className='animation'
+        <p >Уже зарегистрированы? <NavLink to="/signin" className='link__effect'
           style={{
             textDecoration: "none",
             color: "#4285F4"

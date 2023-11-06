@@ -21,7 +21,7 @@ function Login({ setLoggedIn }) {
       <NavLink to='/movies' className='login__submit  animation'
         onClick={() => setLoggedIn(true)}>Войти</NavLink>
       <div className='login__nav'>
-        <p >Ещё не зарегистрированы? <NavLink className='animation'
+        <p >Ещё не зарегистрированы? <NavLink className='link__effect'
         to="/signup"
           style={{
             textDecoration: "none",

@@ -80,13 +80,17 @@
 .nav__profile {
   width: 26px;
   height: 26px;
-  background-color: #313131;
+  background-color: #0F4157;
   border-radius: 50%;
-  background-image: url(../../images/icon-main.svg);
+  background-image: url(../../images/profile.svg);
   background-repeat: no-repeat;
   background-size: 12px;
   background-position: 50%;
   margin-right: 3px;
+}
+
+.nav__profile_dark {
+  background-color: #313131;
 }
 
 .nav__menu {

@@ -4,7 +4,10 @@ import Navigation from '../Navigation/Navigation';
 function Header({ loggedIn, isLanding }) {
   return (
     <header className={`${isLanding ? "header" : "header  header_dark"}`}>
-      <Navigation loggedIn={loggedIn} />
+      <Navigation
+        loggedIn={loggedIn}
+        isLanding={isLanding}
+      />
     </header >
   )
 }
