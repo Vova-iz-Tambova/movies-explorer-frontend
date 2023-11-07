@@ -9,10 +9,10 @@ function SearchForm() {
   function handleSubmit(e) { e.preventDefault() }
 
   return (
-    <section className='search'>
-      <form
-        name='search'
-        onSubmit={handleSubmit}
+    <form name='search'
+      onSubmit={handleSubmit}
+      className='search'>
+      <div
         className='search__form'>
         <input required
           name='movie'
@@ -25,13 +25,13 @@ function SearchForm() {
           type='submit'
           className='search__button  animation'>
         </button>
-      </form>
-      <button className='search__switcher  animation'>
+      </div>
+      <button type='button' className='search__switcher  animation'>
         <div className='search__tumbler'></div>
         Короткометражки
       </button>
       <div className='search__line'></div>
-    </section >
+    </form >
   )
 };
 

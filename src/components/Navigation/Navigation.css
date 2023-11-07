@@ -22,7 +22,7 @@
 }
 
 .nav__link {
-  font-family: Inter;
+    font-family: 'Inter', 'Arial', sans-serif;
   font-size: 13px;
   font-style: normal;
   font-weight: 400;
@@ -36,7 +36,7 @@
 }
 
 .nav__account {
-  font-family: Inter;
+    font-family: 'Inter', 'Arial', sans-serif;
   font-size: 13px;
   font-style: normal;
   font-weight: 400;
@@ -80,7 +80,7 @@
 .nav__profile {
   width: 26px;
   height: 26px;
-  background-color: #0F4157;
+  background-color: #313131;
   border-radius: 50%;
   background-image: url(../../images/profile.svg);
   background-repeat: no-repeat;
@@ -89,15 +89,15 @@
   margin-right: 3px;
 }
 
-.nav__profile_dark {
-  background-color: #313131;
+.nav__profile_navy {
+  background-color: #0F4157;
 }
 
 .nav__menu {
   display: none;
 }
 
-@media screen and (max-width:920px) {
+@media screen and (max-width:980px) {
   .nav__panel {
     display: none;
   }
@@ -109,6 +109,8 @@
     background-image: url(../../images/menu.svg);
     background-size: cover;
     cursor: pointer;
+    background-color: transparent;
+    border: none;
   }
 
   .menu {
@@ -147,6 +149,8 @@
     right: 25px;
     top: 22px;
     cursor: pointer;
+    background-color: transparent;
+    border: none;
   }
 
   .menu__nav {
@@ -156,7 +160,7 @@
   }
 
   .menu__link {
-    font-family: Inter;
+      font-family: 'Inter', 'Arial', sans-serif;
     font-size: 18px;
     font-weight: 500;
     line-height: 22px;
@@ -173,14 +177,14 @@
 
 }
 
-@media screen and (max-width:700px) {
+@media screen and (max-width:705px) {
   .nav__button {
     width: 54px;
     height: 26px;
   }
 
   .nav__link {
-    font-family: Inter;
+      font-family: 'Inter', 'Arial', sans-serif;
     font-size: 10px;
     font-weight: 500;
     line-height: 16px;
@@ -200,7 +204,7 @@
 
   .menu {
     width: 320px;
-    height: 780px;
+    height: 100vh;
     right: calc(50% - 320px / 2);
     top: 0;
     padding: 144px 0 46px 0;
@@ -216,7 +220,7 @@
   }
 
   .nav__account {
-    font-family: Inter;
+      font-family: 'Inter', 'Arial', sans-serif;
     font-size: 13px;
     font-weight: 500;
     line-height: 12px;

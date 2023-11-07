@@ -11,7 +11,7 @@ import PageNotFound from '../PageNotFound/PageNotFound';
 import Header from '../Header/Header';
 import Footer from '../Footer/Footer';
 
-function App() {
+function App(props) {
   const [loggedIn, setLoggedIn] = React.useState(false);
   const [isLanding, setIsLanding] = React.useState(true);
 
@@ -35,7 +35,9 @@ function App() {
         <Route path='/movies' element={
           <>
             <Header loggedIn={loggedIn} />
-            <Movies />
+            <main>
+              <Movies />
+            </main>
             <Footer />
           </>
         } />
@@ -49,12 +51,20 @@ function App() {
         <Route path='/profile' element={
           <>
             <Header loggedIn={loggedIn} />
-            <Profile setLoggedIn={setLoggedIn} />
+            <main>
+              <Profile setLoggedIn={setLoggedIn} />
+            </main>
           </>
         } />
-        <Route path='/signin' element={<Login setLoggedIn={setLoggedIn} />} />
-        <Route path='/signup' element={<Register />} />
-        <Route path='*' element={<PageNotFound />} />
+        <Route path='/signin' element={
+          <main>
+            <Login
+              setLoggedIn={setLoggedIn}
+            />
+          </main>}
+        />
+        <Route path='/signup' element={<main><Register /></main>} />
+        <Route path='*' element={<main><PageNotFound /></main>} />
       </Routes>
     </div>
   );

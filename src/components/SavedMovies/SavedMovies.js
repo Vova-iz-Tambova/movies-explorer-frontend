@@ -5,7 +5,7 @@ import Preloader from '../Movies/Preloader/Preloader';
 
 function SavedMovies() {
   return (
-    <section className='saved'>
+    <main className='saved'>
       <SearchForm />
       <div className='saved__list'>
         <MoviesCard savedMovies={false} />
@@ -13,9 +13,8 @@ function SavedMovies() {
         {/* <MoviesCard savedMovies={false} /> */}
       </div>
       <div className='saved__pagination'>
-        {/* <button className='saved__more  animation'>Ещё</button> */}
       </div>
-    </section>
+    </main>
   )
 }
 export default SavedMovies;

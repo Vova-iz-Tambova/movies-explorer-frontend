@@ -7,15 +7,15 @@ function Techs() {
       <div className='techs__line' />
       <h2 className='techs__title'>7 технологий</h2>
       <p className='techs__description'>На курсе веб-разработки мы освоили технологии, которые применили в дипломном проекте.</p>
-      <div className='techs__list'>
-        <div className='techs__tech'>HTML</div>
-        <div className='techs__tech'>CSS</div>
-        <div className='techs__tech'>JS</div>
-        <div className='techs__tech'>React</div>
-        <div className='techs__tech'>Git</div>
-        <div className='techs__tech'>Express.js</div>
-        <div className='techs__tech'>mongoDB</div>
-      </div>
+      <ul className='techs__list'>
+        <li className='techs__tech'>HTML</li>
+        <li className='techs__tech'>CSS</li>
+        <li className='techs__tech'>JS</li>
+        <li className='techs__tech'>React</li>
+        <li className='techs__tech'>Git</li>
+        <li className='techs__tech'>Express.js</li>
+        <li className='techs__tech'>mongoDB</li>
+      </ul>
     </section>
   )
 };

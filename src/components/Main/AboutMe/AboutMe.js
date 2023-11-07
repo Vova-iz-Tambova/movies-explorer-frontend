@@ -1,5 +1,6 @@
 import './AboutMe.css';
 import { Link } from 'react-router-dom';
+import  Photo  from '../../../images/avatar.jpg'
 
 function AboutMe() {
   return (
@@ -8,14 +9,14 @@ function AboutMe() {
       <div className='me__line' />
       <div className='me__card'>
         <div className='me__info'>
-          <h2 className='me__name'>Владимир</h2>
+          <h4 className='me__name'>Владимир</h4>
           <p className='me__career'>Web-разработчик</p>
           <p className='me__biography'>
-          Увлекаюсь кодингом и всем что связанно с IT-технологиями ещё со средней школы. Но это не единственное моё увлечение, также я: играю на гитаре;  работал в СМИ (печатных изданиях, на радио и телевидении); получил среднее медицинское и&nbsp;высшее психологическое образование; конструирую и изготавливаю мебель; самостоятельно ремонтирую телефоны и ноутбуки; но&nbsp;особенно мне нравится путешествовать на автомобиле. В&nbsp;будущем я планирую построить собственный автодом для путешествий и в связи с этим решил больше уделять времени профессии позволяющей реализовать свою мечту.
+            Увлекаюсь кодингом с 1996г. Играю на гитаре;  работал в&nbsp;СМИ (печатных изданиях, на&nbsp;радио и&nbsp;телевидении); получил среднее медицинское и&nbsp;высшее психологическое образование; изготавливаю мебель; ремонтирую ноутбуки; обожаю путешествовать. В&nbsp;будущем планирую построить собственный автодом и в связи с этим решил больше уделять времени профессии позволяющей реализовать свою мечту.
           </p>
-          <Link to="https://github.com/Vova-iz-Tambova" target='_blank' className='me__github  link__effect'>Github</Link>
+          <Link to="https://github.com/Vova-iz-Tambova" target='_blank' className='me__github  effect'>Github</Link>
         </div>
-        <div className='me__photo' />
+        <div className='me__photo' style={{ backgroundImage: `url(${Photo})` }} />
       </div>
     </section>
   );

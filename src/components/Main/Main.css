@@ -1,7 +1,19 @@
-.section {
+.main {
   width: 100%;
   max-width: 1280px;
   display: flex;
   flex-direction: column;
   align-items: center;
+}
+
+@media screen and (max-width:980px) {
+  .main {
+    max-width: 768px;
+  }
+}
+
+@media screen and (max-width:705px) {
+  .main {
+    max-width: 320px;
+  }
 }

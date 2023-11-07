@@ -1,32 +1,62 @@
 import './Login.css';
+import React from 'react'
 import { NavLink } from 'react-router-dom';
 import logo from '../../images/logo.svg';
+import { useNavigate } from 'react-router-dom';
 
-function Login({ setLoggedIn }) {
+function Login({ setLoggedIn, setName }) {
+  const [email, setEmail] = React.useState('pochta@yandex.ru')
+  const [password, setPassword] = React.useState('1')
+
+  const navigate = useNavigate();
+
+  function handleEmail(e) { setEmail(e.target.value) }
+  function handlePassword(e) { setPassword(e.target.value) }
+
+  function handleSubmit(e) {
+    e.preventDefault();
+    setLoggedIn(true);
+    navigate('/movies');
+  }
+
   return (
     <section className='login'>
-      <NavLink to="/" className="login__logo">
+      <NavLink to="/" className="login__logo  animation">
         <img src={logo} alt="логотип" /></NavLink>
-      <h2 className='login__title'>Рады видеть!</h2>
-      <p className='login__description'>E-mail</p>
-      <div className='login__field'>
-        <div className='login__input'>pochta@yandex.ru|</div>
-      </div>
-      <p className='login__error'>Что-то пошло не так...</p>
-      <p className='login__description'>Пароль</p>
-      <div className='login__field'>
-        <div className='login__input'></div>
-      </div>
-      <p className='login__error'>Что-то пошло не так...</p>
-      <NavLink to='/movies' className='login__submit  animation'
-        onClick={() => setLoggedIn(true)}>Войти</NavLink>
+      <h1 className='login__title'>Рады видеть!</h1>
+      <form className='login__form' onSubmit={handleSubmit}>
+        <label className='login__description'>E-mail</label>
+        <div className='login__field'>
+          <input required
+            value={email}
+            type="email"
+            placeholder='Имя'
+            onChange={handleEmail}
+            className='login__input'>
+          </input>
+        </div>
+        <p className='login__error'>Что-то пошло не так...</p>
+        <label className='login__description'>Пароль</label>
+        <div className='login__field'>
+          <input required
+            type="password"
+            value={password}
+            minLength="1"
+            maxLength="12"
+            placeholder='Пароль'
+            onChange={handlePassword}
+            className='login__input'>
+          </input>
+        </div>
+        <p className='login__error'>Что-то пошло не так...</p>
+        <button
+          className='login__submit  animation'
+          type="submit">Войти
+        </button>
+      </form>
       <div className='login__nav'>
-        <p >Ещё не зарегистрированы? <NavLink className='login__redirect  link__effect'
-        to="/signup"
-          // style={{
-          //   textDecoration: "none",
-          //   color: "#4285F4"
-          // }}
+        <p>Ещё не зарегистрированы? <NavLink className='login__redirect  effect'
+          to="/signup"
         >Регистрация</NavLink></p>
       </div>
     </section>

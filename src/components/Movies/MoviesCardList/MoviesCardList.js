@@ -3,20 +3,20 @@ import MoviesCard from '../MoviesCard/MoviesCard';
 
 function MoviesCardList() {
   return (
-    <section className='list'>
-      <MoviesCard savedMovies={true} />
-      <MoviesCard savedMovies={true} />
-      <MoviesCard savedMovies={true} />
-      <MoviesCard savedMovies={true} />
-      <MoviesCard savedMovies={true} />
-      {/* <MoviesCard savedMovies={true} />
-      <MoviesCard savedMovies={true} />
-      <MoviesCard savedMovies={true} /> */}
-      {/* <MoviesCard savedMovies={true} />
-      <MoviesCard savedMovies={true} />
-      <MoviesCard savedMovies={true} />
-      <MoviesCard savedMovies={true} /> */}
-    </section>
+    <ul className='list'>
+      <li className='list__item'><MoviesCard savedMovies={true} /></li>
+      <li className='list__item'><MoviesCard savedMovies={true} /></li>
+      <li className='list__item'><MoviesCard savedMovies={true} /></li>
+      <li className='list__item'><MoviesCard savedMovies={true} /></li>
+      <li className='list__item'><MoviesCard savedMovies={true} /></li>
+      <li className='list__item'><MoviesCard savedMovies={true} /></li>
+      <li className='list__item'><MoviesCard savedMovies={true} /></li>
+      <li className='list__item'><MoviesCard savedMovies={true} /></li>
+      <li className='list__item'><MoviesCard savedMovies={true} /></li>
+      <li className='list__item'><MoviesCard savedMovies={true} /></li>
+      <li className='list__item'><MoviesCard savedMovies={true} /></li>
+      <li className='list__item'><MoviesCard savedMovies={true} /></li>
+    </ul>
   )
 };
 

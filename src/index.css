@@ -1,11 +1,11 @@
 @import url(./vendor/normalize.css);
 @import url(./vendor/fonts/inter.css);
 
-.link__effect {
+.effect {
   transition: opacity .4s ease-in-out;
 }
 
-.link__effect:hover {
+.effect:hover {
   opacity: 70%;
 }
 
@@ -16,3 +16,5 @@
 .animation:hover {
   opacity: 80%;
 }
+
+/* * { outline: 1px solid red; } */

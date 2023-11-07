@@ -8,7 +8,7 @@
 }
 
 .me__title {
-  font-family: Inter;
+    font-family: 'Inter', 'Arial', sans-serif;
   font-size: 22px;
   font-weight: 400;
   line-height: 27px;
@@ -29,21 +29,19 @@
 
 .me__card {
   width: 100%;
-  height: 100%;
   display: flex;
   gap: 20px;
   justify-content: space-between;
 }
 
 .me__info {
-  /* width: 100%; */
   display: flex;
   flex-direction: column;
   position: relative;
 }
 
 .me__name {
-  font-family: Inter;
+    font-family: 'Inter', 'Arial', sans-serif;
   font-size: 50px;
   font-weight: 400;
   line-height: 58px;
@@ -54,7 +52,7 @@
 }
 
 .me__career {
-  font-family: Inter;
+    font-family: 'Inter', 'Arial', sans-serif;
   font-size: 18px;
   font-weight: 500;
   line-height: 20px;
@@ -65,9 +63,9 @@
 }
 
 .me__biography {
-  width: 100%;
-  min-width: 581px;
-  font-family: Inter;
+  max-width: 600px;
+  min-width: 580px;
+    font-family: 'Inter', 'Arial', sans-serif;
   font-size: 14px;
   font-weight: 400;
   line-height: 22px;
@@ -75,14 +73,14 @@
   text-align: left;
   color: #FFFFFF;
   margin: 25px 0 0;
-  text-align: justify;
+  text-align: left;
 }
 
 .me__github {
-  font-family: Inter;
+    font-family: 'Inter', 'Arial', sans-serif;
   font-size: 14px;
   font-weight: 500;
-  line-height: 17px;
+  line-height: 22px;
   letter-spacing: 0em;
   text-align: left;
   color: #FFFFFF;
@@ -97,19 +95,18 @@
   min-width: 270px;
   height: 327px;
   border-radius: 10px;
-  background-image: url(../../../images/avatar.jpg);
   background-size: cover;
   background-position: 43% 50%;
 }
 
-@media screen and (max-width: 999px) {
+@media screen and (max-width: 980px) {
   .me {
     max-width: 768px;
     padding: 90px 50px 83px;
   }
 
   .me__name {
-    font-family: Inter;
+      font-family: 'Inter', 'Arial', sans-serif;
     font-size: 40px;
     font-weight: 400;
     line-height: 40px;
@@ -118,7 +115,7 @@
   }
 
   .me__career {
-    font-family: Inter;
+      font-family: 'Inter', 'Arial', sans-serif;
     font-size: 12px;
     font-weight: 500;
     line-height: 18px;
@@ -128,15 +125,15 @@
   }
 
   .me__biography {
-    min-width: 390px;
-    font-family: Inter;
+    max-width: 364px;
+    min-width: 300px;
+      font-family: 'Inter', 'Arial', sans-serif;
     font-size: 12px;
     font-weight: 400;
     line-height: 18px;
     letter-spacing: 0px;
     text-align: left;
     margin: 20px 0 0;
-    text-align: justify;
   }
 
   .me__photo {
@@ -149,16 +146,15 @@
   }
 }
 
-
-@media screen and (max-width: 700px) {
+@media screen and (max-width:705px) {
   .me {
     max-width: 320px;
-    height: 998px;
-    padding: 71px 14px 100px;
+    /* height: 998px; */
+    padding: 71px 14px 0;
   }
 
   .me__title {
-    font-family: Inter;
+      font-family: 'Inter', 'Arial', sans-serif;
     font-size: 18px;
     font-weight: 400;
     line-height: 22px;
@@ -177,7 +173,7 @@
   }
 
   .me__name {
-    font-family: Inter;
+      font-family: 'Inter', 'Arial', sans-serif;
     font-size: 30px;
     font-weight: 400;
     line-height: 36px;
@@ -186,7 +182,7 @@
   }
 
   .me__career {
-    font-family: Inter;
+      font-family: 'Inter', 'Arial', sans-serif;
     font-size: 11px;
     font-weight: 500;
     line-height: 16px;
@@ -197,14 +193,13 @@
 
   .me__biography {
     min-width: 100%;
-    font-family: Inter;
+      font-family: 'Inter', 'Arial', sans-serif;
     font-size: 11px;
     font-weight: 400;
     line-height: 16px;
     letter-spacing: 0px;
     text-align: left;
     margin: 20px 0 0;
-    text-align: left;
   }
 
   .me__photo {
@@ -213,7 +208,11 @@
   }
 
   .me__info {
-    height: 357px;
+    height: 330px;
   }
 
+  .me__github {
+    position: static;
+    margin-top: 9px;
+  }
 }

@@ -5,14 +5,14 @@ import Preloader from './Preloader/Preloader';
 
 function Movies() {
   return (
-    <section className="movies">
+    <div className="movies">
       <SearchForm />
       <MoviesCardList />
       <div className='movies__pagination'>
-        <button className='movies__more  animation'>Ещё</button>
+        <button type='button' className='movies__more  animation'>Ещё</button>
       </div>
       {/* <Preloader /> */}
-    </section>
+    </div>
   )
 }
 export default Movies;
