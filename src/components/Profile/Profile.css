@@ -105,7 +105,7 @@
 @media screen and (max-width:980px) {
   .profile {
     max-width: 768px;
-    height: 950px;
+    min-height: 950px;
   }
 
   .profile__title {
@@ -122,7 +122,7 @@
     max-width: 260px;
     padding-bottom: 40px;
     box-sizing: border-box;
-    height: calc(100vh - 74px);
+    min-height: calc(100vh - 74px);
     position: relative;
   }
 
