@@ -7,23 +7,29 @@ import unsave from '../../../images/unsave.svg';
 function MoviesCard(props) {
   return (
     <section className='card'>
-      <div className='card__preview  effect'
-        style={{ backgroundImage: `url(${Preview})` }}
-      />
-      <h2 className='card__title  effect'>Lorem ipsum is placeholder text commonly used in the graphic, print, and publishing industries for previewing layouts and visual mockups.</h2>
-      <p className='card__duration'>3ч 33м</p>
+      <img className='card__preview  effect' src={Preview} alt='Статичный предосмотр видеофайла' />
       {props.savedMovies
         ?
-        <div className='card__save  animation'
-          style={{
-            backgroundImage: `url(${saveOn})`,
-          }}
-        />
+        <div className='card__panel'>
+          <div className='card__info'>
+            <h2 className='card__title  effect'>Гриды это всё от лукавого (с) БитриксБитриксБитрикс</h2>
+            <p className='card__duration'>3ч 33м</p>
+          </div>
+          <div className='card__save  animation'
+            style={{
+              backgroundImage: `url(${saveOn})`
+            }}
+          />
+        </div>
         :
-        <div className='card__remove  animation'>
-          <div className='card__unsave  animation'></div>
+        <div className='card__panel card__panel_unsave'>
+          <div className='card__info'>
+            <h2 className='card__title'>Гриды это всё от лукавого (с) БитриксБитриксБитрикс</h2>
+            <p className='card__duration'>3ч 33м</p>
+          </div>
         </div>
       }
+
     </section>
   )
 };

@@ -19,7 +19,7 @@
 }
 
 .nav-tab__link {
-    font-family: 'Inter', 'Arial', sans-serif;
+  font-family: 'Inter', 'Arial', sans-serif;
   font-size: 13px;
   font-weight: 500;
   line-height: 10px;
@@ -35,14 +35,14 @@
 
 @media screen and (max-width:980px) {
   .nav-tab {
-    max-width: 768px;
+    /* max-width: 768px; */
   }
 }
 
 @media screen and (max-width:705px) {
 
   .nav-tab {
-    max-width: 320px;
+    min-width: 320px;
   }
 
   .nav-tab__links {
@@ -50,7 +50,7 @@
   }
 
   .nav-tab__link {
-      font-family: 'Inter', 'Arial', sans-serif;
+    font-family: 'Inter', 'Arial', sans-serif;
     font-size: 11px;
     font-weight: 500;
     line-height: 16px;

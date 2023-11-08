@@ -26,7 +26,7 @@ function Profile({ setLoggedIn }) {
       <form className='profile__form' onSubmit={handleSubmit}>
         <div className='profile__field'>
           <label className='profile__info'>Имя</label>
-          <input required autoFocus
+          <input required
             value={name}
             type="text"
             minLength="2"
@@ -36,6 +36,7 @@ function Profile({ setLoggedIn }) {
             className='profile__input'
           ></input>
         </div>
+        <div className='profile__line'/>
         <div className='profile__field'>
           <label className='profile__info'>E-mail</label>
           <input required

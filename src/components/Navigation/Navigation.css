@@ -5,6 +5,7 @@
   align-items: center;
   gap: 44px;
   padding-top: 2px;
+  box-sizing: border-box;
 }
 
 .nav__logo {
@@ -22,7 +23,7 @@
 }
 
 .nav__link {
-    font-family: 'Inter', 'Arial', sans-serif;
+  font-family: 'Inter', 'Arial', sans-serif;
   font-size: 13px;
   font-style: normal;
   font-weight: 400;
@@ -36,7 +37,7 @@
 }
 
 .nav__account {
-    font-family: 'Inter', 'Arial', sans-serif;
+  font-family: 'Inter', 'Arial', sans-serif;
   font-size: 13px;
   font-style: normal;
   font-weight: 400;
@@ -87,6 +88,7 @@
   background-size: 12px;
   background-position: 50%;
   margin-right: 3px;
+  cursor: pointer;
 }
 
 .nav__profile_navy {
@@ -94,6 +96,10 @@
 }
 
 .nav__menu {
+  display: none;
+}
+
+.menu {
   display: none;
 }
 
@@ -160,7 +166,7 @@
   }
 
   .menu__link {
-      font-family: 'Inter', 'Arial', sans-serif;
+    font-family: 'Inter', 'Arial', sans-serif;
     font-size: 18px;
     font-weight: 500;
     line-height: 22px;
@@ -184,7 +190,7 @@
   }
 
   .nav__link {
-      font-family: 'Inter', 'Arial', sans-serif;
+    font-family: 'Inter', 'Arial', sans-serif;
     font-size: 10px;
     font-weight: 500;
     line-height: 16px;
@@ -203,9 +209,11 @@
   }
 
   .menu {
-    width: 320px;
+    width: 100%;
+    min-width: 320px;
     height: 100vh;
-    right: calc(50% - 320px / 2);
+    right: 0;
+    left: 0;
     top: 0;
     padding: 144px 0 46px 0;
   }
@@ -220,7 +228,7 @@
   }
 
   .nav__account {
-      font-family: 'Inter', 'Arial', sans-serif;
+    font-family: 'Inter', 'Arial', sans-serif;
     font-size: 13px;
     font-weight: 500;
     line-height: 12px;

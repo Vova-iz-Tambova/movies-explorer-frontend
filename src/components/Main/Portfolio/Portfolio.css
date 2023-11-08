@@ -6,7 +6,7 @@
 }
 
 .portfolio__title {
-    font-family: 'Inter', 'Arial', sans-serif;
+  font-family: 'Inter', 'Arial', sans-serif;
   font-size: 18px;
   font-weight: 400;
   line-height: 20px;
@@ -36,7 +36,7 @@
 }
 
 .portfolio__name {
-    font-family: 'Inter', 'Arial', sans-serif;
+  font-family: 'Inter', 'Arial', sans-serif;
   font-size: 30px;
   font-weight: 400;
   line-height: 35px;
@@ -45,7 +45,7 @@
 }
 
 .portfolio__arrow {
-    font-family: 'Inter', 'Arial', sans-serif;
+  font-family: 'Inter', 'Arial', sans-serif;
   font-size: 30px;
   font-weight: 400;
   line-height: 42px;
@@ -54,8 +54,8 @@
 
 @media screen and (max-width:980px) {
   .portfolio {
-    width: 100%;
-    max-width: 768px;
+    /* width: 100%;
+    max-width: 768px; */
     padding: 0 50px 70px;
   }
 
@@ -65,7 +65,7 @@
   }
 
   .portfolio__name {
-      font-family: 'Inter', 'Arial', sans-serif;
+    font-family: 'Inter', 'Arial', sans-serif;
     font-size: 28px;
     font-weight: 400;
     line-height: 33px;
@@ -78,13 +78,13 @@
 @media screen and (max-width:705px) {
   .portfolio {
     width: 100%;
-    max-width: 320px;
+    min-width: 320px;
     padding: 0 14px 50px;
     box-sizing: border-box;
   }
 
   .portfolio__title {
-      font-family: 'Inter', 'Arial', sans-serif;
+    font-family: 'Inter', 'Arial', sans-serif;
     font-size: 14px;
     font-weight: 400;
     line-height: 25px;
@@ -102,7 +102,7 @@
   }
 
   .portfolio__name {
-      font-family: 'Inter', 'Arial', sans-serif;
+    font-family: 'Inter', 'Arial', sans-serif;
     font-size: 18px;
     font-weight: 400;
     line-height: 67px;
@@ -113,7 +113,7 @@
   }
 
   .portfolio__arrow {
-      font-family: 'Inter', 'Arial', sans-serif;
+    font-family: 'Inter', 'Arial', sans-serif;
     font-size: 18px;
     font-weight: 400;
     line-height: 67px;

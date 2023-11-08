@@ -16,7 +16,7 @@ function AboutMe() {
           </p>
           <Link to="https://github.com/Vova-iz-Tambova" target='_blank' className='me__github  effect'>Github</Link>
         </div>
-        <div className='me__photo' style={{ backgroundImage: `url(${Photo})` }} />
+        <img className='me__photo' src={Photo} alt='фотография студента'/>
       </div>
     </section>
   );

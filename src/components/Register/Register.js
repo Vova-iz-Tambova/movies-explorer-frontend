@@ -21,8 +21,8 @@ function Register() {
   }
 
   return (
-    <section className='register  animation'>
-      <NavLink to="/" className="register__logo">
+    <section className='register'>
+      <NavLink to="/" className="register__logo  animation">
         <img src={logo} alt="логотип" /></NavLink>
       <h1 className='register__title'>Добро пожаловать!</h1>
       <form className='register__form' onSubmit={handleSubmit}>

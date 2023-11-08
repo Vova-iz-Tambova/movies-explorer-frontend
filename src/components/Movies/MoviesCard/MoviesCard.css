@@ -3,7 +3,8 @@
   height: 281px;
   border-radius: 6px;
   background-color: #222222;
-  position: relative;
+  display: flex;
+  flex-direction: column;
 }
 
 .card__preview {
@@ -12,11 +13,37 @@
   border-top-right-radius: 6px;
   border-top-left-radius: 6px;
   cursor: pointer;
-  background-size: cover;
+  object-fit: cover;
+}
+
+.card__panel {
+  display: flex;
+  height: 78px;
+}
+
+.card__panel_unsave {
+  cursor: pointer;
+  background-image: none;
+  opacity: 100%;
+  transition: opacity .3s ease;
+}
+
+.card__panel_unsave:hover {
+  background-image: url(../../../images/unsave.svg);
+  background-repeat: no-repeat;
+  background-position: 318px 10px;
+  opacity: 80%;
+}
+
+.card__info {
+  width: 318px;
+  display: flex;
+  flex-direction: column;
 }
 
 .card__title {
-    font-family: 'Inter', 'Arial', sans-serif;
+  width: 300px;
+  font-family: 'Inter', 'Arial', sans-serif;
   font-size: 13px;
   font-weight: 500;
   line-height: 16px;
@@ -31,7 +58,7 @@
 }
 
 .card__duration {
-    font-family: 'Inter', 'Arial', sans-serif;
+  font-family: 'Inter', 'Arial', sans-serif;
   font-size: 11px;
   font-weight: 400;
   line-height: 13px;
@@ -44,33 +71,16 @@
 .card__save {
   width: 30px;
   height: 30px;
-  position: absolute;
-  right: 16px;
-  bottom: 40px;
+  margin-top: 10px;
   cursor: pointer;
-}
-
-.card__remove {
-  width: 364px;
-  height: 78px;
-  position: absolute;
-  right: 0;
-  bottom: 0;
-  cursor: pointer;
-  transition: .2s ease-in-out;
-  opacity: 0;
-}
-
-.card__remove:hover {
-  opacity: 1;
 }
 
 .card__unsave {
   width: 30px;
   height: 30px;
+  margin-top: 10px;
   background-image: url(../../../images/unsave.svg);
-  margin-left: 318px;
-  margin-top: 9px;
+  opacity: 0;
 }
 
 
@@ -119,7 +129,7 @@
   }
 
   .card__title {
-      font-family: 'Inter', 'Arial', sans-serif;
+    font-family: 'Inter', 'Arial', sans-serif;
     font-size: 12px;
     font-weight: 500;
     line-height: 15px;
@@ -129,7 +139,7 @@
   }
 
   .card__duration {
-      font-family: 'Inter', 'Arial', sans-serif;
+    font-family: 'Inter', 'Arial', sans-serif;
     font-size: 10px;
     font-weight: 400;
     line-height: 12px;
