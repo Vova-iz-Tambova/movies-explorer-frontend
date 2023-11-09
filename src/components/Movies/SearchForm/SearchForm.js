@@ -30,7 +30,6 @@ function SearchForm() {
         <div className='search__tumbler'></div>
         Короткометражки
       </button>
-      <div className='search__line'></div>
     </form >
   )
 };

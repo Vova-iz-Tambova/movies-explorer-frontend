@@ -36,7 +36,6 @@ function Profile({ setLoggedIn }) {
             className='profile__input'
           ></input>
         </div>
-        <div className='profile__line'/>
         <div className='profile__field'>
           <label className='profile__info'>E-mail</label>
           <input required

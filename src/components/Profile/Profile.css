@@ -31,6 +31,11 @@
   height: 48px;
   display: flex;
   justify-content: end;
+  border-bottom: 1px solid #8B8B8B;
+}
+
+.profile__field:last-of-type {
+  border: none;
 }
 
 .profile__info {
@@ -61,20 +66,16 @@
   border: none;
   padding-left: 40px;
   box-sizing: border-box;
-  outline: 1px solid #202020;
+  outline: 0 solid #202020;
   transition: outline .2s linear;
   border-radius: 6px;
+
 }
 
 .profile__input:focus {
   outline: 1px solid #8B8B8B;
 }
 
-.profile__line {
-  width: 100%;
-  border-bottom: 1px solid #8B8B8B;
-  z-index: 1;
-}
 
 .profile__edit {
   font-family: 'Inter', 'Arial', sans-serif;
