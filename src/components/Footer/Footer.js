@@ -5,7 +5,6 @@ function Footer() {
   return (
     <footer className="footer">
       <h3 className='footer__title'>Учебный проект Яндекс.Практикум х BeatFilm.</h3>
-      <div className='footer__line'></div>
       <div className='footer__area'>
         <ul className='footer__links'>
           <li className='footer__item'>
