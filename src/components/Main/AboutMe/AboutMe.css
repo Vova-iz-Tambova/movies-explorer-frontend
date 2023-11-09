@@ -1,6 +1,6 @@
 .me {
   width: 100%;
-  padding: 110px 70px 83px;
+  padding:91px 70px 85px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -8,23 +8,16 @@
 }
 
 .me__title {
+  width: 100%;
   font-family: 'Inter', 'Arial', sans-serif;
   font-size: 22px;
   font-weight: 400;
-  line-height: 27px;
+  line-height: 70px;
   letter-spacing: -0.04em;
   text-align: left;
   color: #FFFFFF;
-  margin: 0;
-  padding: 0;
-  align-self: flex-start;
-}
-
-.me__line {
-  width: 100%;
   border-bottom: 1px solid #DADADA;
-  margin-top: 23px;
-  margin-bottom: 66px;
+  margin: 0 0 66px;
 }
 
 .me__card {
@@ -145,7 +138,6 @@
 @media screen and (max-width:705px) {
   .me {
     min-width: 320px;
-    /* height: 998px; */
     padding: 71px 14px 0;
   }
 

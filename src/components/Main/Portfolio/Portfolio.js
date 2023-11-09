@@ -10,13 +10,11 @@ function Portfolio() {
           <p className='portfolio__name'>Статичный сайт</p>
           <p className='portfolio__arrow'>↗</p>
         </Link>
-          <div className='portfolio__line' />
         </li>
         <li><Link to='https://vova-iz-tambova.github.io/russian-travel/' target='_blank' className='portfolio__link  effect'>
           <p className='portfolio__name'>Адаптивный сайт</p>
           <p className='portfolio__arrow'>↗</p>
         </Link>
-          <div className='portfolio__line' />
         </li>
         <li><Link to='https://vova-iz-tambova.github.io/mesto-react/' target='_blank' className='portfolio__link  effect'>
           <p className='portfolio__name'>Одностраничное приложение</p>
