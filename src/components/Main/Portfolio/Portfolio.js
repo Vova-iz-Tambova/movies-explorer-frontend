@@ -4,7 +4,7 @@ import './Portfolio.css';
 function Portfolio() {
   return (
     <section className='portfolio'>
-      <h3 className='portfolio__title'>Портфолио</h3>
+      <h2 className='portfolio__title'>Портфолио</h2>
       <ul className='portfolio__links'>
         <li><Link to='https://vova-iz-tambova.github.io/how-to-learn/' target='_blank' className='portfolio__link  effect'>
           <p className='portfolio__name'>Статичный сайт</p>
