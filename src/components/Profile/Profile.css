@@ -133,6 +133,10 @@
 
   }
 
+  .profile__form {
+    height: 100%;
+  }
+
   .profile__edit {
     font-family: 'Inter', 'Arial', sans-serif;
     font-size: 12px;
@@ -140,10 +144,7 @@
     line-height: 15px;
     letter-spacing: 0px;
     text-align: center;
-    bottom: 71px;
-    left: 0;
-    right: 0;
-    position: absolute;
+    margin-top: auto;
   }
 
   .profile__logout {
@@ -153,9 +154,6 @@
     line-height: 15px;
     letter-spacing: 0px;
     text-align: center;
-    bottom: 40px;
-    left: 0;
-    right: 0;
-    position: absolute;
+    margin-top: 16px;
   }
 }

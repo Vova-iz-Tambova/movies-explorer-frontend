@@ -15,12 +15,12 @@ function AboutProject() {
         </div>
       </div>
       <div className='project__timeline'>
-        <div className='project__backend'>1 неделя</div>
-        <div className='project__frontend'>4 недели</div>
+        <p className='project__backend'>1 неделя</p>
+        <p className='project__frontend'>4 недели</p>
       </div>
       <div className='project__timeline'>
-        <div className='project__backend-title'>Back-end</div>
-        <div className='project__frontend-title'>Front-end</div>
+        <p className='project__backend-title'>Back-end</p>
+        <p className='project__frontend-title'>Front-end</p>
       </div>
     </div>
   )

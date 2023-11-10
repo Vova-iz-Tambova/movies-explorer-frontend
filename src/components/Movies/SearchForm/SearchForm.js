@@ -26,10 +26,10 @@ function SearchForm() {
           className='search__button  animation'>
         </button>
       </div>
-      <button type='button' className='search__switcher  animation'>
-        <div className='search__tumbler'></div>
-        Короткометражки
-      </button>
+      <div className='search__switcher'>
+        <button type='button' className='search__tumbler animation'></button>
+        <label>Короткометражки</label>
+      </div>
     </form >
   )
 };
