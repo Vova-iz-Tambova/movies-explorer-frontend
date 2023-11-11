@@ -1,41 +1,36 @@
 import './MoviesCard.css';
-import saveOff from '../../../images/save4d.svg';
-import saveOn from '../../../images/save4.svg';
-import unsave from '../../../images/unsave.svg';
-
-const movie = {
-  image: "https://ic.pics.livejournal.com/kenichi_kitsune/11017263/438956/438956_original.jpg",
-  nameRU: "Алита: Боевой ангел",
-  duration: "2ч 22м"
-};
+import unliked from '../../../images/save4d.svg';
+import liked from '../../../images/save4.svg';
+import unloved from '../../../images/unsave.svg';
 
 function MoviesCard(props) {
-  return (
-    <section className='card'>
-      <img className='card__preview  effect' src={movie.image} alt={movie.nameRU} />
-      {props.savedMovies
-        ?
-        <div className='card__panel'>
-          <div className='card__info'>
-            <h2 className='card__title  effect'>{movie.nameRU}</h2>
-            <p className='card__duration'>{movie.duration}</p>
-          </div>
-          <div className='card__save  animation'
-            style={{
-              backgroundImage: `url(${saveOn})`
-            }}
-          />
-        </div>
-        :
-        <div className='card__panel card__panel_unsave'>
-          <div className='card__info'>
-            <h2 className='card__title'>{movie.nameRU}</h2>
-            <p className='card__duration'>{movie.duration}</p>
-          </div>
-        </div>
-      }
 
-    </section>
+function handleLiked() {
+  
+}
+
+  return (
+    <div className='card'>
+      <img className='card__preview  effect'
+        src={`https://api.nomoreparties.co${props.image.url}`}
+        alt={props.nameRU}
+      />
+      <div className='card__panel animation'
+        style={{
+          backgroundImage: `url(${props.savedMovies ? liked : unliked})`
+        }}
+        onClick={handleLiked}
+      >
+        <div className='card__info'>
+          <h2 className='card__title  effect'>{props.nameRU}</h2>
+          <p className='card__duration'>
+            {`${Math.floor(props.duration / 60)}ч ${props.duration % 60}м`}
+          </p>
+        </div>
+        <div className='card__panel card__panel_unsave'>
+        </div>
+      </div>
+    </div>
   )
 };
 

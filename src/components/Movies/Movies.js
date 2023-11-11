@@ -1,18 +1,23 @@
 import './Movies.css';
+import React from 'react';
 import MoviesCardList from './MoviesCardList/MoviesCardList';
 import SearchForm from './SearchForm/SearchForm';
 import Preloader from './Preloader/Preloader';
 
+
 function Movies() {
+  const [quantity, setQuantity] = React.useState(12);
+
   return (
-    <div className="movies">
+    <main className="movies">
       <SearchForm />
-      <MoviesCardList />
+      <MoviesCardList quantity={quantity} />
       <div className='movies__pagination'>
-        <button type='button' className='movies__more  animation'>Ещё</button>
+        <button type='button' onClick={() => setQuantity(quantity + 3)}
+          className='movies__more  animation'>Ещё</button>
       </div>
       {/* <Preloader /> */}
-    </div>
+    </main>
   )
 }
 export default Movies;

@@ -35,9 +35,7 @@ function App(props) {
         <Route path='/movies' element={
           <>
             <Header loggedIn={loggedIn} />
-            <main>
               <Movies />
-            </main>
             <Footer />
           </>
         } />

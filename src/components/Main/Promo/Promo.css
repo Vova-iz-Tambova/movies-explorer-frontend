@@ -29,8 +29,8 @@
 }
 
 @media screen and (max-width:980px) {
-  .promo {
-    /* max-width: 768px; */
+  .promo__cover {
+    height: 85vh;
   }
 }
 
@@ -40,6 +40,7 @@
   }
 
   .promo__cover {
+    height: 72vh;
     background-size: 248px;
   }
 

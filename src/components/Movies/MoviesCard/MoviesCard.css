@@ -19,6 +19,12 @@
 .card__panel {
   display: flex;
   height: 78px;
+  background-repeat: no-repeat;
+  background-position: 318px 10px;
+}
+
+.card__panel:hover {
+  cursor: pointer;
 }
 
 .card__panel_unsave {
@@ -28,12 +34,12 @@
   transition: opacity .3s ease;
 }
 
-.card__panel_unsave:hover {
+/* .card__panel_unsave:hover {
   background-image: url(../../../images/unsave.svg);
   background-repeat: no-repeat;
   background-position: 318px 10px;
   opacity: 80%;
-}
+} */
 
 .card__info {
   width: 318px;
@@ -54,7 +60,6 @@
   text-overflow: ellipsis;
   white-space: nowrap;
   overflow: hidden;
-  cursor: pointer;
 }
 
 .card__duration {
@@ -98,6 +103,7 @@
     display: flex;
     height: 72px;
   }
+
 
   .card__info {
     width: 296px;
