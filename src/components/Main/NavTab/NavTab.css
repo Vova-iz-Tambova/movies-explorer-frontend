@@ -33,7 +33,7 @@
   text-decoration: none;
 }
 
-@media screen and (max-width:980px) {
+@media screen and (max-width:979px) {
   .nav-tab {
     /* max-width: 768px; */
   }

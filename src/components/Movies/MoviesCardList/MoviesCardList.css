@@ -13,7 +13,7 @@
   display: block;
 }
 
-@media screen and (max-width:980px) {
+@media screen and (max-width:979px) {
   .list {
     gap: 30px;
     padding-bottom: 32px;

@@ -1,4 +1,4 @@
-function getAllMovies() {
+function getBeatFilmMovies() {
   return fetch("https://api.nomoreparties.co/beatfilm-movies", {
     method: 'GET',
     headers: {
@@ -14,4 +14,4 @@ function getAllMovies() {
     })
 };
 
-export default getAllMovies;
+export default getBeatFilmMovies;

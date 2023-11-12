@@ -13,7 +13,7 @@
   background-color: #202020;
 }
 
-@media screen and (max-width:980px) {
+@media screen and (max-width:979px) {
   .header {
     /* max-width: 768px; */
     padding: 0 30px;

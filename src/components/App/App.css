@@ -1,5 +1,6 @@
 .page {
   width: auto;
+  min-width: 320px;
   min-height: 101vh;
   background-color: #202020;
   display: flex;
