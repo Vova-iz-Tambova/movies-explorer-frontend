@@ -62,7 +62,7 @@
     position: absolute;
     top: 0;
     left: 0;
-    background: #272727;
+    background: #202020;
     border-radius: 50px;
 }
 
@@ -79,11 +79,11 @@
 
 .preloader__round::after {
     background: white;
-    animation: preloader-inside-white 1s ease-in-out infinite;
+    animation: preloader-inside-white .4s ease-in-out infinite;
 }
 
 .preloader__round::before {
     z-index: 10;
-    background: #272727;
-    animation: preloader-inside-red 1s ease-in-out infinite;
+    background: #202020;
+    animation: preloader-inside-red .4s ease-in-out infinite;
 }

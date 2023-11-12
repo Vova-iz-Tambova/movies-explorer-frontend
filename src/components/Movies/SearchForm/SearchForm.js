@@ -1,12 +1,17 @@
 import './SearchForm.css';
 import React from 'react'
 
-function SearchForm() {
-  const [movie, setMovie] = React.useState('')
+function SearchForm(props) {
+  const [movie, setMovie] = React.useState('f')
 
   function handleMovie(e) { setMovie(e.target.value) }
 
-  function handleSubmit(e) { e.preventDefault() }
+  function handleSubmit(e) {
+    e.preventDefault()
+    // props.setMovies([]);
+    props.setSearchMovies([]);
+    props.setSearch(movie);
+  }
 
   return (
     <form name='search'
