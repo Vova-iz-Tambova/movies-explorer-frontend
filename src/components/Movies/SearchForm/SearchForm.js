@@ -2,20 +2,17 @@ import './SearchForm.css';
 import React from 'react'
 
 function SearchForm(props) {
-  const [movie, setMovie] = React.useState('f');
-  const [isChecked, setIsChecked] = React.useState(false);
+  const [film, setFilm] = React.useState('я');
 
-  function handleMovie(e) { setMovie(e.target.value) }
+  function handleMovie(e) { setFilm(e.target.value) }
 
   function handleSubmit(e) {
     e.preventDefault()
-    // props.setMovies([]);
-    props.setSearchMovies([]);
-    props.setSearch(movie);
+    props.setSearch(film);
+    props.setQuantity(2);
   }
 
   function handleChecked() {
-    setIsChecked(!isChecked);
     props.setIsShorts(!props.isShorts);
   }
 
@@ -28,7 +25,7 @@ function SearchForm(props) {
         <input
           name='movie'
           type='text'
-          value={movie}
+          value={film}
           onChange={handleMovie}
           placeholder='Фильм'
           className='search__input' />
@@ -40,9 +37,8 @@ function SearchForm(props) {
       <div className='search__switcher'>
         <button
           type='checkbox'
-          checked={isChecked}
           onClick={handleChecked}
-          className={`search__tumbler  animation ${isChecked ? 'search__tumbler_checked' : ''}`}>
+          className={`search__tumbler  animation  ${props.isShorts && 'search__tumbler_checked'}`}>
         </button>
         <label>Короткометражки</label>
       </div>

@@ -1,28 +1,19 @@
 import './MoviesCard.css';
-import unliked from '../../../images/save4d.svg';
-import liked from '../../../images/save4.svg';
-import unloved from '../../../images/unsave.svg';
 
 function MoviesCard(props) {
-
-function handleLiked() {
-  
-}
-
   return (
     <div className='card'>
       <img className='card__preview  effect'
         src={`https://api.nomoreparties.co${props.image.url}`}
         alt={props.nameRU}
       />
-      <div className='card__panel animation'
+      <div className='card__panel animation' onClick={props.handledCard}
         style={{
-          backgroundImage: `url(${props.savedMovies ? liked : unliked})`
+          backgroundImage: `url(${props.favored})`
         }}
-        onClick={handleLiked}
       >
         <div className='card__info'>
-          <h2 className='card__title  effect'>{props.nameRU}</h2>
+          <h2 className='card__title'>{props.nameRU}</h2>
           <p className='card__duration'>
             {`${Math.floor(props.duration / 60)}ч ${props.duration % 60}м`}
           </p>
@@ -30,7 +21,7 @@ function handleLiked() {
         <div className='card__panel card__panel_unsave'>
         </div>
       </div>
-    </div>
+    </div >
   )
 };
 

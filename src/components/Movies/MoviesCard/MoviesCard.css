@@ -20,25 +20,19 @@
   display: flex;
   height: 78px;
   background-repeat: no-repeat;
-  background-position: 318px 10px;
+  background-size: 35px 35px;
+  background-position: 317px 6px;
 }
 
 .card__panel:hover {
   cursor: pointer;
 }
 
-.card__panel_unsave {
+/* .card__panel_unsave {
   cursor: pointer;
   background-image: none;
   opacity: 100%;
   transition: opacity .3s ease;
-}
-
-/* .card__panel_unsave:hover {
-  background-image: url(../../../images/unsave.svg);
-  background-repeat: no-repeat;
-  background-position: 318px 10px;
-  opacity: 80%;
 } */
 
 .card__info {
@@ -48,7 +42,7 @@
 }
 
 .card__title {
-  width: 300px;
+  width: 291px;
   font-family: 'Inter', 'Arial', sans-serif;
   font-size: 13px;
   font-weight: 500;
@@ -73,22 +67,6 @@
   margin: 0 16px;
 }
 
-.card__save {
-  width: 30px;
-  height: 30px;
-  margin-top: 10px;
-  cursor: pointer;
-}
-
-.card__unsave {
-  width: 30px;
-  height: 30px;
-  margin-top: 10px;
-  background-image: url(../../../images/unsave.svg);
-  opacity: 0;
-}
-
-
 @media screen and (max-width:979px) {
   .card {
     width: 339px;
@@ -100,26 +78,26 @@
   }
 
   .card__panel {
-    display: flex;
     height: 72px;
+    background-size: 35px 35px;
+    background-position: 293px 6px;
   }
-
 
   .card__info {
     width: 296px;
   }
 
-  .card__panel_unsave:hover {
+  /* .card__panel_unsave:hover {
     background-position: 295px 8px;
   }
 
   .card__save {
     right: 14px;
     bottom: 34px;
-  }
+  } */
 
   .card__title {
-    width: 280px;
+    width: 275px;
     margin: 16px 55px 14px 14px;
   }
 }
@@ -135,16 +113,13 @@
   }
 
   .card__panel {
-    display: flex;
     height: 69px;
+    background-size: 35px 35px;
+    background-position: 257px 5px;
   }
 
   .card__info {
     width: 260px;
-  }
-
-  .card__panel_unsave:hover {
-    background-position: 260px 7px;
   }
 
   .card__title {
@@ -155,7 +130,7 @@
     line-height: 15px;
     letter-spacing: 0px;
     text-align: left;
-    margin: 16px 55px 14px 14px;
+    margin: 13px 55px 17px 14px;
   }
 
   .card__duration {
@@ -167,9 +142,4 @@
     text-align: left;
     margin: 0 16px;
   }
-
-  .card__save {
-    margin-top: 8px;
-  }
-
 }

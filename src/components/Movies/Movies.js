@@ -7,9 +7,9 @@ import getBeatFilmMovies from '../../utils/MoviesApi';
 
 function Movies() {
   // const [allMovies, setAllMovies] = React.useState([]);
-  const [searchMovies, setSearchMovies] = React.useState([]);
+  // const [searchMovies, setSearchMovies] = React.useState([]);
   const [movies, setMovies] = React.useState([]);
-  const [quantity, setQuantity] = React.useState(3);
+  const [quantity, setQuantity] = React.useState(2);
   const [loader, setLoader] = React.useState(false);
   const [message, setMessage] = React.useState('Воспользуйтесь поиском');
   const [search, setSearch] = React.useState('');
@@ -29,25 +29,26 @@ function Movies() {
         })
           .catch((err => {
             console.log(err);
-            setMessage('Во время запроса произошла ошибка. Возможно, проблема с соединением или сервер недоступен. Подождите немного и попробуйте ещё раз');
+            reject('Во время запроса произошла ошибка. Возможно, проблема с соединением или сервер недоступен. Подождите немного и попробуйте ещё раз.');
           }));
       });
       getAllMovies
-        .then((res) => { // тут будет фильтр поисковой строки
-          return res;
+        .then((res) => { // фильтр поиска строки
+          return res.filter((item) => item.nameRU.toLowerCase().includes(search.toLowerCase()));
         })
         .then((res) => { // фильтр короткометражек
           if (isShorts) {
-            return res.filter((item) => { return item.duration <= 40 })
+            return res.filter((item) => item.duration <= 40 );
           } else {
             return res;
           }
-
         })
-        .then((res) => {
+        .then((res) => { // фильтр сообщений
           setLoader(false);
-          if (res.length >= quantity) {
+          if (res.length > quantity) {
             setMessage('')
+          } else if (res.length === 0 ) {
+            setMessage('Ничего не найдено');
           } else {
             setMessage('Показаные все результаты поиска');
           };
@@ -56,12 +57,40 @@ function Movies() {
         .then((res) => { // фильтр рендера
           return setMovies(res.slice(0, quantity));
         })
-        .catch(err => setMessage(err))
+        .catch(err => {
+          setLoader(false);
+          setMessage(err);})
     }
   }, [search, quantity, isShorts])
 
+  return (
+    <main className="movies">
+      <SearchForm
+        setSearch={setSearch}
+        setIsShorts={setIsShorts}
+        isShorts={isShorts}
+        setQuantity={setQuantity}
+      />
+      <MoviesCardList movies={movies} />
+      <div className='movies__pagination'>
+        {loader ?
+          <Preloader />
+          : <> {
+            message ?
+              <p className='movies__message'>{message}</p>
+              :
+              <button type='button' onClick={() => { setQuantity(quantity + 2); }}
+                className='movies__more  animation'>Ещё</button>
+          }
+          </>
+        }
+      </div>
+    </main >
+  )
+}
+export default Movies;
 
-  // function getMovies(isShorts, setMovies, quantity) {
+// function getMovies(isShorts, setMovies, quantity) {
   //   if (isShorts) {
   //     setMovies(searchMovies.filter((item) => { return item.duration <= 40 }).slice(0, quantity));
   //   } else {
@@ -103,33 +132,3 @@ function Movies() {
   //     setLoader(false);
   //   }, 400);
   // }, [search, quantity])
-
-
-  return (
-    <main className="movies">
-      <SearchForm
-        setMovies={setMovies}
-        search={search}
-        setSearch={setSearch}
-        setSearchMovies={setSearchMovies}
-        setIsShorts={setIsShorts}
-        isShorts={isShorts}
-      />
-      <MoviesCardList movies={movies} />
-      <div className='movies__pagination'>
-        {loader ?
-          <Preloader />
-          : <> {
-            message ?
-              <p className='movies__message'>{message}</p>
-              :
-              <button type='button' onClick={() => { setQuantity(quantity + 3); }}
-                className='movies__more  animation'>Ещё</button>
-          }
-          </>
-        }
-      </div>
-    </main >
-  )
-}
-export default Movies;

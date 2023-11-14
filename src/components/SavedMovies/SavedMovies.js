@@ -1,5 +1,6 @@
 import './SavedMovies.css';
 import React from 'react';
+import unloved from '../../images/unsave.svg';
 import MoviesCard from '../Movies/MoviesCard/MoviesCard';
 import SearchForm from '../Movies/SearchForm/SearchForm';
 import getAllMovies from '../../utils/MoviesApi';
@@ -23,7 +24,7 @@ function SavedMovies() {
             nameRU={movie.nameRU}
             image={movie.image}
             duration={movie.duration}
-            savedMovies={true}
+            favored={unloved}
           />
         ))}
       </ul>
