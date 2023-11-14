@@ -72,11 +72,15 @@
 .search__tumbler {
   width: 36px;
   height: 20px;
-  background-image: url(../../../images/smalltumb.svg);
+  background-image: url(../../../images/smalltumboff.svg);
   background-size: cover;
   cursor: pointer;
   background-color: transparent;
   border: none;
+}
+
+.search__tumbler_checked {
+  background-image: url(../../../images/smalltumb.svg);
 }
 
 
