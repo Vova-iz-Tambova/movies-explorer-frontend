@@ -1,11 +1,7 @@
 import "./MoviesCard.css";
-import api from "../../../utils/MainApi";
 
 function MoviesCard(props) {
-
-function handleMovie() {
-  props.handleMovie(props.movie)
-}
+  function handleMovie() { props.handleMovie(props.movie) }
 
   return (
     <div className="card">

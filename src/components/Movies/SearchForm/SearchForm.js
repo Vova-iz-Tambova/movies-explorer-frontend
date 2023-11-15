@@ -2,14 +2,11 @@ import './SearchForm.css';
 import React from 'react'
 
 function SearchForm(props) {
-  const [film, setFilm] = React.useState('я');
-
-  function handleMovie(e) { setFilm(e.target.value) }
+  function handleMovie(e) { props.setFilm(e.target.value) }
 
   function handleSubmit(e) {
     e.preventDefault()
-    props.setSearch(film);
-    props.setQuantity(2);
+    props.newSearch();
   }
 
   function handleChecked() {
@@ -25,7 +22,7 @@ function SearchForm(props) {
         <input
           name='movie'
           type='text'
-          value={film}
+          value={props.film}
           onChange={handleMovie}
           placeholder='Фильм'
           className='search__input' />

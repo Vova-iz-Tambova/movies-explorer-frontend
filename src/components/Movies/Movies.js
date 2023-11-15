@@ -6,15 +6,18 @@ import Preloader from './Preloader/Preloader';
 import getBeatFilmMovies from '../../utils/MoviesApi';
 
 function Movies() {
-  // const [allMovies, setAllMovies] = React.useState([]);
-  // const [searchMovies, setSearchMovies] = React.useState([]);
   const [movies, setMovies] = React.useState([]);
   const [quantity, setQuantity] = React.useState(2);
   const [loader, setLoader] = React.useState(false);
   const [message, setMessage] = React.useState('Воспользуйтесь поиском');
   const [search, setSearch] = React.useState('');
-  // const [filter, setFilter] = React.useState('f');
   const [isShorts, setIsShorts] = React.useState(false);
+  const [film, setFilm] = React.useState('я');
+
+  function newSearch() {
+    setSearch(film);
+    setQuantity(2);
+  }
 
   useEffect(() => {
     if (search) {
@@ -38,7 +41,7 @@ function Movies() {
         })
         .then((res) => { // фильтр короткометражек
           if (isShorts) {
-            return res.filter((item) => item.duration <= 40 );
+            return res.filter((item) => item.duration <= 40);
           } else {
             return res;
           }
@@ -47,7 +50,7 @@ function Movies() {
           setLoader(false);
           if (res.length > quantity) {
             setMessage('')
-          } else if (res.length === 0 ) {
+          } else if (res.length === 0) {
             setMessage('Ничего не найдено');
           } else {
             setMessage('Показаные все результаты поиска');
@@ -60,7 +63,8 @@ function Movies() {
         })
         .catch(err => {
           setLoader(false);
-          setMessage(err);})
+          setMessage(err);
+        })
     }
   }, [search, quantity, isShorts])
 
@@ -71,6 +75,9 @@ function Movies() {
         setIsShorts={setIsShorts}
         isShorts={isShorts}
         setQuantity={setQuantity}
+        film={film}
+        setFilm={setFilm}
+        newSearch={newSearch}
       />
       <MoviesCardList movies={movies} />
       <div className='movies__pagination'>
@@ -92,44 +99,44 @@ function Movies() {
 export default Movies;
 
 // function getMovies(isShorts, setMovies, quantity) {
-  //   if (isShorts) {
-  //     setMovies(searchMovies.filter((item) => { return item.duration <= 40 }).slice(0, quantity));
-  //   } else {
-  //     setMovies(searchMovies.slice(0, quantity));
-  //   }
-  //   return
-  // }
+//   if (isShorts) {
+//     setMovies(searchMovies.filter((item) => { return item.duration <= 40 }).slice(0, quantity));
+//   } else {
+//     setMovies(searchMovies.slice(0, quantity));
+//   }
+//   return
+// }
 
-  // React.useEffect(() => {
-  //   setLoader(true);
-  //   if (allMovies.length === 0) {
-  //     getBeatFilmMovies()
-  //       .then((res) => {
-  //         console.log('запрос');
-  //         localStorage.setItem("allMovies", JSON.stringify(res));
-  //         setAllMovies(res);
-  //       }).catch(console.error)
-  //   }
-  //   setLoader(false);
-  //   console.log(search);
-  //   getMovies(isShorts, setMovies, quantity);
-  //   setTimeout(() => {
-  //     setSearch('');
-  //     setQuantity(2);
-  //     setSearchMovies(allMovies);
-  //   }, 400);
-  // }, [search]);
+// React.useEffect(() => {
+//   setLoader(true);
+//   if (allMovies.length === 0) {
+//     getBeatFilmMovies()
+//       .then((res) => {
+//         console.log('запрос');
+//         localStorage.setItem("allMovies", JSON.stringify(res));
+//         setAllMovies(res);
+//       }).catch(console.error)
+//   }
+//   setLoader(false);
+//   console.log(search);
+//   getMovies(isShorts, setMovies, quantity);
+//   setTimeout(() => {
+//     setSearch('');
+//     setQuantity(2);
+//     setSearchMovies(allMovies);
+//   }, 400);
+// }, [search]);
 
-  // React.useEffect(() => {
-  //   setLoader(true);
-  //   if (searchMovies.length > quantity) {
-  //     setMessage('');
-  //   }
-  //   else {
-  //     setMessage('Воспользуйтесь новым поиском');
-  //   }
-  //   setTimeout(() => {
-  //     getMovies(isShorts, setMovies, quantity);
-  //     setLoader(false);
-  //   }, 400);
-  // }, [search, quantity])
+// React.useEffect(() => {
+//   setLoader(true);
+//   if (searchMovies.length > quantity) {
+//     setMessage('');
+//   }
+//   else {
+//     setMessage('Воспользуйтесь новым поиском');
+//   }
+//   setTimeout(() => {
+//     getMovies(isShorts, setMovies, quantity);
+//     setLoader(false);
+//   }, 400);
+// }, [search, quantity])

@@ -7,19 +7,46 @@ import api from "../../utils/MainApi";
 
 function SavedMovies() {
   const [favoredMoves, setFavoredMoves] = React.useState([]);
+  const [search, setSearch] = React.useState('');
+  const [isShorts, setIsShorts] = React.useState(false);
+  const [film, setFilm] = React.useState('');
 
-  api
-    .getFavoredMoves()
-    .then((res) => setFavoredMoves(res))
-    .catch(console.error);
+  function newSearch() {
+    setSearch(film);
+  };
 
   function handleMovie(movie) {
     api.removeFavoredMoves(movie._id).catch(console.error);
-  }
+  };
+
+  React.useEffect(() => {
+    api
+      .getFavoredMoves()
+      .then((res) => {
+        return res.filter((item) => item.nameRU.toLowerCase().includes(search.toLowerCase()))
+      })
+      .then((res) => {
+        if (isShorts) {
+          return res.filter((item) => item.duration <= 40);
+        } else {
+          return res;
+        }
+      })
+      .then((res) => setFavoredMoves(res))
+      .catch(console.error);
+
+  }, [search, isShorts, {handleMovie}])
 
   return (
     <main className="saved">
-      <SearchForm />
+      <SearchForm
+        setSearch={setSearch}
+        setIsShorts={setIsShorts}
+        isShorts={isShorts}
+        newSearch={newSearch}
+        film={film}
+        setFilm={setFilm}
+      />
       <ul className="saved__list">
         {favoredMoves.map((movie) => (
           <MoviesCard

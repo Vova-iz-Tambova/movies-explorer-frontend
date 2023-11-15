@@ -36,11 +36,9 @@ class Api {
         duration: data.duration,
         year: data.year,
         description: data.description,
-        image:
-          "https://ic.pics.livejournal.com/kenichi_kitsune/11017263/438956/438956_original.jpg",
-        trailerLink: "https://youtu.be/ALw51WQoI6s",
-        thumbnail:
-          "https://www.aroged.com/wp-content/uploads/2023/05/The-sequel-to-this-cult-film-in-computer-generated-images-120x86.jpg",
+        image: `https://api.nomoreparties.co${data.image.url}`,
+        trailerLink: data.trailerLink,
+        thumbnail: `https://api.nomoreparties.co${data.image.previewUrl}`,
         movieId: data.id,
         nameRU: data.nameRU,
         nameEN: data.nameEN,
