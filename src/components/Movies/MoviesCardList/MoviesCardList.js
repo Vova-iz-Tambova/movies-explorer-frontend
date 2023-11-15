@@ -3,11 +3,12 @@ import React from 'react';
 import unliked from '../../../images/save4d.svg';
 import liked from '../../../images/save4.svg';
 import MoviesCard from '../MoviesCard/MoviesCard';
+import api from "../../../utils/MainApi";
 
 function MoviesCardList(props) {
 
-  function handledCard(e) {
-    e.target.favored = {liked};
+  function handleMovie(movie) {
+    api.addFavoredMoves(movie).catch(console.error);
   }
 
   return (
@@ -15,12 +16,12 @@ function MoviesCardList(props) {
       {props.movies.map((movie) => (
         <MoviesCard
           key={movie.id}
+          movie={movie}
           nameRU={movie.nameRU}
-          image={movie.image}
+          image={`https://api.nomoreparties.co${movie.image.url}`}
           duration={movie.duration}
-          favored={(Math.random() > 0.5 ? liked : unliked)}
-          // favored={unliked}
-          // handledCard={handledCard}
+          favored={unliked}
+          handleMovie={handleMovie}
         />
       ))}
     </ul>

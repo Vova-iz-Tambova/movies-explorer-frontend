@@ -1,34 +1,40 @@
-import './SavedMovies.css';
-import React from 'react';
-import unloved from '../../images/unsave.svg';
-import MoviesCard from '../Movies/MoviesCard/MoviesCard';
-import SearchForm from '../Movies/SearchForm/SearchForm';
-import getAllMovies from '../../utils/MoviesApi';
+import "./SavedMovies.css";
+import React from "react";
+import unloved from "../../images/unsave.svg";
+import MoviesCard from "../Movies/MoviesCard/MoviesCard";
+import SearchForm from "../Movies/SearchForm/SearchForm";
+import api from "../../utils/MainApi";
 
 function SavedMovies() {
-  const [mainMovies, setMainMovies] = React.useState([]);
+  const [favoredMoves, setFavoredMoves] = React.useState([]);
 
-  getAllMovies()
-    .then((res) => {
-      setMainMovies(res);
-    })
+  api
+    .getFavoredMoves()
+    .then((res) => setFavoredMoves(res))
     .catch(console.error);
 
+  function handleMovie(movie) {
+    api.removeFavoredMoves(movie._id).catch(console.error);
+  }
+
   return (
-    <main className='saved'>
+    <main className="saved">
       <SearchForm />
-      <ul className='saved__list'>
-        {mainMovies.map((movie) => (
+      <ul className="saved__list">
+        {favoredMoves.map((movie) => (
           <MoviesCard
-            key={movie.id}
+            key={movie._id}
+            movie={movie}
+            movieId={movie.movieId}
             nameRU={movie.nameRU}
             image={movie.image}
             duration={movie.duration}
             favored={unloved}
+            handleMovie={handleMovie}
           />
         ))}
       </ul>
     </main>
-  )
+  );
 }
 export default SavedMovies;

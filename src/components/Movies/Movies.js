@@ -55,6 +55,7 @@ function Movies() {
           return res;
         })
         .then((res) => { // фильтр рендера
+          // console.log(res);
           return setMovies(res.slice(0, quantity));
         })
         .catch(err => {
