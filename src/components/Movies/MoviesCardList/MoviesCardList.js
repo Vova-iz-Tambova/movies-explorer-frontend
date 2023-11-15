@@ -17,8 +17,10 @@ function MoviesCardList(props) {
         <MoviesCard
           key={movie.id}
           movie={movie}
+          movieId={movie.movieId}
           nameRU={movie.nameRU}
           image={`https://api.nomoreparties.co${movie.image.url}`}
+          trailerLink={movie.trailerLink}
           duration={movie.duration}
           favored={unliked}
           handleMovie={handleMovie}

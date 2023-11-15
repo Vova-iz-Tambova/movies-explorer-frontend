@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import "./MoviesCard.css";
 
 function MoviesCard(props) {
@@ -5,11 +6,13 @@ function MoviesCard(props) {
 
   return (
     <div className="card">
-      <img
-        className="card__preview  effect"
-        src={props.image}
-        alt={props.nameRU}
-      />
+      <Link to={props.trailerLink}>
+        <img
+          className="card__preview  effect"
+          src={props.image}
+          alt={props.nameRU}
+        />
+      </Link>
       <div
         className="card__panel animation"
         style={{

@@ -55,6 +55,7 @@ function SavedMovies() {
             movieId={movie.movieId}
             nameRU={movie.nameRU}
             image={movie.image}
+            trailerLink={movie.trailerLink}
             duration={movie.duration}
             favored={unloved}
             handleMovie={handleMovie}

@@ -38,7 +38,7 @@ class Api {
         description: data.description,
         image: `https://api.nomoreparties.co${data.image.url}`,
         trailerLink: data.trailerLink,
-        thumbnail: `https://api.nomoreparties.co${data.image.previewUrl}`,
+        thumbnail: `https://api.nomoreparties.co${data.image.url}`,
         movieId: data.id,
         nameRU: data.nameRU,
         nameEN: data.nameEN,
@@ -51,7 +51,7 @@ const api = new Api({
   baseUrl: "https://api.diplom69.nomoredomainsrocks.ru",
   headers: {
     Authorization:
-      "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NTU0MDFjMzUyYzE3YjI3NDU5MjA2OGEiLCJpYXQiOjE3MDAwMDcyNTgsImV4cCI6MTcwMDYxMjA1OH0.z4H_6-K-PzbMylQooQOexDeD-XoV_Xp5glQczMnfeQw",
+      "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NTU0OTgwMTEwODkzNmFkYzQ1Y2YyYzUiLCJpYXQiOjE3MDAwNDI3NzYsImV4cCI6MTcwMDY0NzU3Nn0.r5BaHAmEiy6o-0ANTZo5s1f1z5WkqvLAlF7BiFfF53I",
     "Content-Type": "application/json",
     // 'Authorization': `Bearer ${localStorage.jwt}`,
   },
