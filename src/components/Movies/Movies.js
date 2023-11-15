@@ -7,16 +7,19 @@ import getBeatFilmMovies from '../../utils/MoviesApi';
 
 function Movies() {
   const [movies, setMovies] = React.useState([]);
-  const [quantity, setQuantity] = React.useState(2);
   const [loader, setLoader] = React.useState(false);
   const [message, setMessage] = React.useState('Воспользуйтесь поиском');
   const [search, setSearch] = React.useState('');
   const [isShorts, setIsShorts] = React.useState(false);
   const [film, setFilm] = React.useState('я');
+  const [quantity, setQuantity] = React.useState(12);
+  const [showMoreFilms, setShowMoreFilms] = React.useState(3);
 
   function newSearch() {
+    if (window.innerWidth < 1281) { setQuantity(12); setShowMoreFilms(3) }
+    if (window.innerWidth < 769) { setQuantity(8); setShowMoreFilms(2) }
+    if (window.innerWidth < 481) { setQuantity(5); setShowMoreFilms(2) }
     setSearch(film);
-    setQuantity(2);
   }
 
   useEffect(() => {
@@ -37,7 +40,10 @@ function Movies() {
       });
       getAllMovies
         .then((res) => { // фильтр поиска строки
-          return res.filter((item) => item.nameRU.toLowerCase().includes(search.toLowerCase()));
+          return res.filter((item) =>
+            item.nameRU.toLowerCase().includes(search.toLowerCase()) ||
+            item.nameEN.toLowerCase().includes(search.toLowerCase())
+          );
         })
         .then((res) => { // фильтр короткометражек
           if (isShorts) {
@@ -58,7 +64,6 @@ function Movies() {
           return res;
         })
         .then((res) => { // фильтр рендера
-          // console.log(res);
           return setMovies(res.slice(0, quantity));
         })
         .catch(err => {
@@ -87,7 +92,7 @@ function Movies() {
             message ?
               <p className='movies__message'>{message}</p>
               :
-              <button type='button' onClick={() => { setQuantity(quantity + 2); }}
+              <button type='button' onClick={() => { setQuantity(quantity + showMoreFilms); }}
                 className='movies__more  animation'>Ещё</button>
           }
           </>
@@ -97,46 +102,3 @@ function Movies() {
   )
 }
 export default Movies;
-
-// function getMovies(isShorts, setMovies, quantity) {
-//   if (isShorts) {
-//     setMovies(searchMovies.filter((item) => { return item.duration <= 40 }).slice(0, quantity));
-//   } else {
-//     setMovies(searchMovies.slice(0, quantity));
-//   }
-//   return
-// }
-
-// React.useEffect(() => {
-//   setLoader(true);
-//   if (allMovies.length === 0) {
-//     getBeatFilmMovies()
-//       .then((res) => {
-//         console.log('запрос');
-//         localStorage.setItem("allMovies", JSON.stringify(res));
-//         setAllMovies(res);
-//       }).catch(console.error)
-//   }
-//   setLoader(false);
-//   console.log(search);
-//   getMovies(isShorts, setMovies, quantity);
-//   setTimeout(() => {
-//     setSearch('');
-//     setQuantity(2);
-//     setSearchMovies(allMovies);
-//   }, 400);
-// }, [search]);
-
-// React.useEffect(() => {
-//   setLoader(true);
-//   if (searchMovies.length > quantity) {
-//     setMessage('');
-//   }
-//   else {
-//     setMessage('Воспользуйтесь новым поиском');
-//   }
-//   setTimeout(() => {
-//     getMovies(isShorts, setMovies, quantity);
-//     setLoader(false);
-//   }, 400);
-// }, [search, quantity])

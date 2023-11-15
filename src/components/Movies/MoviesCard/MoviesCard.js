@@ -2,7 +2,8 @@ import { Link } from "react-router-dom";
 import "./MoviesCard.css";
 
 function MoviesCard(props) {
-  function handleMovie() { props.handleMovie(props.movie) }
+  function handleMovie() {
+    props.handleMovie(props.movie) }
 
   return (
     <div className="card">
@@ -14,10 +15,10 @@ function MoviesCard(props) {
         />
       </Link>
       <div
-        className="card__panel animation"
-        style={{
-          backgroundImage: `url(${props.favored})`,
-        }}
+        className={props.buttonClass}
+        // style={{
+        //   backgroundImage: `url(${props.favored})`,
+        // }}
         onClick={handleMovie}
       >
         <div className="card__info">

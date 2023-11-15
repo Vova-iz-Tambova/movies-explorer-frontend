@@ -1,6 +1,6 @@
 import "./SavedMovies.css";
 import React from "react";
-import unloved from "../../images/unsave.svg";
+// import unloved from "../../images/unsave.svg";
 import MoviesCard from "../Movies/MoviesCard/MoviesCard";
 import SearchForm from "../Movies/SearchForm/SearchForm";
 import api from "../../utils/MainApi";
@@ -10,6 +10,8 @@ function SavedMovies() {
   const [search, setSearch] = React.useState('');
   const [isShorts, setIsShorts] = React.useState(false);
   const [film, setFilm] = React.useState('');
+
+  const buttonClass = (`card__panel  card__panel_liked`);
 
   function newSearch() {
     setSearch(film);
@@ -23,7 +25,10 @@ function SavedMovies() {
     api
       .getFavoredMoves()
       .then((res) => {
-        return res.filter((item) => item.nameRU.toLowerCase().includes(search.toLowerCase()))
+        return res.filter((item) =>
+          item.nameRU.toLowerCase().includes(search.toLowerCase()) ||
+          item.nameEN.toLowerCase().includes(search.toLowerCase())
+        )
       })
       .then((res) => {
         if (isShorts) {
@@ -35,7 +40,7 @@ function SavedMovies() {
       .then((res) => setFavoredMoves(res))
       .catch(console.error);
 
-  }, [search, isShorts, {handleMovie}])
+  }, [search, isShorts, { handleMovie }])
 
   return (
     <main className="saved">
@@ -57,8 +62,9 @@ function SavedMovies() {
             image={movie.image}
             trailerLink={movie.trailerLink}
             duration={movie.duration}
-            favored={unloved}
+            // favored={unloved}
             handleMovie={handleMovie}
+            buttonClass={buttonClass}
           />
         ))}
       </ul>

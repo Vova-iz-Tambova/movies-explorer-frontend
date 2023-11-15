@@ -24,6 +24,17 @@
   background-position: 317px 6px;
 }
 
+.card__panel_heart {
+  background-image: url(../../../images/save4d.svg);
+}
+.card__panel_liked {
+  background-image: url(../../../images/save4.svg);
+}
+
+.card__panel_cross {
+  background-image: url(../../../images/unsave.svg);
+}
+
 .card__panel:hover {
   cursor: pointer;
 }
