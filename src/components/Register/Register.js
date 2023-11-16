@@ -3,11 +3,12 @@ import React from 'react';
 import { NavLink } from 'react-router-dom';
 import logo from '../../images/logo.svg';
 import { useNavigate } from 'react-router-dom';
+import api from '../../utils/MainApi';
 
 function Register() {
-  const [name, setName] = React.useState('Александр')
-  const [email, setEmail] = React.useState('pochta@yandex.ru')
-  const [password, setPassword] = React.useState('••••••••••••••')
+  const [name, setName] = React.useState('Пользователь')
+  const [email, setEmail] = React.useState('user@user.ru')
+  const [password, setPassword] = React.useState('user')
 
   const navigate = useNavigate();
 
@@ -17,7 +18,18 @@ function Register() {
 
   function handleSubmit(e) {
     e.preventDefault();
-    navigate('/signin');
+    api.register({ name, email, password })
+    .then(res => {
+      console.log(res);
+      if (res.status === 400) {
+        console.log('неверный формат')
+      } else if (res.status === 409) {
+        console.log('Пользователь с таким email уже существует')
+      }
+      else return res.json();
+    })
+    .catch(console.error)
+    // navigate('/signin');
   }
 
   return (
@@ -55,7 +67,7 @@ function Register() {
           <input required
             type="password"
             value={password}
-            minLength="1"
+            minLength="2"
             maxLength="12"
             placeholder='Пароль'
             onChange={handlePassword}

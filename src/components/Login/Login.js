@@ -3,10 +3,11 @@ import React from 'react'
 import { NavLink } from 'react-router-dom';
 import logo from '../../images/logo.svg';
 import { useNavigate } from 'react-router-dom';
+import api from '../../utils/MainApi';
 
-function Login({ setLoggedIn, setName }) {
-  const [email, setEmail] = React.useState('pochta@yandex.ru')
-  const [password, setPassword] = React.useState('1')
+function Login({ setLoggedIn }) {
+  const [email, setEmail] = React.useState('user@user.ru')
+  const [password, setPassword] = React.useState('user')
 
   const navigate = useNavigate();
 
@@ -15,8 +16,25 @@ function Login({ setLoggedIn, setName }) {
 
   function handleSubmit(e) {
     e.preventDefault();
-    setLoggedIn(true);
-    navigate('/movies');
+    api.login({ email, password })
+      .then(res => {
+        console.log(res);
+        if (res.status === 401) {
+          console.log('нет такого')
+        } else if (res.status === 400) {
+          console.log('неверный формат')
+        }
+        else return res.json();
+      })
+      .then(res => {
+        console.log(res);
+        localStorage.removeItem("jwt");
+        localStorage.setItem("jwt", res.token);
+        setLoggedIn(true);
+      })
+      .catch(console.error)
+
+    navigate('/');
   }
 
   return (
@@ -41,7 +59,7 @@ function Login({ setLoggedIn, setName }) {
           <input required
             type="password"
             value={password}
-            minLength="1"
+            minLength="2"
             maxLength="12"
             placeholder='Пароль'
             onChange={handlePassword}

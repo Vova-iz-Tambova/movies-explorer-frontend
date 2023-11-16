@@ -16,6 +16,7 @@ function Profile({ setLoggedIn }) {
   }
 
   function logOut() {
+    localStorage.removeItem("jwt");
     setLoggedIn(false)
     navigate('/');
   }

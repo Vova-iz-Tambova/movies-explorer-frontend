@@ -8,7 +8,7 @@ class Api {
     if (res.ok) {
       return res.json();
     } else {
-      return Promise.reject(`Ошибка: ${res.status}`);
+      return Promise.reject(`Ошибка: ${res}`);
     }
   }
 
@@ -40,21 +40,35 @@ class Api {
         nameEN: data.nameEN,
         nameRU: data.nameRU,
         trailerLink: data.trailerLink,
-        // updated_at
         year: data.year,
         thumbnail: `https://api.nomoreparties.co${data.image.formats.thumbnail.url}`,
       }),
     }).then(this._checkResponse);
   }
+
+  login({ email, password }) {
+    return fetch(`${this._baseUrl}/signin`, {
+      method: 'POST',
+      headers: this._headers,
+      body: JSON.stringify({ email, password })
+    })
+  }
+
+  register({ name, email, password }) {
+    return fetch(`${this._baseUrl}/signup`, {
+      method: 'POST',
+      headers: this._headers,
+      body: JSON.stringify({ name, email, password })
+    })
+  }
+
 }
 
 const api = new Api({
   baseUrl: "https://api.diplom69.nomoredomainsrocks.ru",
   headers: {
+    'Authorization': `Bearer ${localStorage.jwt}`,
     'Content-Type': 'application/json',
-    Authorization:
-      "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NTU0OTgwMTEwODkzNmFkYzQ1Y2YyYzUiLCJpYXQiOjE3MDAxMjczNTEsImV4cCI6MTcwMDczMjE1MX0.7X6y2y_MMk6FeIwLzMY-8Uo43BMdcA7VBynJ_hp_QBU",
-    // 'Authorization': `Bearer ${localStorage.jwt}`,
   },
 });
 
