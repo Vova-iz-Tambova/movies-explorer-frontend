@@ -19,8 +19,8 @@ class Api {
     }).then(this._checkResponse);
   }
 
-  removeFavoredMoves(movieId) {
-    return fetch(`${this._baseUrl}/movies/${movieId}`, {
+  removeFavoredMoves(id) {
+    return fetch(`${this._baseUrl}/movies/${id}`, {
       method: "DELETE",
       headers: this._headers,
     }).then(this._checkResponse);
@@ -31,17 +31,18 @@ class Api {
       method: "POST",
       headers: this._headers,
       body: JSON.stringify({
+        movieId: data.id,
         country: data.country,
+        description: data.description,
         director: data.director,
         duration: data.duration,
-        year: data.year,
-        description: data.description,
         image: `https://api.nomoreparties.co${data.image.url}`,
-        trailerLink: data.trailerLink,
-        thumbnail: `https://api.nomoreparties.co${data.image.url}`,
-        movieId: data.id,
-        nameRU: data.nameRU,
         nameEN: data.nameEN,
+        nameRU: data.nameRU,
+        trailerLink: data.trailerLink,
+        // updated_at
+        year: data.year,
+        thumbnail: `https://api.nomoreparties.co${data.image.formats.thumbnail.url}`,
       }),
     }).then(this._checkResponse);
   }
@@ -50,8 +51,9 @@ class Api {
 const api = new Api({
   baseUrl: "https://api.diplom69.nomoredomainsrocks.ru",
   headers: {
+    'Content-Type': 'application/json',
     Authorization:
-      "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NTU0OTgwMTEwODkzNmFkYzQ1Y2YyYzUiLCJpYXQiOjE3MDAxMTg3OTIsImV4cCI6MTcwMDcyMzU5Mn0.aowLov5hgaR68sad_87d37UoSXGyEZl6z_t_ECugF_I",
+      "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NTU0OTgwMTEwODkzNmFkYzQ1Y2YyYzUiLCJpYXQiOjE3MDAxMjczNTEsImV4cCI6MTcwMDczMjE1MX0.7X6y2y_MMk6FeIwLzMY-8Uo43BMdcA7VBynJ_hp_QBU",
     // 'Authorization': `Bearer ${localStorage.jwt}`,
   },
 });

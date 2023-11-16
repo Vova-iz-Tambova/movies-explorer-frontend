@@ -1,9 +1,25 @@
-import { Link } from "react-router-dom";
 import "./MoviesCard.css";
+import React from "react";
+import { Link } from "react-router-dom";
+import api from "../../../utils/MainApi";
 
 function MoviesCard(props) {
+  const [favored, setFavored] = React.useState(props.isFavored);
+
   function handleMovie() {
-    props.handleMovie(props.movie) }
+    if (favored) {
+      api.getFavoredMoves().then(res => {
+        res.forEach((item) => {
+          if (item.movieId === props.movieId) {
+            api.removeFavoredMoves(item._id).catch(console.error)
+          }
+        })
+      }).catch(console.error);
+    } else {
+      api.addFavoredMoves(props.movie).catch(console.error);
+    }
+    setFavored(!favored);
+  }
 
   return (
     <div className="card">
@@ -15,10 +31,7 @@ function MoviesCard(props) {
         />
       </Link>
       <div
-        className={props.buttonClass}
-        // style={{
-        //   backgroundImage: `url(${props.favored})`,
-        // }}
+        className={`card__panel  animation  ${favored && props.buttonClass}`}
         onClick={handleMovie}
       >
         <div className="card__info">

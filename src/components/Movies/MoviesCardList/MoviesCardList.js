@@ -1,16 +1,17 @@
 import './MoviesCardList.css';
 import React from 'react';
-// import unliked from '../../../images/save4d.svg';
-// import liked from '../../../images/save4.svg';
 import MoviesCard from '../MoviesCard/MoviesCard';
 import api from "../../../utils/MainApi";
 
 function MoviesCardList(props) {
-const buttonClass = (`card__panel  card__panel_heart`);
+  const buttonClass = (`card__panel_liked`);
 
-  function handleMovie(movie) {
-    api.addFavoredMoves(movie).catch(console.error);
-  }
+  const [favoredMoves, setFavoredMoves] = React.useState([]);
+
+  React.useEffect(() => {
+    api.getFavoredMoves().then(res => setFavoredMoves(res))
+      .catch(console.error);
+  }, [props.movie])
 
   return (
     <ul className='list'>
@@ -18,13 +19,12 @@ const buttonClass = (`card__panel  card__panel_heart`);
         <MoviesCard
           key={movie.id}
           movie={movie}
-          movieId={movie.movieId}
+          movieId={movie.id}
           nameRU={movie.nameRU}
           image={`https://api.nomoreparties.co${movie.image.url}`}
           trailerLink={movie.trailerLink}
           duration={movie.duration}
-          // favored={unliked}
-          handleMovie={handleMovie}
+          isFavored={favoredMoves.some((item) => item.movieId === movie.id)}
           buttonClass={buttonClass}
         />
       ))}

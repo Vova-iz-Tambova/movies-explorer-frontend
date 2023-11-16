@@ -22,11 +22,9 @@
   background-repeat: no-repeat;
   background-size: 35px 35px;
   background-position: 317px 6px;
-}
-
-.card__panel_heart {
   background-image: url(../../../images/save4d.svg);
 }
+
 .card__panel_liked {
   background-image: url(../../../images/save4.svg);
 }

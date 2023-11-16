@@ -11,14 +11,10 @@ function SavedMovies() {
   const [isShorts, setIsShorts] = React.useState(false);
   const [film, setFilm] = React.useState('');
 
-  const buttonClass = (`card__panel  card__panel_liked`);
+  const buttonClass = (`card__panel_cross`);
 
   function newSearch() {
     setSearch(film);
-  };
-
-  function handleMovie(movie) {
-    api.removeFavoredMoves(movie._id).catch(console.error);
   };
 
   React.useEffect(() => {
@@ -40,7 +36,7 @@ function SavedMovies() {
       .then((res) => setFavoredMoves(res))
       .catch(console.error);
 
-  }, [search, isShorts, { handleMovie }])
+  }, [search, isShorts])
 
   return (
     <main className="saved">
@@ -62,8 +58,7 @@ function SavedMovies() {
             image={movie.image}
             trailerLink={movie.trailerLink}
             duration={movie.duration}
-            // favored={unloved}
-            handleMovie={handleMovie}
+            isFavored={true}
             buttonClass={buttonClass}
           />
         ))}

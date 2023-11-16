@@ -4,6 +4,7 @@ import MoviesCardList from './MoviesCardList/MoviesCardList';
 import SearchForm from './SearchForm/SearchForm';
 import Preloader from './Preloader/Preloader';
 import getBeatFilmMovies from '../../utils/MoviesApi';
+import api from '../../utils/MainApi';
 
 function Movies() {
   const [movies, setMovies] = React.useState([]);
