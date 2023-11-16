@@ -17,7 +17,12 @@ function Profile({ setLoggedIn }) {
 
   function logOut() {
     localStorage.removeItem("jwt");
-    setLoggedIn(false)
+    localStorage.removeItem("isLogged");
+    localStorage.removeItem("allMovies");
+    localStorage.removeItem("movies");
+    localStorage.removeItem("film");
+    localStorage.removeItem("isShort");
+    setLoggedIn(false);
     navigate('/');
   }
 

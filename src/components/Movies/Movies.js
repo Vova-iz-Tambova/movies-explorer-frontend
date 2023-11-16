@@ -7,12 +7,12 @@ import getBeatFilmMovies from '../../utils/MoviesApi';
 import api from '../../utils/MainApi';
 
 function Movies() {
-  const [movies, setMovies] = React.useState([]);
+  const [movies, setMovies] = React.useState(JSON.parse(localStorage.getItem("movies")) || []);
   const [loader, setLoader] = React.useState(false);
   const [message, setMessage] = React.useState('Воспользуйтесь поиском');
   const [search, setSearch] = React.useState('');
-  const [isShorts, setIsShorts] = React.useState(false);
-  const [film, setFilm] = React.useState('п');
+  const [isShorts, setIsShorts] = React.useState(JSON.parse(localStorage.getItem("isShort")) || false);
+  const [film, setFilm] = React.useState(JSON.parse(localStorage.getItem("film")) || []);
   const [quantity, setQuantity] = React.useState(12);
   const [showMoreFilms, setShowMoreFilms] = React.useState(3);
 
@@ -21,6 +21,8 @@ function Movies() {
     if (window.innerWidth < 981) { setQuantity(8); setShowMoreFilms(2) }
     if (window.innerWidth < 768) { setQuantity(5); setShowMoreFilms(2) }
     setSearch(film);
+    localStorage.removeItem("movies");
+
   }
 
   useEffect(() => {
@@ -65,6 +67,7 @@ function Movies() {
           return res;
         })
         .then((res) => { // фильтр рендера
+          localStorage.setItem("movies", JSON.stringify(res))
           return setMovies(res.slice(0, quantity));
         })
         .catch(err => {

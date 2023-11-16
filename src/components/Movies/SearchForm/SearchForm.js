@@ -5,12 +5,14 @@ function SearchForm(props) {
   function handleMovie(e) { props.setFilm(e.target.value) }
 
   function handleSubmit(e) {
-    e.preventDefault()
+    e.preventDefault();
     props.newSearch();
+    localStorage.setItem("film", JSON.stringify(props.film));
   }
 
   function handleChecked() {
     props.setIsShorts(!props.isShorts);
+    localStorage.setItem("isShort", JSON.stringify(!props.isShorts));
   }
 
   return (

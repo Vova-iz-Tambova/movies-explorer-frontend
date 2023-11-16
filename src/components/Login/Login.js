@@ -30,11 +30,12 @@ function Login({ setLoggedIn }) {
         console.log(res);
         localStorage.removeItem("jwt");
         localStorage.setItem("jwt", res.token);
+        localStorage.setItem("isLogged", true);
         setLoggedIn(true);
       })
       .catch(console.error)
 
-    navigate('/');
+    navigate('/movies');
   }
 
   return (
