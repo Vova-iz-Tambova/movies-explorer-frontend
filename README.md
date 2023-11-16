@@ -6,7 +6,7 @@
 
 ## Ссылки на проект
 
-Адрес репозитория: https://github.com/Vova-iz-Tambova/movies-explorer-frontend/tree/level-2
+Адрес репозитория: https://github.com/Vova-iz-Tambova/movies-explorer-frontend
 
 Aдрес Vercel: https://movies-explorer-frontend-kohl.vercel.app/
 
