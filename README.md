@@ -8,6 +8,8 @@
 
 Адрес репозитория: https://github.com/Vova-iz-Tambova/movies-explorer-frontend
 
+Ссылка на пул реквест https://github.com/Vova-iz-Tambova/movies-explorer-frontend/pull/2
+
 Aдрес Vercel: https://movies-explorer-frontend-kohl.vercel.app/
 
 IP 158.160.125.124
