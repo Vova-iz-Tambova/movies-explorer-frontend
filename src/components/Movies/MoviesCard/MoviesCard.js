@@ -1,20 +1,25 @@
 import "./MoviesCard.css";
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import api from "../../../utils/MainApi";
 
 function MoviesCard(props) {
+  const location = useLocation();
   const [favored, setFavored] = React.useState(props.isFavored);
 
   function handleMovie() {
     if (favored) {
-      api.getFavoredMoves().then(res => {
-        res.forEach((item) => {
-          if (item.movieId === props.movieId) {
-            api.removeFavoredMoves(item._id).catch(console.error)
-          }
-        })
-      }).catch(console.error);
+      if (location.pathname === "/movies") {
+        api.getFavoredMoves().then(res => {
+          res.forEach((item) => {
+            if (item.movieId === props.movieId) {
+              api.removeFavoredMoves(item._id).catch(console.error)
+            }
+          })
+        }).catch(console.error);
+      } else {
+        props.handleRemoveFavored(props.movie)
+      }
     } else {
       api.addFavoredMoves(props.movie).catch(console.error);
     }

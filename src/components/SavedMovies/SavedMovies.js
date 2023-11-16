@@ -17,6 +17,10 @@ function SavedMovies() {
     setSearch(film);
   };
 
+  function handleRemoveFavored(movie) {
+    api.removeFavoredMoves(movie._id).catch(console.error)
+  }
+
   React.useEffect(() => {
     api
       .getFavoredMoves()
@@ -36,7 +40,7 @@ function SavedMovies() {
       .then((res) => setFavoredMoves(res))
       .catch(console.error);
 
-  }, [search, isShorts])
+  }, [search, isShorts, { handleRemoveFavored }])
 
   return (
     <main className="saved">
@@ -60,6 +64,7 @@ function SavedMovies() {
             duration={movie.duration}
             isFavored={true}
             buttonClass={buttonClass}
+            handleRemoveFavored={handleRemoveFavored}
           />
         ))}
       </ul>

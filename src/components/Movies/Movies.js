@@ -12,7 +12,7 @@ function Movies() {
   const [message, setMessage] = React.useState('Воспользуйтесь поиском');
   const [search, setSearch] = React.useState('');
   const [isShorts, setIsShorts] = React.useState(false);
-  const [film, setFilm] = React.useState('я');
+  const [film, setFilm] = React.useState('п');
   const [quantity, setQuantity] = React.useState(12);
   const [showMoreFilms, setShowMoreFilms] = React.useState(3);
 
