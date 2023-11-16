@@ -9,8 +9,17 @@ function Register() {
   const [name, setName] = React.useState('Пользователь')
   const [email, setEmail] = React.useState('user@user.ru')
   const [password, setPassword] = React.useState('user')
+  const [message, setMessage] = React.useState('');
 
   const navigate = useNavigate();
+
+  React.useEffect(() => {
+    if (message) {
+      setTimeout(() => {
+        setMessage('');
+      }, 4500)
+    }
+  }, [message])
 
   function handleName(e) { setName(e.target.value) }
   function handleEmail(e) { setEmail(e.target.value) }
@@ -19,17 +28,25 @@ function Register() {
   function handleSubmit(e) {
     e.preventDefault();
     api.register({ name, email, password })
-    .then(res => {
-      console.log(res);
-      if (res.status === 400) {
-        console.log('неверный формат')
-      } else if (res.status === 409) {
-        console.log('Пользователь с таким email уже существует')
-      }
-      else return res.json();
-    })
-    .catch(console.error)
-    // navigate('/signin');
+      .then(res => {
+        // console.log(res);
+        if (res.status === 400) {
+          setMessage('Переданы некорректные данные при создании пользователя')
+        } else if (res.status === 409) {
+          setMessage('Пользователь с таким email уже существует')
+        }
+        else if (res.status === 201) {
+          setMessage('Успех')
+          setTimeout(() => {
+            navigate('/signin');
+          }, 400)
+        }
+      })
+      .catch(()=> {
+        setTimeout(() => {
+          setMessage('Во время запроса произошла ошибка. Возможно, проблема с соединением или сервер недоступен. Подождите немного и попробуйте ещё раз.');
+        }, 400);
+      })
   }
 
   return (
@@ -76,8 +93,9 @@ function Register() {
         </div>
         <p className='register__error'>Что-то пошло не так...</p>
         <button
-          className='register__submit  animation'
-          type="submit">Зарегистрироваться
+          className={`register__submit  animation ${message && `register__submit_error`}`}
+          type="submit">
+          {message ? `${message}` : `Зарегистрироваться`}
         </button>
       </form>
       <div className='register__nav'>

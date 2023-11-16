@@ -43,7 +43,8 @@ class Api {
         year: data.year,
         thumbnail: `https://api.nomoreparties.co${data.image.formats.thumbnail.url}`,
       }),
-    }).then(this._checkResponse);
+    })
+    .then(this._checkResponse);
   }
 
   login({ email, password }) {
@@ -60,6 +61,22 @@ class Api {
       headers: this._headers,
       body: JSON.stringify({ name, email, password })
     })
+  }
+
+  update({ name, email }) {
+    return fetch(`${this._baseUrl}/users/me`, {
+      method: 'PATCH',
+      headers: this._headers,
+      body: JSON.stringify({ name, email })
+    })
+  }
+
+  getUserInfo() {
+    return fetch(`${this._baseUrl}/users/me`, {
+      method: 'GET',
+      headers: this._headers,
+    })
+    .then(this._checkResponse);
   }
 
 }

@@ -6,10 +6,19 @@ import { useNavigate } from 'react-router-dom';
 import api from '../../utils/MainApi';
 
 function Login({ setLoggedIn }) {
-  const [email, setEmail] = React.useState('user@user.ru')
-  const [password, setPassword] = React.useState('user')
+  const [email, setEmail] = React.useState('user@user.ru');
+  const [password, setPassword] = React.useState('user');
+  const [message, setMessage] = React.useState('');
 
   const navigate = useNavigate();
+
+  React.useEffect(() => {
+    if (message) {
+      setTimeout(() => {
+        setMessage('');
+      }, 4500)
+    }
+  }, [message])
 
   function handleEmail(e) { setEmail(e.target.value) }
   function handlePassword(e) { setPassword(e.target.value) }
@@ -20,22 +29,30 @@ function Login({ setLoggedIn }) {
       .then(res => {
         console.log(res);
         if (res.status === 401) {
-          console.log('нет такого')
+          setMessage('Неправильные почта или пароль');
         } else if (res.status === 400) {
-          console.log('неверный формат')
+          setMessage('Переданы некорректные данные');
         }
         else return res.json();
       })
       .then(res => {
-        console.log(res);
         localStorage.removeItem("jwt");
         localStorage.setItem("jwt", res.token);
         localStorage.setItem("isLogged", true);
         setLoggedIn(true);
+        setMessage('Успех');
+        setTimeout(() => {
+          navigate('/movies');
+        }, 400)
       })
-      .catch(console.error)
+      .catch((res) => {
+        setTimeout(() => {
+          setMessage('Во время запроса произошла ошибка. Возможно, проблема с соединением или сервер недоступен. Подождите немного и попробуйте ещё раз.');
+        }, 4501);
+      })
 
-    navigate('/movies');
+
+
   }
 
   return (
@@ -54,7 +71,7 @@ function Login({ setLoggedIn }) {
             className='login__input'>
           </input>
         </div>
-        <p className='login__error'>Что-то пошло не так...</p>
+        {/* <p className='login__error'>Что-то пошло не так...</p> */}
         <label className='login__description'>Пароль</label>
         <div className='login__field'>
           <input required
@@ -67,10 +84,10 @@ function Login({ setLoggedIn }) {
             className='login__input'>
           </input>
         </div>
-        <p className='login__error'>Что-то пошло не так...</p>
         <button
-          className='login__submit  animation'
-          type="submit">Войти
+          className={`login__submit animation ${message && `login__submit_error`}`}
+          type="submit">
+          {message ? `${message}` : `Войти`}
         </button>
       </form>
       <div className='login__nav'>

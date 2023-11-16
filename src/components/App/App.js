@@ -12,7 +12,7 @@ import Header from '../Header/Header';
 import Footer from '../Footer/Footer';
 
 function App(props) {
-  const [loggedIn, setLoggedIn] = React.useState(false);
+  const [loggedIn, setLoggedIn] = React.useState(JSON.parse(localStorage.getItem("isLogged")) || false);
   const [isLanding, setIsLanding] = React.useState(true);
 
   useEffect(() => {

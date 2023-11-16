@@ -90,7 +90,15 @@
   cursor: pointer;
   text-decoration: none;
   border: none;
+  transition: all .75s ease-in-out;
 }
+
+.register__submit_error {
+  /* background-color: #EE3465; */
+  background-color: #202020;
+  color: #EE3465;
+}
+
 
 .register__nav {
   font-family: 'Inter', 'Arial', sans-serif;

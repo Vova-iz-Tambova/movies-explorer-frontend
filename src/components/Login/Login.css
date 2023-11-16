@@ -47,7 +47,7 @@
   text-align: left;
   color: #EE3465;
   margin: 0;
-  opacity: 0;
+  /* opacity: 0; */
 }
 
 .login__form {
@@ -95,6 +95,13 @@
   cursor: pointer;
   text-decoration: none;
   border: none;
+  transition: all .75s ease-in-out;
+}
+
+.login__submit_error {
+  /* background-color: #EE3465; */
+  background-color: #202020;
+  color: #EE3465;
 }
 
 .login__nav {

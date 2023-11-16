@@ -89,6 +89,11 @@
   cursor: pointer;
   border: none;
   background: none;
+  transition: color .7s ease-in;
+}
+
+.profile__edit_error {
+  color: #EE3465;
 }
 
 .profile__logout {
