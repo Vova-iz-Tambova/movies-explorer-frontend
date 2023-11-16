@@ -49,7 +49,7 @@
   }
 }
 
-@media screen and (max-width:705px) {
+@media screen and (max-width:633px) {
   .movies {
     min-width: 320px;
     padding: 0 10px;

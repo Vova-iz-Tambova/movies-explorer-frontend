@@ -52,7 +52,7 @@
   }
 }
 
-@media screen and (max-width:705px) {
+@media screen and (max-width:633px) {
   .not-found {
     max-width: 320px;
     height: 780px;

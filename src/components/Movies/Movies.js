@@ -17,8 +17,8 @@ function Movies() {
 
   function newSearch() {
     if (window.innerWidth < 1281) { setQuantity(12); setShowMoreFilms(3) }
-    if (window.innerWidth < 769) { setQuantity(8); setShowMoreFilms(2) }
-    if (window.innerWidth < 481) { setQuantity(5); setShowMoreFilms(2) }
+    if (window.innerWidth < 981) { setQuantity(8); setShowMoreFilms(2) }
+    if (window.innerWidth < 768) { setQuantity(5); setShowMoreFilms(2) }
     setSearch(film);
   }
 

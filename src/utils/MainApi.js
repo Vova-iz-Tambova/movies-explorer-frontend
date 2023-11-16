@@ -51,8 +51,7 @@ const api = new Api({
   baseUrl: "https://api.diplom69.nomoredomainsrocks.ru",
   headers: {
     Authorization:
-      "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NTU0OTgwMTEwODkzNmFkYzQ1Y2YyYzUiLCJpYXQiOjE3MDAwNDI3NzYsImV4cCI6MTcwMDY0NzU3Nn0.r5BaHAmEiy6o-0ANTZo5s1f1z5WkqvLAlF7BiFfF53I",
-    "Content-Type": "application/json",
+      "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NTU0OTgwMTEwODkzNmFkYzQ1Y2YyYzUiLCJpYXQiOjE3MDAxMTg3OTIsImV4cCI6MTcwMDcyMzU5Mn0.aowLov5hgaR68sad_87d37UoSXGyEZl6z_t_ECugF_I",
     // 'Authorization': `Bearer ${localStorage.jwt}`,
   },
 });
