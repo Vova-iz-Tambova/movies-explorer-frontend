@@ -12,18 +12,26 @@ function Movies() {
   const [message, setMessage] = React.useState('Воспользуйтесь поиском');
   const [search, setSearch] = React.useState('');
   const [isShorts, setIsShorts] = React.useState(JSON.parse(localStorage.getItem("isShort")) || false);
-  const [film, setFilm] = React.useState(JSON.parse(localStorage.getItem("film")) || []);
+  const [film, setFilm] = React.useState(JSON.parse(localStorage.getItem("film")) || 'g');
   const [quantity, setQuantity] = React.useState(12);
   const [showMoreFilms, setShowMoreFilms] = React.useState(3);
 
   function newSearch() {
-    if (window.innerWidth < 1281) { setQuantity(12); setShowMoreFilms(3) }
-    if (window.innerWidth < 981) { setQuantity(8); setShowMoreFilms(2) }
-    if (window.innerWidth < 768) { setQuantity(5); setShowMoreFilms(2) }
     setSearch(film);
     localStorage.removeItem("movies");
-
+    if (window.innerWidth > 1280) { setQuantity(12); setShowMoreFilms(3) }
+    if (window.innerWidth < 1280) { setQuantity(8); setShowMoreFilms(2) }
+    if (window.innerWidth < 768) { setQuantity(5); setShowMoreFilms(2) }
   }
+
+  useEffect(() => {
+    window.addEventListener('resize', () => {
+      setTimeout(() => {
+        newSearch();
+      }, 2000)
+    });
+  });
+
 
   useEffect(() => {
     if (search) {
@@ -96,7 +104,7 @@ function Movies() {
             message ?
               <p className='movies__message'>{message}</p>
               :
-              <button type='button' onClick={() => { setQuantity(quantity + showMoreFilms); }}
+              <button type='button' onClick={() => { setQuantity(quantity + showMoreFilms) }}
                 className='movies__more  animation'>Ещё</button>
           }
           </>
