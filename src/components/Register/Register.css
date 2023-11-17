@@ -46,7 +46,6 @@
   text-align: left;
   color: #EE3465;
   margin: 0;
-  opacity: 0;
 }
 
 .register__input {
@@ -99,6 +98,11 @@
   color: #EE3465;
 }
 
+.register__submit:disabled {
+  background-color: #2F2F2F;
+  color: #202020;
+  cursor: auto;
+}
 
 .register__nav {
   font-family: 'Inter', 'Arial', sans-serif;

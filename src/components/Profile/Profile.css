@@ -92,6 +92,12 @@
   transition: color .7s ease-in;
 }
 
+.profile__edit:disabled {
+  /* background-color: #2F2F2F; */
+  color: #2F2F2F;
+  cursor: auto;
+}
+
 .profile__edit_error {
   color: #EE3465;
 }

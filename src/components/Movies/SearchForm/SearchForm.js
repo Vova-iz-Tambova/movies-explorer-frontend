@@ -24,6 +24,7 @@ function SearchForm(props) {
         <input
           name='movie'
           type='text'
+          minLength="1"
           value={props.film}
           onChange={handleMovie}
           placeholder='Фильм'

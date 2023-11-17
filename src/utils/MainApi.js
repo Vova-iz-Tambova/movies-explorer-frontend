@@ -84,7 +84,7 @@ class Api {
 const api = new Api({
   baseUrl: "https://api.diplom69.nomoredomainsrocks.ru",
   headers: {
-    'Authorization': `Bearer ${localStorage.jwt}`,
+    authorization: `Bearer ${localStorage.jwt}`,
     'Content-Type': 'application/json',
   },
 });

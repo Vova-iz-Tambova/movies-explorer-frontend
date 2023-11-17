@@ -10,8 +10,9 @@ import Register from '../Register/Register';
 import PageNotFound from '../PageNotFound/PageNotFound';
 import Header from '../Header/Header';
 import Footer from '../Footer/Footer';
+import ProtectedRoute from '../ProtectedRoute';
 
-function App(props) {
+function App() {
   const [loggedIn, setLoggedIn] = React.useState(JSON.parse(localStorage.getItem("isLogged")) || false);
   const [isLanding, setIsLanding] = React.useState(true);
 
@@ -33,26 +34,26 @@ function App(props) {
           </>
         } />
         <Route path='/movies' element={
-          <>
+          <ProtectedRoute loggedIn={loggedIn}>
             <Header loggedIn={loggedIn} />
-              <Movies />
+            <Movies />
             <Footer />
-          </>
+          </ProtectedRoute>
         } />
         <Route path='/saved-movies' element={
-          <>
+          <ProtectedRoute loggedIn={loggedIn}>
             <Header loggedIn={loggedIn} />
             <SavedMovies />
             <Footer />
-          </>
+          </ProtectedRoute>
         } />
         <Route path='/profile' element={
-          <>
+          <ProtectedRoute loggedIn={loggedIn}>
             <Header loggedIn={loggedIn} />
             <main>
               <Profile setLoggedIn={setLoggedIn} />
             </main>
-          </>
+          </ProtectedRoute>
         } />
         <Route path='/signin' element={
           <main>
@@ -61,7 +62,7 @@ function App(props) {
             />
           </main>}
         />
-        <Route path='/signup' element={<main><Register /></main>} />
+        <Route path='/signup' element={<main><Register setLoggedIn={setLoggedIn} /></main>} />
         <Route path='*' element={<main><PageNotFound /></main>} />
       </Routes>
     </div>

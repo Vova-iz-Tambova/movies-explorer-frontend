@@ -104,6 +104,12 @@
   color: #EE3465;
 }
 
+.login__submit:disabled {
+  background-color: #2F2F2F;
+  color: #202020;
+  cursor: auto;
+}
+
 .login__nav {
   font-family: 'Inter', 'Arial', sans-serif;
   font-size: 14px;

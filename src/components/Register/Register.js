@@ -5,11 +5,15 @@ import logo from '../../images/logo.svg';
 import { useNavigate } from 'react-router-dom';
 import api from '../../utils/MainApi';
 
-function Register() {
-  const [name, setName] = React.useState('Пользователь')
-  const [email, setEmail] = React.useState('user@user.ru')
-  const [password, setPassword] = React.useState('user')
+function Register({ setLoggedIn }) {
+  const [name, setName] = React.useState('')
+  const [email, setEmail] = React.useState('')
+  const [password, setPassword] = React.useState('')
   const [message, setMessage] = React.useState('');
+  const [nameError, setNameError] = React.useState('');
+  const [emailError, setEmailError] = React.useState('');
+  const [passwordError, setPasswordError] = React.useState('');
+  const [formNotValid, setformNotValid] = React.useState(true);
 
   const navigate = useNavigate();
 
@@ -21,9 +25,6 @@ function Register() {
     }
   }, [message])
 
-  function handleName(e) { setName(e.target.value) }
-  function handleEmail(e) { setEmail(e.target.value) }
-  function handlePassword(e) { setPassword(e.target.value) }
 
   function handleSubmit(e) {
     e.preventDefault();
@@ -31,30 +32,62 @@ function Register() {
       .then(res => {
         // console.log(res);
         if (res.status === 400) {
-          setMessage('Переданы некорректные данные при создании пользователя')
+          throw setMessage('Переданы некорректные данные при создании пользователя');
         } else if (res.status === 409) {
-          setMessage('Пользователь с таким email уже существует')
+          throw setMessage('Пользователь с таким email уже существует');
         }
         else if (res.status === 201) {
-          setMessage('Успех')
-          setTimeout(() => {
-            navigate('/signin');
-          }, 400)
+          return res;
         }
       })
-      .catch(()=> {
+      .then(() => {
+        api.login({ email, password })
+          .then(answ => { return answ.json() })
+          .then((answ) => {
+            localStorage.removeItem("jwt");
+            localStorage.setItem("jwt", answ.token);
+            localStorage.setItem("isLogged", true);
+            setLoggedIn(true);
+            setMessage('Успех')
+            setTimeout(() => {
+              navigate('/movies');
+            }, 400)
+          })
+          .catch(console.error);
+      }
+      )
+      .catch(() => {
         setTimeout(() => {
           setMessage('Во время запроса произошла ошибка. Возможно, проблема с соединением или сервер недоступен. Подождите немного и попробуйте ещё раз.');
-        }, 400);
+        }, 4501);
       })
   }
+
+  React.useEffect(() => {
+    if (nameError || emailError || passwordError || !name || !email || !password) {
+      setformNotValid(true);
+    } else {
+      setformNotValid(false);
+    }
+  }, [nameError, emailError, passwordError, name, email, password]);
+
+  function handleName(e) { setName(e.target.value); setNameError(e.target.validationMessage); }
+  function handleEmail(e) {
+    setEmail(e.target.value);
+    if (e.target.validationMessage === 'Введите данные в указанном формате.') {
+      setEmailError(`${e.target.validationMessage} Например: user@mail.ru`);
+    } else {
+      setEmailError(e.target.validationMessage);
+    }
+  }
+  function handlePassword(e) { setPassword(e.target.value); setPasswordError(e.target.validationMessage); }
 
   return (
     <section className='register'>
       <NavLink to="/" className="register__logo  animation">
         <img src={logo} alt="логотип" /></NavLink>
       <h1 className='register__title'>Добро пожаловать!</h1>
-      <form className='register__form' onSubmit={handleSubmit}>
+      <form name='registerForm' className='register__form' onSubmit={handleSubmit} noValidate>
         <label className='register__description'>Имя</label>
         <div className='register__field'>
           <input required
@@ -67,18 +100,19 @@ function Register() {
             className='register__input'>
           </input>
         </div>
-        <p className='register__error'>Что-то пошло не так...</p>
+        <p className='register__error'>{nameError}</p>
         <label className='register__description'>E-mail</label>
         <div className='register__field'>
           <input required
             value={email}
             type="email"
+            pattern="[a-z0-9]+@[a-z]+\.[a-z]{2,}"
             placeholder='E-mail'
             onChange={handleEmail}
             className='register__input'>
           </input>
         </div>
-        <p className='register__error'>Что-то пошло не так...</p>
+        <p className='register__error'>{emailError}</p>
         <label className='register__description'>Пароль</label>
         <div className='register__field'>
           <input required
@@ -91,8 +125,8 @@ function Register() {
             className='register__input'>
           </input>
         </div>
-        <p className='register__error'>Что-то пошло не так...</p>
-        <button
+        <p className='register__error'>{passwordError}</p>
+        <button disabled={formNotValid}
           className={`register__submit  animation ${message && `register__submit_error`}`}
           type="submit">
           {message ? `${message}` : `Зарегистрироваться`}
