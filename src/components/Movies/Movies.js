@@ -51,7 +51,7 @@ function Movies() {
   });
 
   const getFavoredMovies = new Promise((resolve, reject) => {
-    // if (favoredMoves.length === 0) {
+    if (favoredMoves.length === 0) {
     api.getFavoredMoves().then(res => {
       localStorage.setItem("favoredMoves", JSON.stringify(res));
       return resolve(res);
@@ -60,9 +60,9 @@ function Movies() {
         console.log(err);
         reject('Во время запроса произошла ошибка. Возможно, проблема с соединением или сервер недоступен. Подождите немного и попробуйте ещё раз.');
       }));
-    // } else {
+    } else {
     resolve(favoredMoves);
-    // }
+    }
   });
 
   useEffect(() => {
@@ -107,15 +107,14 @@ function Movies() {
             setLoader(false);
             setMovies(res.slice(0, quantity));
           }, 400)
+          localStorage.setItem("movies", JSON.stringify(movies));
+          localStorage.setItem("quantity", JSON.stringify(quantity));
         })
         .catch(err => {
           setLoader(false);
           setMessage(err);
         })
     }
-    localStorage.setItem("movies", JSON.stringify(movies));
-    localStorage.setItem("quantity", JSON.stringify(quantity));
-
   }, [search, setSearch, isShorts, quantity]);
 
   return (
