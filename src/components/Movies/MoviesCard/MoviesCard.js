@@ -24,6 +24,7 @@ function MoviesCard(props) {
       api.addFavoredMoves(props.movie).catch(console.error);
     }
     setFavored(!favored);
+
   }
 
   return (

@@ -5,17 +5,6 @@ import api from "../../../utils/MainApi";
 
 function MoviesCardList(props) {
   const buttonClass = (`card__panel_liked`);
-  const [favoredMoves, setFavoredMoves] = React.useState([]);
-
-  React.useEffect(() => {
-    api.getFavoredMoves().then(res => setFavoredMoves(res))
-      .catch(console.error);
-  }, [props.movie])
-
-  // function handleAddFavored(movie) {
-  //     api.addFavoredMoves(movie).catch(console.error);
-  //   }
-
 
   return (
     <ul className='list'>
@@ -28,7 +17,7 @@ function MoviesCardList(props) {
           image={`https://api.nomoreparties.co${movie.image.url}`}
           trailerLink={movie.trailerLink}
           duration={movie.duration}
-          isFavored={favoredMoves.some((item) => item.movieId === movie.id)}
+          isFavored={props.favoredMoves.some((item) => item.movieId === movie.id)}
           buttonClass={buttonClass}
         />
       ))}

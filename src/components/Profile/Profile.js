@@ -23,7 +23,7 @@ function Profile({ setLoggedIn }) {
 
   React.useEffect(() => {
     api.getUserInfo().then(res => {
-      console.log(res);
+      // console.log(res);
       setName(res.name);
       setEmail(res.email);
       localStorage.setItem("name", res.name);
@@ -82,8 +82,10 @@ function Profile({ setLoggedIn }) {
     localStorage.removeItem("isShort");
     localStorage.removeItem("name");
     localStorage.removeItem("email");
-    setLoggedIn(false);
+    localStorage.removeItem("favoredMoves");
+    localStorage.removeItem("quantity");
     navigate('/');
+    setLoggedIn(false);
   }
 
   return (

@@ -37,7 +37,11 @@ function SavedMovies() {
           return res;
         }
       })
-      .then((res) => setFavoredMoves(res))
+      .then((res) => {
+        localStorage.setItem("favoredMoves", JSON.stringify(res));
+        setFavoredMoves(res)
+      })
+
       .catch(console.error);
 
   }, [search, isShorts, { handleRemoveFavored }])

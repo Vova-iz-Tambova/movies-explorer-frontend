@@ -27,7 +27,7 @@ function Login({ setLoggedIn }) {
     e.preventDefault();
     api.login({ email, password })
       .then(res => {
-        console.log(res);
+        // console.log(res);
         if (res.status === 401) {
           throw setMessage('Неправильные почта или пароль');
         } else if (res.status === 400) {
