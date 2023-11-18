@@ -6,8 +6,8 @@ import { useNavigate } from 'react-router-dom';
 import api from '../../utils/MainApi';
 
 function Login({ setLoggedIn }) {
-  const [email, setEmail] = React.useState('user@user.ru');
-  const [password, setPassword] = React.useState('user');
+  const [email, setEmail] = React.useState('');
+  const [password, setPassword] = React.useState('');
   const [message, setMessage] = React.useState('');
   const [emailError, setEmailError] = React.useState('');
   const [passwordError, setPasswordError] = React.useState('');
