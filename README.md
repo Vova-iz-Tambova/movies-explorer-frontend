@@ -12,6 +12,6 @@
 
 Aдрес Vercel: https://movies-explorer-frontend-kohl.vercel.app/
 
-IP 158.160.125.124
+IP 158.160.103.195
 
 Frontend https://diplom69.nomoredomainsrocks.ru

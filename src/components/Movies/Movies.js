@@ -11,12 +11,12 @@ function Movies() {
   const [favoredMoves, setFavoredMoves] = React.useState(JSON.parse(localStorage.getItem("favoredMoves")) || []);
   const [movies, setMovies] = React.useState(JSON.parse(localStorage.getItem("movies")) || []);
   const [loader, setLoader] = React.useState(false);
-  const [message, setMessage] = React.useState('');
+  const [message, setMessage] = React.useState('Воспользуйтесь поиском');
   const [search, setSearch] = React.useState(JSON.parse(localStorage.getItem("film")) || '');
   const [isShorts, setIsShorts] = React.useState(JSON.parse(localStorage.getItem("isShort")) || false);
   const [film, setFilm] = React.useState('');
   const [quantity, setQuantity] = React.useState(JSON.parse(localStorage.getItem("quantity")) || 12);
-  const [showMoreFilms, setShowMoreFilms] = React.useState(3);
+  const [showMoreFilms, setShowMoreFilms] = React.useState(JSON.parse(localStorage.getItem("showMoreFilms")) || 3);
 
   function newSearch() {
     setSearch(film);
@@ -35,7 +35,7 @@ function Movies() {
   });
 
   const getAllMovies = new Promise((resolve, reject) => {
-    if (!localStorage.getItem("allMovies")) {
+    if (allMovies.length === 0) {
       getBeatFilmMovies().then(res => {
         localStorage.setItem("allMovies", JSON.stringify(res));
         setFavoredMoves(res);
@@ -51,17 +51,17 @@ function Movies() {
   });
 
   const getFavoredMovies = new Promise((resolve, reject) => {
-    if (!localStorage.getItem("favoredMoves")) {
-    api.getFavoredMoves().then(res => {
-      localStorage.setItem("favoredMoves", JSON.stringify(res));
-      return resolve(res);
-    })
-      .catch((err => {
-        console.log(err);
-        reject('Во время запроса произошла ошибка. Возможно, проблема с соединением или сервер недоступен. Подождите немного и попробуйте ещё раз.');
-      }));
+    if (favoredMoves.length === 0) {
+      api.getFavoredMoves().then(res => {
+        localStorage.setItem("favoredMoves", JSON.stringify(res));
+        return resolve(res);
+      })
+        .catch((err => {
+          console.log(err);
+          reject('Во время запроса произошла ошибка. Возможно, проблема с соединением или сервер недоступен. Подождите немного и попробуйте ещё раз.');
+        }));
     } else {
-    resolve(favoredMoves);
+      resolve(favoredMoves);
     }
   });
 
@@ -109,6 +109,7 @@ function Movies() {
           }, 400)
           localStorage.setItem("movies", JSON.stringify(movies));
           localStorage.setItem("quantity", JSON.stringify(quantity));
+          localStorage.setItem("showMoreFilms", JSON.stringify(showMoreFilms));
         })
         .catch(err => {
           setLoader(false);
