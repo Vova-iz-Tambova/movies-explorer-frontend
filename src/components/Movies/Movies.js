@@ -14,7 +14,7 @@ function Movies() {
   const [message, setMessage] = React.useState('');
   const [search, setSearch] = React.useState(JSON.parse(localStorage.getItem("film")) || '');
   const [isShorts, setIsShorts] = React.useState(JSON.parse(localStorage.getItem("isShort")) || false);
-  const [film, setFilm] = React.useState('o');
+  const [film, setFilm] = React.useState('');
   const [quantity, setQuantity] = React.useState(JSON.parse(localStorage.getItem("quantity")) || 12);
   const [showMoreFilms, setShowMoreFilms] = React.useState(3);
 
@@ -35,7 +35,7 @@ function Movies() {
   });
 
   const getAllMovies = new Promise((resolve, reject) => {
-    if (allMovies.length === 0) {
+    if (!localStorage.getItem("allMovies")) {
       getBeatFilmMovies().then(res => {
         localStorage.setItem("allMovies", JSON.stringify(res));
         setFavoredMoves(res);
@@ -51,7 +51,7 @@ function Movies() {
   });
 
   const getFavoredMovies = new Promise((resolve, reject) => {
-    if (favoredMoves.length === 0) {
+    if (!localStorage.getItem("favoredMoves")) {
     api.getFavoredMoves().then(res => {
       localStorage.setItem("favoredMoves", JSON.stringify(res));
       return resolve(res);
