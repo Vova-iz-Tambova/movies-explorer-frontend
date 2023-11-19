@@ -1,6 +1,6 @@
 import './Profile.css';
 import React from 'react';
-import { NavLink, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import api from '../../utils/MainApi'
 
 function Profile({ setLoggedIn, userName, setUserName }) {
@@ -14,15 +14,6 @@ function Profile({ setLoggedIn, userName, setUserName }) {
 
   const navigate = useNavigate();
 
-  // function getUserInfo() {
-  //   api.getUserInfo().then(res => {
-  //     setName(res.name);
-  //     setEmail(res.email);
-  //     localStorage.setItem("name", res.name);
-  //     localStorage.setItem("email", res.email);
-  //   }).catch(console.error);
-  // }
-
   React.useEffect(() => {
     if (message) {
       setTimeout(() => {
@@ -31,15 +22,11 @@ function Profile({ setLoggedIn, userName, setUserName }) {
     }
   }, [message])
 
-  // React.useEffect(() => {
-  //   getUserInfo();
-  // }, [setName, setEmail])
 
   function handleSubmit(e) {
     e.preventDefault();
     api.update({ name, email })
       .then(res => {
-        // console.log(res);
         if (res.status === 400) {
           throw setMessage('Переданы некорректные данные при создании пользователя')
         } else if (res.status === 409) {
@@ -49,8 +36,6 @@ function Profile({ setLoggedIn, userName, setUserName }) {
           setMessage('Успех')
           setTimeout(() => {
             setUserName(name);
-            // setName(name);
-            // setEmail(email);
             setMessage('')
           }, 700)
         }
@@ -98,6 +83,7 @@ function Profile({ setLoggedIn, userName, setUserName }) {
     localStorage.removeItem("quantity");
     localStorage.removeItem("showMoreFilms");
     localStorage.removeItem("allMovies");
+    localStorage.removeItem("input");
     navigate('/');
     setLoggedIn(false);
   }

@@ -3,7 +3,6 @@ import React, { useEffect } from 'react';
 import MoviesCardList from './MoviesCardList/MoviesCardList';
 import SearchForm from './SearchForm/SearchForm';
 import Preloader from './Preloader/Preloader';
-import getBeatFilmMovies from '../../utils/MoviesApi';
 import api from '../../utils/MainApi';
 
 function Movies() {
@@ -25,9 +24,6 @@ function Movies() {
   //   // window.removeEventListener('resize');
   // });
 
-  const [allMovies, setAllMovies] = React.useState(JSON.parse(localStorage.getItem("allMovies")) || []);
-  const [favoredMoves, setFavoredMoves] = React.useState(JSON.parse(localStorage.getItem("favoredMoves")) || []);
-  const [movies, setMovies] = React.useState(JSON.parse(localStorage.getItem("movies")) || []);
   const [loader, setLoader] = React.useState(false);
   const [message, setMessage] = React.useState('Воспользуйтесь поиском');
   const [search, setSearch] = React.useState(JSON.parse(localStorage.getItem("film")) || '');
@@ -36,23 +32,7 @@ function Movies() {
   const [quantity, setQuantity] = React.useState(JSON.parse(localStorage.getItem("quantity")) || 12);
   const [showMoreFilms, setShowMoreFilms] = React.useState(JSON.parse(localStorage.getItem("showMoreFilms")) || 3);
 
-  React.useEffect(() => {
-    getBeatFilmMovies().then(res => {
-      localStorage.setItem("allMovies", JSON.stringify(res));
-      setAllMovies(res)
-    }).catch(console.error);
-  }, [])
 
-  React.useEffect(() => {
-    api.getFavoredMoves().then(res => {
-      localStorage.setItem("favoredMoves", JSON.stringify(res));
-      setFavoredMoves(res);
-    }).catch(console.error);
-  }, [])
-
-  React.useEffect(() => {
-    setMovies(allMovies);
-  },[allMovies, favoredMoves])
   // setMovies(() => {
   //   allMovies.filter((item) => item.nameRU.toLowerCase().includes(search.toLowerCase()) ||
   //       item.nameEN.toLowerCase().includes(search.toLowerCase())
@@ -96,8 +76,8 @@ function Movies() {
       // newSearch={newSearch}
       />
       <MoviesCardList
-        movies={movies}
-        favoredMoves={favoredMoves}
+        // movies={movies}
+        // favoredMoves={favoredMoves}
       />
       <div className='movies__pagination'>
         {loader ?

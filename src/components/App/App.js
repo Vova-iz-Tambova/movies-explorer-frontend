@@ -12,26 +12,51 @@ import Header from '../Header/Header';
 import Footer from '../Footer/Footer';
 import ProtectedRoute from '../ProtectedRoute';
 import api from '../../utils/MainApi';
+import getBeatFilmMovies from '../../utils/MoviesApi';
 
 function App() {
   const [loggedIn, setLoggedIn] = React.useState(JSON.parse(localStorage.getItem("isLogged")) || false);
-  const [isLanding, setIsLanding] = React.useState(true);
   const [userName, setUserName] = React.useState(true);
 
-  useEffect(() => {
-    const jwt = localStorage.getItem("jwt");
-    if (jwt && loggedIn) {
-      api.getUserInfo().then((res) => {
-        localStorage.setItem("name", res.name);
-        localStorage.setItem("email", res.email);
-        setUserName(res.name)
-      }).catch(console.error)
-    }
-  }, [loggedIn, setLoggedIn, userName])
+  const [allMovies, setAllMovies] = React.useState(JSON.parse(localStorage.getItem("allMovies")) || []);
+  const [favoredMoves, setFavoredMoves] = React.useState(JSON.parse(localStorage.getItem("favoredMoves")) || []);
+  const [movies, setMovies] = React.useState(JSON.parse(localStorage.getItem("movies")) || []);
 
-  useEffect(() => {
-    setIsLanding(true)
-  }, [isLanding])
+  // useEffect(() => {
+  //   const jwt = localStorage.getItem("jwt");
+  //   if (jwt) {
+  //     api.getUserInfo().then(res => res.json())
+  //       .then((res) => {
+  //         console.log(res);
+  //         console.log(res.name);
+  //         console.log(res.email);
+  //         localStorage.setItem("name", res.name);
+  //         localStorage.setItem("email", res.email);
+  //         setUserName(res.name)
+  //       })
+  //       .catch(console.error)
+  //   }
+  // })
+
+  // React.useEffect(() => {
+  //   if (movies) {
+  //     getBeatFilmMovies().then(res => {
+  //       localStorage.setItem("allMovies", JSON.stringify(res));
+  //       setAllMovies(res)
+  //     }).catch(console.error);
+  //   }
+  // }, [movies])
+
+  // React.useEffect(() => {
+  //   api.getFavoredMoves().then(res => {
+  //     localStorage.setItem("favoredMoves", JSON.stringify(res));
+  //     setFavoredMoves(res);
+  //   }).catch(console.error);
+  // }, [movies])
+
+  // React.useEffect(() => {
+  //   setMovies(allMovies);
+  // }, [allMovies, favoredMoves])
 
   return (
     <div className="page">
@@ -39,7 +64,7 @@ function App() {
         <Route path='/' element={
           <>
             <Header
-              isLanding={isLanding}
+              // isLanding={isLanding}
               loggedIn={loggedIn}
             />
             <Main />
@@ -49,7 +74,9 @@ function App() {
         <Route path='/movies' element={
           <ProtectedRoute loggedIn={loggedIn}>
             <Header loggedIn={loggedIn} />
-            <Movies />
+            <Movies
+              movies={movies}
+            />
             <Footer />
           </ProtectedRoute>
         } />
@@ -76,10 +103,17 @@ function App() {
           <main>
             <Login
               setLoggedIn={setLoggedIn}
+              setUserName={setUserName}
             />
           </main>}
         />
-        <Route path='/signup' element={<main><Register setLoggedIn={setLoggedIn} /></main>} />
+        <Route path='/signup' element={
+          <main>
+            <Register
+              setLoggedIn={setLoggedIn}
+              setUserName={setUserName}
+            />
+          </main>} />
         <Route path='*' element={<main><PageNotFound /></main>} />
       </Routes>
     </div>

@@ -1,12 +1,13 @@
 import './Navigation.css';
 import React from 'react';
 import logo from '../../images/logo.svg';
-import { NavLink, useNavigate } from 'react-router-dom';
+import { NavLink, useNavigate, useLocation } from 'react-router-dom';
 
-function Navigation({ loggedIn, isLanding }) {
+function Navigation({ loggedIn }) {
   const [isMenuOpen, setIsMenuOpen] = React.useState(false);
 
   const navigate = useNavigate();
+  const location = useLocation();
 
   function openProfile() {
     navigate('/profile');
@@ -27,7 +28,7 @@ function Navigation({ loggedIn, isLanding }) {
             </div>
             <div className="nav__user">
               <NavLink to="/profile" className="nav__link  effect">Аккаунт</NavLink>
-              <div className={`${isLanding ? "nav__profile  nav__profile_navy" : "nav__profile"}  animation`}
+              <div className={`${(location.pathname === "/") ? "nav__profile  nav__profile_navy" : "nav__profile"}  animation`}
                 onClick={openProfile} />
             </div>
           </nav>

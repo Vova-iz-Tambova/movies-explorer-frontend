@@ -5,7 +5,7 @@ import logo from '../../images/logo.svg';
 import { useNavigate } from 'react-router-dom';
 import api from '../../utils/MainApi';
 
-function Login({ setLoggedIn }) {
+function Login({ setLoggedIn, setUserName }) {
   // const [email, setEmail] = React.useState('');
   // const [password, setPassword] = React.useState('');
   const [email, setEmail] = React.useState('user@user.ru');
@@ -38,17 +38,22 @@ function Login({ setLoggedIn }) {
         }
       })
       .then(res => {
-        localStorage.removeItem("jwt");
         localStorage.setItem("jwt", res.token);
-        localStorage.setItem("isLogged", JSON.stringify(true));
-        setLoggedIn(true);
-      })
-      .then(res => {
-          setMessage('Успех');
-          setTimeout(() => {
-            navigate('/movies');
-          }, 400)
-
+        api.chekToken(res.token).then(res => res.json())
+          .then((res) => {
+            localStorage.setItem("name", res.name);
+            localStorage.setItem("email", res.email);
+            setUserName(res.name)
+            return res;
+          })
+          .then(res => {
+            setLoggedIn(true);
+            setMessage('Успех');
+            setTimeout(() => {
+              navigate('/movies');
+            }, 400)
+          })
+          .catch(console.error)
       })
       .catch((res) => {
         setTimeout(() => {

@@ -8,7 +8,7 @@ function MoviesCardList(props) {
 
   return (
     <ul className='list'>
-      {props.movies.map((movie) => (
+      {/* {props.movies.map((movie) => (
         <MoviesCard
           key={movie.id}
           movie={movie}
@@ -20,7 +20,7 @@ function MoviesCardList(props) {
           // isFavored={props.favoredMoves.some((item) => item.movieId === movie.id)}
           buttonClass={buttonClass}
         />
-      ))}
+      ))} */}
     </ul>
   )
 };

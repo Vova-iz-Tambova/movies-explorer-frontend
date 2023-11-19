@@ -2,7 +2,8 @@ import './SearchForm.css';
 import React from 'react'
 
 function SearchForm(props) {
-  const [inputError, setInputError] = React.useState('')
+  const [input, setInput] = React.useState('');
+  const [inputError, setInputError] = React.useState('');
 
   function handleMovie(e) {
     props.setFilm(e.target.value);
@@ -11,16 +12,22 @@ function SearchForm(props) {
 
   function handleSubmit(e) {
     e.preventDefault();
-    props.newSearch();
-    if ((JSON.parse(localStorage.getItem("film")) === "")
-    || !JSON.parse(localStorage.getItem("film"))) {
+    // props.newSearch();
+    if ((JSON.parse(localStorage.getItem("input")) === "")
+    || !JSON.parse(localStorage.getItem("input"))
+  || (!input)) {
       setInputError('Нужно ввести ключевое слово')
     } else { setInputError('') }
 }
 
 function handleChecked() {
-  props.setIsShorts(!props.isShorts);
-  localStorage.setItem("isShort", JSON.stringify(!props.isShorts));
+  // props.setIsShorts(!props.isShorts);
+  // localStorage.setItem("isShort", JSON.stringify(!props.isShorts));
+}
+
+function handleInput(e) {
+  setInput(e.target.value);
+  localStorage.setItem("input", JSON.stringify(e.target.value));
 }
 
 return (
@@ -33,8 +40,8 @@ return (
         name='movie'
         type='text'
         // minLength="1"
-        value={(JSON.parse(localStorage.getItem("film")))}
-        onChange={handleMovie}
+        value={input}
+        onChange={handleInput}
         placeholder='Фильм'
         className='search__input' />
       <button

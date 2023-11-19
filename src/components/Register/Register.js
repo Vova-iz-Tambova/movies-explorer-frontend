@@ -5,7 +5,7 @@ import logo from '../../images/logo.svg';
 import { useNavigate } from 'react-router-dom';
 import api from '../../utils/MainApi';
 
-function Register({ setLoggedIn }) {
+function Register({ setLoggedIn, setUserName }) {
   const [name, setName] = React.useState('')
   const [email, setEmail] = React.useState('')
   const [password, setPassword] = React.useState('')
@@ -42,18 +42,38 @@ function Register({ setLoggedIn }) {
       })
       .then(() => {
         api.login({ email, password })
-          .then(answ => { return answ.json() })
-          .then((answ) => {
-            localStorage.removeItem("jwt");
-            localStorage.setItem("jwt", answ.token);
-            localStorage.setItem("isLogged", true);
-            setLoggedIn(true);
-            setMessage('Успех')
-            setTimeout(() => {
-              navigate('/movies');
-            }, 400)
-          })
-          .catch(console.error);
+        .then(res => {
+          if (res.status === 401) {
+            throw setMessage('Неправильные почта или пароль');
+          } else if (res.status === 400) {
+            throw setMessage('Переданы некорректные данные');
+          } else if (res.status === 200) {
+            return res.json();
+          }
+        })
+        .then(res => {
+          localStorage.setItem("jwt", res.token);
+          api.chekToken(res.token).then(res => res.json())
+            .then((res) => {
+              localStorage.setItem("name", res.name);
+              localStorage.setItem("email", res.email);
+              setUserName(res.name)
+              return res;
+            })
+            .then(res => {
+              setLoggedIn(true);
+              setMessage('Успех');
+              setTimeout(() => {
+                navigate('/movies');
+              }, 400)
+            })
+            .catch(console.error)
+        })
+        .catch((res) => {
+          setTimeout(() => {
+            setMessage('Во время запроса произошла ошибка. Возможно, проблема с соединением или сервер недоступен. Подождите немного и попробуйте ещё раз.');
+          }, 4501);
+        });
       }
       )
       .catch(() => {
@@ -61,6 +81,8 @@ function Register({ setLoggedIn }) {
           setMessage('Во время запроса произошла ошибка. Возможно, проблема с соединением или сервер недоступен. Подождите немного и попробуйте ещё раз.');
         }, 4501);
       })
+      // setName('');
+      // setEmail('');
   }
 
   React.useEffect(() => {

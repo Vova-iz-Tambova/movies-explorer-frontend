@@ -76,9 +76,20 @@ class Api {
       method: 'GET',
       headers: this._headers,
     })
-    .then(this._checkResponse);
+    // .then(this._checkResponse);
   }
 
+  chekToken(token) {
+    return fetch(`${this._baseUrl}/users/me`, {
+      method: 'GET',
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${token}`,
+      },
+    })
+    // .then(this._checkResponse);
+  }
 }
 
 const api = new Api({
