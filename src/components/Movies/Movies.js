@@ -7,6 +7,24 @@ import getBeatFilmMovies from '../../utils/MoviesApi';
 import api from '../../utils/MainApi';
 
 function Movies() {
+
+  // function newSearch() {
+  //   setSearch(film);
+  //   localStorage.removeItem("movies");
+  //   if (window.innerWidth > 1281) { setQuantity(12); setShowMoreFilms(3) }
+  //   if (window.innerWidth < 1280) { setQuantity(8); setShowMoreFilms(2) }
+  //   if (window.innerWidth < 768) { setQuantity(5); setShowMoreFilms(2) }
+  // }
+
+  // useEffect(() => {
+  //   window.addEventListener('resize', () => {
+  //     setTimeout(() => {
+  //       newSearch();
+  //     }, 2000)
+  //   });
+  //   // window.removeEventListener('resize');
+  // });
+
   const [allMovies, setAllMovies] = React.useState(JSON.parse(localStorage.getItem("allMovies")) || []);
   const [favoredMoves, setFavoredMoves] = React.useState(JSON.parse(localStorage.getItem("favoredMoves")) || []);
   const [movies, setMovies] = React.useState(JSON.parse(localStorage.getItem("movies")) || []);
@@ -14,120 +32,68 @@ function Movies() {
   const [message, setMessage] = React.useState('Воспользуйтесь поиском');
   const [search, setSearch] = React.useState(JSON.parse(localStorage.getItem("film")) || '');
   const [isShorts, setIsShorts] = React.useState(JSON.parse(localStorage.getItem("isShort")) || false);
-  const [film, setFilm] = React.useState('');
+  const [film, setFilm] = React.useState(JSON.parse(localStorage.getItem("film")) || '');
   const [quantity, setQuantity] = React.useState(JSON.parse(localStorage.getItem("quantity")) || 12);
   const [showMoreFilms, setShowMoreFilms] = React.useState(JSON.parse(localStorage.getItem("showMoreFilms")) || 3);
 
-  function newSearch() {
-    setSearch(film);
-    localStorage.removeItem("movies");
-    if (window.innerWidth > 1281) { setQuantity(12); setShowMoreFilms(3) }
-    if (window.innerWidth < 1280) { setQuantity(8); setShowMoreFilms(2) }
-    if (window.innerWidth < 768) { setQuantity(5); setShowMoreFilms(2) }
-  }
+  React.useEffect(() => {
+    getBeatFilmMovies().then(res => {
+      localStorage.setItem("allMovies", JSON.stringify(res));
+      setAllMovies(res)
+    }).catch(console.error);
+  }, [])
 
-  useEffect(() => {
-    window.addEventListener('resize', () => {
-      setTimeout(() => {
-        newSearch();
-      }, 2000)
-    });
-  });
+  React.useEffect(() => {
+    api.getFavoredMoves().then(res => {
+      localStorage.setItem("favoredMoves", JSON.stringify(res));
+      setFavoredMoves(res);
+    }).catch(console.error);
+  }, [])
 
-  const getAllMovies = new Promise((resolve, reject) => {
-    if (allMovies.length === 0) {
-      getBeatFilmMovies().then(res => {
-        localStorage.setItem("allMovies", JSON.stringify(res));
-        setFavoredMoves(res);
-        return resolve(res);
-      })
-        .catch((err => {
-          console.log(err);
-          reject('Во время запроса произошла ошибка. Возможно, проблема с соединением или сервер недоступен. Подождите немного и попробуйте ещё раз.');
-        }));
-    } else {
-      resolve(allMovies);
-    }
-  });
+  React.useEffect(() => {
+    setMovies(allMovies);
+  },[allMovies, favoredMoves])
+  // setMovies(() => {
+  //   allMovies.filter((item) => item.nameRU.toLowerCase().includes(search.toLowerCase()) ||
+  //       item.nameEN.toLowerCase().includes(search.toLowerCase())
+  //   )
+  // })
 
-  const getFavoredMovies = new Promise((resolve, reject) => {
-    if (favoredMoves.length === 0) {
-      api.getFavoredMoves().then(res => {
-        localStorage.setItem("favoredMoves", JSON.stringify(res));
-        return resolve(res);
-      })
-        .catch((err => {
-          console.log(err);
-          reject('Во время запроса произошла ошибка. Возможно, проблема с соединением или сервер недоступен. Подождите немного и попробуйте ещё раз.');
-        }));
-    } else {
-      resolve(favoredMoves);
-    }
-  });
 
-  useEffect(() => {
-    if (search) {
-      setLoader(true);
-      Promise.all([getAllMovies, getFavoredMovies])
-        .then(([resAllMovies, resFavoredMoves]) => {
-          // console.log(resAllMovies);
-          // console.log(resFavoredMoves);
-          setAllMovies(resAllMovies);
-          setFavoredMoves(resFavoredMoves);
-          return resAllMovies;
-        })
-        .then(res => res.filter((item) =>
-          item.nameRU.toLowerCase().includes(search.toLowerCase()) ||
-          item.nameEN.toLowerCase().includes(search.toLowerCase())
-        )
-        )
-        .then((res) => { // фильтр короткометражек
-          if (isShorts) {
-            return res.filter((item) => item.duration <= 40);
-          } else {
-            return res;
-          }
-        })
-        .then((res) => { // фильтр сообщений
-          // console.log(res);
-          // console.log(quantity);
-          setLoader(false);
-          if (res.length > quantity) {
-            setMessage('')
-          } else if (res.length === 0) {
-            setMessage('Ничего не найдено');
-          } else {
-            setMessage('Показаные все результаты поиска');
-          };
-          return res;
-        })
-        .then((res) => { // фильтр рендера
-          setLoader(true);
-          setTimeout(() => {
-            setLoader(false);
-            setMovies(res.slice(0, quantity));
-          }, 400)
-          localStorage.setItem("movies", JSON.stringify(movies));
-          localStorage.setItem("quantity", JSON.stringify(quantity));
-          localStorage.setItem("showMoreFilms", JSON.stringify(showMoreFilms));
-        })
-        .catch(err => {
-          setLoader(false);
-          setMessage(err);
-        })
-    }
-  }, [search, setSearch, isShorts, quantity]);
+  // if (isShorts) {
+  //   return res.filter((item) => item.duration <= 40);
+  // } else {
+  //   return res;
+  // }
+
+  // console.log(res);
+  // console.log(quantity);
+  //   setLoader(false);
+  //   if (res.length > quantity) {
+  //     setMessage('')
+  //   } else if (res.length === 0) {
+  //     setMessage('Ничего не найдено');
+  //   } else {
+  //     setMessage('Показаные все результаты поиска');
+  //   };
+  //   return res;
+  // })
+  // .then((res) => { // фильтр рендера
+  //   setMovies(res.slice(0, quantity));
+  // localStorage.setItem("movies", JSON.stringify(movies));
+  // localStorage.setItem("quantity", JSON.stringify(quantity));
+  // localStorage.setItem("showMoreFilms", JSON.stringify(showMoreFilms));
 
   return (
     <main className="movies">
       <SearchForm
-        setSearch={setSearch}
-        setIsShorts={setIsShorts}
-        isShorts={isShorts}
-        setQuantity={setQuantity}
-        film={film}
-        setFilm={setFilm}
-        newSearch={newSearch}
+      // setSearch={setSearch}
+      // setIsShorts={setIsShorts}
+      // isShorts={isShorts}
+      // setQuantity={setQuantity}
+      // film={film}
+      // setFilm={setFilm}
+      // newSearch={newSearch}
       />
       <MoviesCardList
         movies={movies}

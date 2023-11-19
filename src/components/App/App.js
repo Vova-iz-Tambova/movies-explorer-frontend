@@ -11,10 +11,23 @@ import PageNotFound from '../PageNotFound/PageNotFound';
 import Header from '../Header/Header';
 import Footer from '../Footer/Footer';
 import ProtectedRoute from '../ProtectedRoute';
+import api from '../../utils/MainApi';
 
 function App() {
   const [loggedIn, setLoggedIn] = React.useState(JSON.parse(localStorage.getItem("isLogged")) || false);
   const [isLanding, setIsLanding] = React.useState(true);
+  const [userName, setUserName] = React.useState(true);
+
+  useEffect(() => {
+    const jwt = localStorage.getItem("jwt");
+    if (jwt && loggedIn) {
+      api.getUserInfo().then((res) => {
+        localStorage.setItem("name", res.name);
+        localStorage.setItem("email", res.email);
+        setUserName(res.name)
+      }).catch(console.error)
+    }
+  }, [loggedIn, setLoggedIn, userName])
 
   useEffect(() => {
     setIsLanding(true)
@@ -51,7 +64,11 @@ function App() {
           <ProtectedRoute loggedIn={loggedIn}>
             <Header loggedIn={loggedIn} />
             <main>
-              <Profile setLoggedIn={setLoggedIn} />
+              <Profile
+                setLoggedIn={setLoggedIn}
+                userName={userName}
+                setUserName={setUserName}
+              />
             </main>
           </ProtectedRoute>
         } />

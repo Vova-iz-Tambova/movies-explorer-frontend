@@ -39,6 +39,9 @@
   color: #4285F4;
   margin-top: 168px;
   text-decoration: none;
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
 }
 
 @media screen and (max-width:979px) {

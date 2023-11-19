@@ -1,7 +1,7 @@
 import './MoviesCardList.css';
 import React from 'react';
 import MoviesCard from '../MoviesCard/MoviesCard';
-import api from "../../../utils/MainApi";
+// import api from "../../../utils/MainApi";
 
 function MoviesCardList(props) {
   const buttonClass = (`card__panel_liked`);
@@ -17,7 +17,7 @@ function MoviesCardList(props) {
           image={`https://api.nomoreparties.co${movie.image.url}`}
           trailerLink={movie.trailerLink}
           duration={movie.duration}
-          isFavored={props.favoredMoves.some((item) => item.movieId === movie.id)}
+          // isFavored={props.favoredMoves.some((item) => item.movieId === movie.id)}
           buttonClass={buttonClass}
         />
       ))}

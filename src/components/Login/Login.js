@@ -6,10 +6,10 @@ import { useNavigate } from 'react-router-dom';
 import api from '../../utils/MainApi';
 
 function Login({ setLoggedIn }) {
-  const [email, setEmail] = React.useState('');
-  const [password, setPassword] = React.useState('');
-  // const [email, setEmail] = React.useState('user@user.ru');
-  // const [password, setPassword] = React.useState('user');
+  // const [email, setEmail] = React.useState('');
+  // const [password, setPassword] = React.useState('');
+  const [email, setEmail] = React.useState('user@user.ru');
+  const [password, setPassword] = React.useState('user');
   const [message, setMessage] = React.useState('');
   const [emailError, setEmailError] = React.useState('');
   const [passwordError, setPasswordError] = React.useState('');
@@ -29,30 +29,33 @@ function Login({ setLoggedIn }) {
     e.preventDefault();
     api.login({ email, password })
       .then(res => {
-        // console.log(res);
         if (res.status === 401) {
           throw setMessage('Неправильные почта или пароль');
         } else if (res.status === 400) {
           throw setMessage('Переданы некорректные данные');
+        } else if (res.status === 200) {
+          return res.json();
         }
-        else return res.json();
       })
       .then(res => {
         localStorage.removeItem("jwt");
         localStorage.setItem("jwt", res.token);
-        localStorage.setItem("isLogged", true);
+        localStorage.setItem("isLogged", JSON.stringify(true));
         setLoggedIn(true);
-        setMessage('Успех');
-        setTimeout(() => {
-          navigate('/movies');
-        }, 400)
+      })
+      .then(res => {
+          setMessage('Успех');
+          setTimeout(() => {
+            navigate('/movies');
+          }, 400)
+
       })
       .catch((res) => {
         setTimeout(() => {
           setMessage('Во время запроса произошла ошибка. Возможно, проблема с соединением или сервер недоступен. Подождите немного и попробуйте ещё раз.');
         }, 4501);
-      })
-  }
+      });
+  };
 
   React.useEffect(() => {
     if (emailError || passwordError || !email || !password) {

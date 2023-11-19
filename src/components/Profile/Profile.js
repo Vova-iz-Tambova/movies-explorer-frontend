@@ -3,15 +3,25 @@ import React from 'react';
 import { NavLink, useNavigate } from 'react-router-dom';
 import api from '../../utils/MainApi'
 
-function Profile({ setLoggedIn }) {
+function Profile({ setLoggedIn, userName, setUserName }) {
   const [name, setName] = React.useState(localStorage.getItem("name"));
   const [email, setEmail] = React.useState(localStorage.getItem("email"));
   const [message, setMessage] = React.useState('');
   const [nameError, setNameError] = React.useState('');
   const [emailError, setEmailError] = React.useState('');
   const [formNotValid, setformNotValid] = React.useState(true);
+  const [render, setRender] = React.useState(false);
 
   const navigate = useNavigate();
+
+  // function getUserInfo() {
+  //   api.getUserInfo().then(res => {
+  //     setName(res.name);
+  //     setEmail(res.email);
+  //     localStorage.setItem("name", res.name);
+  //     localStorage.setItem("email", res.email);
+  //   }).catch(console.error);
+  // }
 
   React.useEffect(() => {
     if (message) {
@@ -21,21 +31,15 @@ function Profile({ setLoggedIn }) {
     }
   }, [message])
 
-  React.useEffect(() => {
-    api.getUserInfo().then(res => {
-      // console.log(res);
-      setName(res.name);
-      setEmail(res.email);
-      localStorage.setItem("name", res.name);
-      localStorage.setItem("email", res.email);
-    }).catch(console.error);
-  }, [])
+  // React.useEffect(() => {
+  //   getUserInfo();
+  // }, [setName, setEmail])
 
   function handleSubmit(e) {
     e.preventDefault();
     api.update({ name, email })
       .then(res => {
-        console.log(res);
+        // console.log(res);
         if (res.status === 400) {
           throw setMessage('Переданы некорректные данные при создании пользователя')
         } else if (res.status === 409) {
@@ -44,8 +48,11 @@ function Profile({ setLoggedIn }) {
         else if (res.status === 200) {
           setMessage('Успех')
           setTimeout(() => {
-            navigate(0);
-          }, 400)
+            setUserName(name);
+            // setName(name);
+            // setEmail(email);
+            setMessage('')
+          }, 700)
         }
       })
       .catch(() => {
@@ -56,14 +63,20 @@ function Profile({ setLoggedIn }) {
   }
 
   React.useEffect(() => {
-    if (nameError || emailError || !name || !email) {
+    if (
+      nameError || emailError || (name === localStorage.getItem("name") && email === localStorage.getItem("email"))
+    ) {
       setformNotValid(true);
     } else {
       setformNotValid(false);
     }
   }, [nameError, emailError, name, email]);
 
-  function handleName(e) { setName(e.target.value); setNameError(e.target.validationMessage); }
+  function handleName(e) {
+    setName(e.target.value);
+    setNameError(e.target.validationMessage);
+  };
+
   function handleEmail(e) {
     setEmail(e.target.value);
     if (e.target.validationMessage === 'Введите данные в указанном формате.') {
@@ -71,12 +84,11 @@ function Profile({ setLoggedIn }) {
     } else {
       setEmailError(e.target.validationMessage);
     }
-  }
+  };
 
   function logOut() {
     localStorage.removeItem("jwt");
     localStorage.removeItem("isLogged");
-    localStorage.removeItem("allMovies");
     localStorage.removeItem("movies");
     localStorage.removeItem("film");
     localStorage.removeItem("isShort");
@@ -84,13 +96,15 @@ function Profile({ setLoggedIn }) {
     localStorage.removeItem("email");
     localStorage.removeItem("favoredMoves");
     localStorage.removeItem("quantity");
+    localStorage.removeItem("showMoreFilms");
+    localStorage.removeItem("allMovies");
     navigate('/');
     setLoggedIn(false);
   }
 
   return (
     <section className="profile">
-      <h1 className='profile__title'>Привет, {localStorage.getItem("name")}!</h1>
+      <h1 className='profile__title'>Привет, {userName}!</h1>
       <form className='profile__form' onSubmit={handleSubmit}>
         <div className='profile__field'>
           <label className='profile__info'>Имя</label>
@@ -117,7 +131,7 @@ function Profile({ setLoggedIn }) {
           />
         </div>
         <p className='register__error'>{emailError}</p>
-        <button disabled={formNotValid}
+        <button disabled={formNotValid} onClick={() => { setRender(!render) }}
           className={`profile__edit  effect ${message && `profile__edit_error`}`}
           type="submit">
           {message ? `${message}` : `Редактировать`}
@@ -125,7 +139,7 @@ function Profile({ setLoggedIn }) {
       </form>
       <div className='profile__logout  effect'
         onClick={logOut}>Выйти из аккаунта</div>
-    </section>
+    </section >
   )
 }
 export default Profile;
