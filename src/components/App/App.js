@@ -1,5 +1,5 @@
 import './App.css';
-import React, { useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Route, Routes } from 'react-router-dom';
 import Main from '../Main/Main';
 import Movies from '../Movies/Movies';
@@ -13,50 +13,61 @@ import Footer from '../Footer/Footer';
 import ProtectedRoute from '../ProtectedRoute';
 import api from '../../utils/MainApi';
 import getBeatFilmMovies from '../../utils/MoviesApi';
+// import preloader from '../Movies/Preloader';
 
 function App() {
-  const [loggedIn, setLoggedIn] = React.useState(JSON.parse(localStorage.getItem("isLogged")) || false);
-  const [userName, setUserName] = React.useState(true);
+  const [loggedIn, setLoggedIn] = useState(JSON.parse(localStorage.getItem("loggedIn")) || false);
+  const [userName, setUserName] = useState(true);
 
-  const [allMovies, setAllMovies] = React.useState(JSON.parse(localStorage.getItem("allMovies")) || []);
-  const [favoredMoves, setFavoredMoves] = React.useState(JSON.parse(localStorage.getItem("favoredMoves")) || []);
-  const [movies, setMovies] = React.useState(JSON.parse(localStorage.getItem("movies")) || []);
+  const [loader, setLoader] = useState(false);
+  const [render, setRender] = useState(false);
+  // const [allMovies, setAllMovies] = useState(JSON.parse(localStorage.getItem("allMovies")) || []);
+  const [favoredMoves, setFavoredMoves] = useState(JSON.parse(localStorage.getItem("favoredMoves")) || []);
+  const [fitredMoves, setFiltredMoves] = useState([]);
+  const [shotrsMoves, setShortsMoves] = useState([]);
+  const [movies, setMovies] = useState(JSON.parse(localStorage.getItem("movies")) || []);
+  const [search, setSearch] = useState(JSON.parse(localStorage.getItem("search")) || '');
+  const [isShorts, setIsShorts] = useState(JSON.parse(localStorage.getItem("isShort")) || false);
 
-  // useEffect(() => {
-  //   const jwt = localStorage.getItem("jwt");
-  //   if (jwt) {
-  //     api.getUserInfo().then(res => res.json())
-  //       .then((res) => {
-  //         console.log(res);
-  //         console.log(res.name);
-  //         console.log(res.email);
-  //         localStorage.setItem("name", res.name);
-  //         localStorage.setItem("email", res.email);
-  //         setUserName(res.name)
-  //       })
-  //       .catch(console.error)
-  //   }
-  // })
+  const allMovies = JSON.parse(localStorage.getItem("allMovies"));
 
-  // React.useEffect(() => {
-  //   if (movies) {
-  //     getBeatFilmMovies().then(res => {
-  //       localStorage.setItem("allMovies", JSON.stringify(res));
-  //       setAllMovies(res)
-  //     }).catch(console.error);
-  //   }
-  // }, [movies])
+  useEffect(() => {
+    getBeatFilmMovies().then(res => {
+      localStorage.setItem("allMovies", JSON.stringify(res));
+      console.log(res);
+    }).catch((err => {
+      console.log('Во время запроса произошла ошибка. Возможно, проблема с соединением или сервер недоступен. Подождите немного и попробуйте ещё раз.');
+    }));
+  }, [allMovies]);
 
-  // React.useEffect(() => {
-  //   api.getFavoredMoves().then(res => {
-  //     localStorage.setItem("favoredMoves", JSON.stringify(res));
-  //     setFavoredMoves(res);
-  //   }).catch(console.error);
-  // }, [movies])
+  useEffect(() => {
+    api.getFavoredMoves().then(res => {
+      localStorage.setItem("favoredMoves", JSON.stringify(res));
+      setFavoredMoves(res);
+      console.log(res);
+    }).catch(console.error);
+  }, [])
 
-  // React.useEffect(() => {
-  //   setMovies(allMovies);
-  // }, [allMovies, favoredMoves])
+  useEffect(() => {
+    if (search || isShorts)
+      setFiltredMoves(() => {
+        if (isShorts) {
+          return allMovies.filter((item) =>
+            (item.nameRU.toLowerCase().includes(search.toLowerCase()) ||
+              item.nameEN.toLowerCase().includes(search.toLowerCase())) &&
+            item.duration <= 40)
+        } else {
+          return allMovies.filter((item) =>
+            item.nameRU.toLowerCase().includes(search.toLowerCase()) ||
+            item.nameEN.toLowerCase().includes(search.toLowerCase())
+          )
+        }
+      })
+  }, [])
+
+  useEffect(() => {
+    setMovies(fitredMoves)
+  }, [])
 
   return (
     <div className="page">
@@ -75,7 +86,13 @@ function App() {
           <ProtectedRoute loggedIn={loggedIn}>
             <Header loggedIn={loggedIn} />
             <Movies
+              loader={loader}
+              setRender={setRender}
               movies={movies}
+              search={search}
+              setSearch={setSearch}
+              isShorts={isShorts}
+              setIsShorts={setIsShorts}
             />
             <Footer />
           </ProtectedRoute>

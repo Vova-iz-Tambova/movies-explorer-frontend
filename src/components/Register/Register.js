@@ -42,38 +42,39 @@ function Register({ setLoggedIn, setUserName }) {
       })
       .then(() => {
         api.login({ email, password })
-        .then(res => {
-          if (res.status === 401) {
-            throw setMessage('Неправильные почта или пароль');
-          } else if (res.status === 400) {
-            throw setMessage('Переданы некорректные данные');
-          } else if (res.status === 200) {
-            return res.json();
-          }
-        })
-        .then(res => {
-          localStorage.setItem("jwt", res.token);
-          api.chekToken(res.token).then(res => res.json())
-            .then((res) => {
-              localStorage.setItem("name", res.name);
-              localStorage.setItem("email", res.email);
-              setUserName(res.name)
-              return res;
-            })
-            .then(res => {
-              setLoggedIn(true);
-              setMessage('Успех');
-              setTimeout(() => {
-                navigate('/movies');
-              }, 400)
-            })
-            .catch(console.error)
-        })
-        .catch((res) => {
-          setTimeout(() => {
-            setMessage('Во время запроса произошла ошибка. Возможно, проблема с соединением или сервер недоступен. Подождите немного и попробуйте ещё раз.');
-          }, 4501);
-        });
+          .then(res => {
+            if (res.status === 401) {
+              throw setMessage('Неправильные почта или пароль');
+            } else if (res.status === 400) {
+              throw setMessage('Переданы некорректные данные');
+            } else if (res.status === 200) {
+              return res.json();
+            }
+          })
+          .then(res => {
+            localStorage.setItem("jwt", res.token);
+            api.chekToken(res.token).then(res => res.json())
+              .then((res) => {
+                localStorage.setItem("name", res.name);
+                localStorage.setItem("email", res.email);
+                setUserName(res.name)
+                return res;
+              })
+              .then(res => {
+                setLoggedIn(true);
+                localStorage.setItem("loggedIn", true);
+                setMessage('Успех');
+                setTimeout(() => {
+                  navigate('/movies');
+                }, 400)
+              })
+              .catch(console.error)
+          })
+          .catch((res) => {
+            setTimeout(() => {
+              setMessage('Во время запроса произошла ошибка. Возможно, проблема с соединением или сервер недоступен. Подождите немного и попробуйте ещё раз.');
+            }, 4501);
+          });
       }
       )
       .catch(() => {
@@ -81,8 +82,8 @@ function Register({ setLoggedIn, setUserName }) {
           setMessage('Во время запроса произошла ошибка. Возможно, проблема с соединением или сервер недоступен. Подождите немного и попробуйте ещё раз.');
         }, 4501);
       })
-      // setName('');
-      // setEmail('');
+    // setName('');
+    // setEmail('');
   }
 
   React.useEffect(() => {

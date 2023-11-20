@@ -1,11 +1,25 @@
 import "./SavedMovies.css";
-import React from "react";
+import React, { useState } from "react";
 // import unloved from "../../images/unsave.svg";
 // import MoviesCard from "./MoviesCard/MoviesCard";
-// import SearchForm from "./SearchForm/SearchForm";
+import SearchForm from "../Movies/SearchForm/SearchForm";
 // import api from "../../utils/MainApi";
 
 function SavedMovies(props) {
+  const [input, setInput] = useState('');
+  const [search, setSearch] = useState('');
+  const [isShorts, setIsShorts] = useState(false);
+
+  function handleSearch(e) {
+    setInput(e.target.value);
+  }
+
+  function handleChecked() {
+    setIsShorts(!isShorts);
+    // localStorage.setItem("isShort", JSON.stringify(!isShorts));
+  }
+
+
   // const [favoredMoves, setFavoredMoves] = React.useState(JSON.parse(localStorage.getItem("favoredMoves")) || []);
   // const [search, setSearch] = React.useState('');
   // const [isShorts, setIsShorts] = React.useState(false);
@@ -28,39 +42,46 @@ function SavedMovies(props) {
   //   else {
   //     props.setMessge('')
   //   }
-    // favoredMoves.filter((item) =>
-    //       item.nameRU.toLowerCase().includes(search.toLowerCase()) ||
-    //       item.nameEN.toLowerCase().includes(search.toLowerCase())
-    //     )
-    //   })
-    //   .then((res) => {
-    //     if (isShorts) {
-    //       return res.filter((item) => item.duration <= 40);
-    //     } else {
-    //       return res;
-    //     }
-    //   })
-    //   .then((res) => {
-    //     localStorage.setItem("favoredMoves", JSON.stringify(res));
-    //     setFavoredMoves(res)
-    //   })
+  // favoredMoves.filter((item) =>
+  //       item.nameRU.toLowerCase().includes(search.toLowerCase()) ||
+  //       item.nameEN.toLowerCase().includes(search.toLowerCase())
+  //     )
+  //   })
+  //   .then((res) => {
+  //     if (isShorts) {
+  //       return res.filter((item) => item.duration <= 40);
+  //     } else {
+  //       return res;
+  //     }
+  //   })
+  //   .then((res) => {
+  //     localStorage.setItem("favoredMoves", JSON.stringify(res));
+  //     setFavoredMoves(res)
+  //   })
 
-    //   .catch(console.error);
+  //   .catch(console.error);
 
   // }, [])
 
-//   return (
-//     <main className="saved">
-//       {/* <SearchForm
-//         setSearch={setSearch}
-//         setIsShorts={setIsShorts}
-//         isShorts={isShorts}
-//         newSearch={newSearch}
-//         film={film}
-//         setFilm={setFilm}
-//       /> */}
+  return (
+    <main className="saved">
+      <SearchForm
+        input={input}
+        setInput={setInput}
+        search={search}
+        setSearch={setSearch}
+        handleSearch={handleSearch}
+        isShorts={isShorts}
+        handleChecked={handleChecked}
+      />
+    </main>
+  );
+}
+export default SavedMovies;
+
+
 //       <ul className="saved__list">
-//         {favoredMoves.map((movie) => (
+// {favoredMoves.map((movie) => (
 //           <MoviesCard
 //             key={movie._id}
 //             movie={movie}
@@ -75,7 +96,3 @@ function SavedMovies(props) {
 //           />
 //         ))}
 //       </ul>
-//     </main>
-//   );
-}
-export default SavedMovies;

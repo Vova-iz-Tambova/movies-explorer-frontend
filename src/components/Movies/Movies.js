@@ -1,11 +1,30 @@
 import './Movies.css';
-import React, { useEffect } from 'react';
+import React, { useState } from 'react';
 import MoviesCardList from './MoviesCardList/MoviesCardList';
 import SearchForm from './SearchForm/SearchForm';
 import Preloader from './Preloader/Preloader';
 import api from '../../utils/MainApi';
 
-function Movies() {
+function Movies({ loader, setRender, movies, search, setSearch, isShorts, setIsShorts }) {
+  const [input, setInput] = useState(JSON.parse(localStorage.getItem("input")) || '');
+
+  function handleSearch(e) {
+    setInput(e.target.value);
+    localStorage.setItem("input", JSON.stringify(e.target.value));
+  }
+
+  function handleChecked() {
+    setIsShorts(!isShorts);
+    localStorage.setItem("isShort", JSON.stringify(!isShorts));
+  }
+
+  function handleSubmit() {
+    setSearch(input);
+    console.log(input);
+    console.log(search);
+    setRender(true);
+  }
+
 
   // function newSearch() {
   //   setSearch(film);
@@ -24,13 +43,12 @@ function Movies() {
   //   // window.removeEventListener('resize');
   // });
 
-  const [loader, setLoader] = React.useState(false);
-  const [message, setMessage] = React.useState('Воспользуйтесь поиском');
-  const [search, setSearch] = React.useState(JSON.parse(localStorage.getItem("film")) || '');
-  const [isShorts, setIsShorts] = React.useState(JSON.parse(localStorage.getItem("isShort")) || false);
-  const [film, setFilm] = React.useState(JSON.parse(localStorage.getItem("film")) || '');
-  const [quantity, setQuantity] = React.useState(JSON.parse(localStorage.getItem("quantity")) || 12);
-  const [showMoreFilms, setShowMoreFilms] = React.useState(JSON.parse(localStorage.getItem("showMoreFilms")) || 3);
+
+  const [message, setMessage] = useState('Воспользуйтесь поиском');
+  // const [search, setSearch] = useState(JSON.parse(localStorage.getItem("film")) || '');
+  const [film, setFilm] = useState(JSON.parse(localStorage.getItem("film")) || '');
+  const [quantity, setQuantity] = useState(JSON.parse(localStorage.getItem("quantity")) || 12);
+  const [showMoreFilms, setShowMoreFilms] = useState(JSON.parse(localStorage.getItem("showMoreFilms")) || 3);
 
 
   // setMovies(() => {
@@ -40,10 +58,7 @@ function Movies() {
   // })
 
 
-  // if (isShorts) {
-  //   return res.filter((item) => item.duration <= 40);
-  // } else {
-  //   return res;
+
   // }
 
   // console.log(res);
@@ -67,7 +82,14 @@ function Movies() {
   return (
     <main className="movies">
       <SearchForm
-      // setSearch={setSearch}
+        input={input}
+        setInput={setInput}
+        // search={search}
+        setSearch={setSearch}
+        handleSearch={handleSearch}
+        isShorts={isShorts}
+        handleChecked={handleChecked}
+        handleSubmit={handleSubmit}
       // setIsShorts={setIsShorts}
       // isShorts={isShorts}
       // setQuantity={setQuantity}
@@ -76,8 +98,8 @@ function Movies() {
       // newSearch={newSearch}
       />
       <MoviesCardList
-        // movies={movies}
-        // favoredMoves={favoredMoves}
+        movies={movies}
+      // favoredMoves={favoredMoves}
       />
       <div className='movies__pagination'>
         {loader ?

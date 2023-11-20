@@ -73,7 +73,7 @@ function Profile({ setLoggedIn, userName, setUserName }) {
 
   function logOut() {
     localStorage.removeItem("jwt");
-    localStorage.removeItem("isLogged");
+    localStorage.removeItem("loggedIn");
     localStorage.removeItem("movies");
     localStorage.removeItem("film");
     localStorage.removeItem("isShort");

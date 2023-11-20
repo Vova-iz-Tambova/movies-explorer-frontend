@@ -48,6 +48,7 @@ function Login({ setLoggedIn, setUserName }) {
           })
           .then(res => {
             setLoggedIn(true);
+            localStorage.setItem("loggedIn", true);
             setMessage('Успех');
             setTimeout(() => {
               navigate('/movies');
