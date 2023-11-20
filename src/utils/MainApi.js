@@ -44,7 +44,7 @@ class Api {
         thumbnail: `https://api.nomoreparties.co${data.image.formats.thumbnail.url}`,
       }),
     })
-    .then(this._checkResponse);
+      .then(this._checkResponse);
   }
 
   login({ email, password }) {
@@ -71,7 +71,6 @@ class Api {
       headers: this._headers,
       body: JSON.stringify({ name, email })
     })
-    .then(this._checkResponse);
   }
 
   getUserInfo() {
@@ -79,16 +78,17 @@ class Api {
       method: 'GET',
       headers: this._headers,
     })
-    .then(this._checkResponse);
+      .then(this._checkResponse);
   }
 
   chekToken(token) {
     return fetch(`${this._baseUrl}/users/me`, {
       method: 'GET',
       headers: {
+        Authorization: `Bearer ${token}`,
         'Accept': 'application/json',
         'Content-Type': 'application/json',
-        Authorization: `Bearer ${token}`,
+
       },
     })
     // .then(this._checkResponse);

@@ -43,7 +43,7 @@ function Login({ setLoggedIn, setCurrentUser }) {
           .then((res) => {
             localStorage.setItem("name", res.name);
             localStorage.setItem("email", res.email);
-            setCurrentUser(res.name)
+            setCurrentUser(res);
             return res;
           })
           .then(res => {

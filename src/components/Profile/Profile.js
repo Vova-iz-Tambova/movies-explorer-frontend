@@ -5,8 +5,8 @@ import api from '../../utils/MainApi';
 import CurrentUserContext from '../../contexts/CurrentUserContext';
 
 function Profile({ setLoggedIn, setCurrentUser }) {
-  const [name, setName] = React.useState(localStorage.getItem("name"));
-  const [email, setEmail] = React.useState(localStorage.getItem("email"));
+  const [name, setName] = React.useState(localStorage.getItem("name") || currentUser.name);
+  const [email, setEmail] = React.useState(localStorage.getItem("email") || currentUser.email);
   const [message, setMessage] = React.useState('');
   const [nameError, setNameError] = React.useState('');
   const [emailError, setEmailError] = React.useState('');
@@ -14,7 +14,6 @@ function Profile({ setLoggedIn, setCurrentUser }) {
   const [render, setRender] = React.useState(false);
 
   const currentUser = useContext(CurrentUserContext);
-
   const navigate = useNavigate();
 
   React.useEffect(() => {
@@ -36,13 +35,21 @@ function Profile({ setLoggedIn, setCurrentUser }) {
           throw setMessage('Пользователь с таким email уже существует')
         }
         else if (res.status === 200) {
-          setMessage('Успех')
-          setCurrentUser(name);
-          setTimeout(() => {
-            setMessage('')
-          }, 700)
+          return res.json()
         }
-      })
+      }).then(res => {
+        setMessage('Успех')
+        localStorage.setItem("name", res.name);
+        localStorage.setItem("email", res.email);
+        setName(res.name);
+        setEmail(res.email);
+        setCurrentUser(res);
+        setTimeout(() => {
+          setMessage('')
+          setformNotValid(true);
+        }, 700)
+      }
+      )
       .catch(() => {
         setTimeout(() => {
           setMessage('Во время запроса произошла ошибка. Возможно, проблема с соединением или сервер недоступен. Подождите немного и попробуйте ещё раз.');
@@ -84,7 +91,8 @@ function Profile({ setLoggedIn, setCurrentUser }) {
 
   return (
     <section className="profile">
-      <h1 className='profile__title'>Привет, {currentUser.name}!</h1>
+      {/* <h1 className='profile__title'>Привет, {currentUser.name}!</h1> */}
+      <h1 className='profile__title'>Привет, {localStorage.getItem("name")}!</h1>
       <form className='profile__form' onSubmit={handleSubmit}>
         <div className='profile__field'>
           <label className='profile__info'>Имя</label>

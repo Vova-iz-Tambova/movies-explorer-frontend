@@ -89,7 +89,7 @@
   cursor: pointer;
   border: none;
   background: none;
-  transition: color .7s ease-in;
+  transition: color .7s linear;
 }
 
 .profile__edit:disabled {

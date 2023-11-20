@@ -30,15 +30,15 @@ function App() {
 
   useEffect(() => {
     if (loggedIn) {
-      api.getUserInfo().then((user) => {
-        setCurrentUser(user);
+      api.getUserInfo().then((res) => {
+        setCurrentUser(res);
       }).catch(console.error)
       api.getFavoredMoves().then((savedMovies) => {
         localStorage.setItem('savedMovies', JSON.stringify(savedMovies));
         setSavedMovies(savedMovies);
       }).catch(console.error)
     }
-  }, [loggedIn])
+  }, [loggedIn, navigate])
 
   useEffect(() => {
     loggedIn &&
