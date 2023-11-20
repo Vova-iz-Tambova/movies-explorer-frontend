@@ -3,18 +3,9 @@
   max-width: 1280px;
   padding: 0 70px;
   box-sizing: border-box;
-}
-
-.saved__list {
-  width: 100%;
-  max-width: 1140px;
   display: flex;
-  flex-wrap: wrap;
-  gap: 37px 24px;
-  padding: 70px 0 10px 0;
-  margin: 0;
-  box-sizing: border-box;
-  justify-content: space-around;
+  flex-direction: column;
+  justify-content: center;
 }
 
 .saved__pagination {

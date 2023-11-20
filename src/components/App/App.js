@@ -1,139 +1,125 @@
 import './App.css';
-import React, { useState, useEffect } from 'react';
-import { Route, Routes } from 'react-router-dom';
+import React, { useEffect, useState } from 'react';
+import { Routes, Route, useNavigate } from 'react-router-dom';
+import Header from '../Header/Header';
 import Main from '../Main/Main';
 import Movies from '../Movies/Movies';
-import SavedMovies from '../SavedMovies/SavedMovies';
-import Profile from '../Profile/Profile';
-import Login from '../Login/Login';
-import Register from '../Register/Register';
-import PageNotFound from '../PageNotFound/PageNotFound';
-import Header from '../Header/Header';
 import Footer from '../Footer/Footer';
+import Profile from '../Profile/Profile';
+import Register from '../Register/Register';
+import Login from '../Login/Login';
+import PageNotFound from '../PageNotFound/PageNotFound';
 import ProtectedRoute from '../ProtectedRoute';
+import SavedMovies from '../SavedMovies/SavedMovies';
+import CurrentUserContext from '../../contexts/CurrentUserContext';
 import api from '../../utils/MainApi';
-import getBeatFilmMovies from '../../utils/MoviesApi';
-// import preloader from '../Movies/Preloader';
 
 function App() {
   const [loggedIn, setLoggedIn] = useState(JSON.parse(localStorage.getItem("loggedIn")) || false);
-  const [userName, setUserName] = useState(true);
+  const [currentUser, setCurrentUser] = useState({});
+  const [message, setMessage] = useState('');
+  const [savedMovies, setSavedMovies] = useState([]);
 
-  const [loader, setLoader] = useState(false);
-  const [render, setRender] = useState(false);
-  // const [allMovies, setAllMovies] = useState(JSON.parse(localStorage.getItem("allMovies")) || []);
-  const [favoredMoves, setFavoredMoves] = useState(JSON.parse(localStorage.getItem("favoredMoves")) || []);
-  const [fitredMoves, setFiltredMoves] = useState([]);
-  const [shotrsMoves, setShortsMoves] = useState([]);
-  const [movies, setMovies] = useState(JSON.parse(localStorage.getItem("movies")) || []);
-  const [search, setSearch] = useState(JSON.parse(localStorage.getItem("search")) || '');
-  const [isShorts, setIsShorts] = useState(JSON.parse(localStorage.getItem("isShort")) || false);
+  const navigate = useNavigate();
 
-  const allMovies = JSON.parse(localStorage.getItem("allMovies"));
+  function resetServerMessage() { setMessage(''); }
 
   useEffect(() => {
-    getBeatFilmMovies().then(res => {
-      localStorage.setItem("allMovies", JSON.stringify(res));
-      console.log(res);
-    }).catch((err => {
-      console.log('Во время запроса произошла ошибка. Возможно, проблема с соединением или сервер недоступен. Подождите немного и попробуйте ещё раз.');
-    }));
-  }, [allMovies]);
+    resetServerMessage();
+  }, [navigate]);
 
   useEffect(() => {
-    api.getFavoredMoves().then(res => {
-      localStorage.setItem("favoredMoves", JSON.stringify(res));
-      setFavoredMoves(res);
-      console.log(res);
+    if (loggedIn) {
+      api.getUserInfo().then((user) => {
+        setCurrentUser(user);
+      }).catch(console.error)
+      api.getFavoredMoves().then((savedMovies) => {
+        localStorage.setItem('savedMovies', JSON.stringify(savedMovies));
+        setSavedMovies(savedMovies);
+      }).catch(console.error)
+    }
+  }, [loggedIn])
+
+  useEffect(() => {
+    loggedIn &&
+      localStorage.setItem('savedMovies', JSON.stringify(savedMovies));
+  }, [savedMovies, loggedIn]);
+
+
+  function handleMovieLike(movie) {
+    api.addFavoredMoves(movie).then((newMovie) => {
+      setSavedMovies([newMovie, ...savedMovies]);
     }).catch(console.error);
-  }, [])
+  };
 
-  useEffect(() => {
-    if (search || isShorts)
-      setFiltredMoves(() => {
-        if (isShorts) {
-          return allMovies.filter((item) =>
-            (item.nameRU.toLowerCase().includes(search.toLowerCase()) ||
-              item.nameEN.toLowerCase().includes(search.toLowerCase())) &&
-            item.duration <= 40)
-        } else {
-          return allMovies.filter((item) =>
-            item.nameRU.toLowerCase().includes(search.toLowerCase()) ||
-            item.nameEN.toLowerCase().includes(search.toLowerCase())
-          )
-        }
-      })
-  }, [])
-
-  useEffect(() => {
-    setMovies(fitredMoves)
-  }, [])
+  function handleMovieDelete(movie) {
+    api.removeFavoredMoves(movie._id).then(() => {
+      setSavedMovies((savedMovies) => savedMovies.filter((item) => item.movieId !== movie.movieId));
+    }).catch(console.error);
+  };
 
   return (
-    <div className="page">
-      <Routes>
-        <Route path='/' element={
-          <>
-            <Header
-              // isLanding={isLanding}
-              loggedIn={loggedIn}
-            />
-            <Main />
-            <Footer />
-          </>
-        } />
-        <Route path='/movies' element={
-          <ProtectedRoute loggedIn={loggedIn}>
-            <Header loggedIn={loggedIn} />
-            <Movies
-              loader={loader}
-              setRender={setRender}
-              movies={movies}
-              search={search}
-              setSearch={setSearch}
-              isShorts={isShorts}
-              setIsShorts={setIsShorts}
-            />
-            <Footer />
-          </ProtectedRoute>
-        } />
-        <Route path='/saved-movies' element={
-          <ProtectedRoute loggedIn={loggedIn}>
-            <Header loggedIn={loggedIn} />
-            <SavedMovies />
-            <Footer />
-          </ProtectedRoute>
-        } />
-        <Route path='/profile' element={
-          <ProtectedRoute loggedIn={loggedIn}>
-            <Header loggedIn={loggedIn} />
-            <main>
-              <Profile
-                setLoggedIn={setLoggedIn}
-                userName={userName}
-                setUserName={setUserName}
+    <CurrentUserContext.Provider value={currentUser}>
+      <div className='page'>
+        <Routes>
+          <Route path='/' element={
+            <>
+              <Header loggedIn={loggedIn} />
+              <Main />
+              <Footer />
+            </>
+          } />
+          <Route path='/movies' element={
+            <ProtectedRoute loggedIn={loggedIn}>
+              <Header loggedIn={loggedIn} />
+              <Movies
+                savedMovies={savedMovies}
+                favoredMovie={handleMovieLike}
+                onDeleteMovie={handleMovieDelete}
               />
-            </main>
-          </ProtectedRoute>
-        } />
-        <Route path='/signin' element={
-          <main>
-            <Login
-              setLoggedIn={setLoggedIn}
-              setUserName={setUserName}
-            />
-          </main>}
-        />
-        <Route path='/signup' element={
-          <main>
-            <Register
-              setLoggedIn={setLoggedIn}
-              setUserName={setUserName}
-            />
-          </main>} />
-        <Route path='*' element={<main><PageNotFound /></main>} />
-      </Routes>
-    </div>
+              <Footer />
+            </ProtectedRoute>
+          } />
+          <Route path='/saved-movies' element={
+            <ProtectedRoute loggedIn={loggedIn}>
+              <Header loggedIn={loggedIn} />
+              <SavedMovies
+                savedMovies={savedMovies}
+                onDeleteMovie={handleMovieDelete}
+              />
+              <Footer />
+            </ProtectedRoute>
+          } />
+          <Route path='/profile' element={
+            <ProtectedRoute loggedIn={loggedIn}>
+              <Header loggedIn={loggedIn} />
+              <main>
+                <Profile
+                  setLoggedIn={setLoggedIn}
+                  setCurrentUser={setCurrentUser}
+                />
+              </main>
+            </ProtectedRoute>
+          } />
+          <Route path='/signin' element={
+            <main>
+              <Login
+                setLoggedIn={setLoggedIn}
+                setCurrentUser={setCurrentUser}
+              />
+            </main>}
+          />
+          <Route path='/signup' element={
+            <main>
+              <Register
+                setLoggedIn={setLoggedIn}
+                setCurrentUser={setCurrentUser}
+              />
+            </main>} />
+          <Route path='*' element={<main><PageNotFound /></main>} />
+        </Routes>
+      </div>
+    </CurrentUserContext.Provider>
   );
 }
 

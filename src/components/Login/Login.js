@@ -5,7 +5,7 @@ import logo from '../../images/logo.svg';
 import { useNavigate } from 'react-router-dom';
 import api from '../../utils/MainApi';
 
-function Login({ setLoggedIn, setUserName }) {
+function Login({ setLoggedIn, setCurrentUser }) {
   // const [email, setEmail] = React.useState('');
   // const [password, setPassword] = React.useState('');
   const [email, setEmail] = React.useState('user@user.ru');
@@ -43,7 +43,7 @@ function Login({ setLoggedIn, setUserName }) {
           .then((res) => {
             localStorage.setItem("name", res.name);
             localStorage.setItem("email", res.email);
-            setUserName(res.name)
+            setCurrentUser(res.name)
             return res;
           })
           .then(res => {

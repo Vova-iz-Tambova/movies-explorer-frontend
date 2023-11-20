@@ -1,11 +1,10 @@
 import './Register.css';
-import React from 'react';
-import { NavLink } from 'react-router-dom';
 import logo from '../../images/logo.svg';
-import { useNavigate } from 'react-router-dom';
+import React from 'react';
+import { NavLink, useNavigate } from 'react-router-dom';
 import api from '../../utils/MainApi';
 
-function Register({ setLoggedIn, setUserName }) {
+function Register({ setLoggedIn, setCurrentUser }) {
   const [name, setName] = React.useState('')
   const [email, setEmail] = React.useState('')
   const [password, setPassword] = React.useState('')
@@ -57,7 +56,7 @@ function Register({ setLoggedIn, setUserName }) {
               .then((res) => {
                 localStorage.setItem("name", res.name);
                 localStorage.setItem("email", res.email);
-                setUserName(res.name)
+                setCurrentUser(res)
                 return res;
               })
               .then(res => {
@@ -82,8 +81,6 @@ function Register({ setLoggedIn, setUserName }) {
           setMessage('Во время запроса произошла ошибка. Возможно, проблема с соединением или сервер недоступен. Подождите немного и попробуйте ещё раз.');
         }, 4501);
       })
-    // setName('');
-    // setEmail('');
   }
 
   React.useEffect(() => {

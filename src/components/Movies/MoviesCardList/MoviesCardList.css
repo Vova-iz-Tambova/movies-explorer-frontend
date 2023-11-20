@@ -1,4 +1,6 @@
 .list {
+  width: 100%;
+  max-width: 1280px;
   display: flex;
   flex-wrap: wrap;
   justify-content: space-around;
@@ -9,8 +11,50 @@
   margin: 0;
 }
 
-.list__item {
-  display: block;
+.list__saved {
+  width: 100%;
+  max-width: 1140px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 37px 24px;
+  padding: 70px 0 10px 0;
+  margin: 0;
+  box-sizing: border-box;
+  justify-content: space-around;
+}
+
+.list__pagination {
+  width: 100%;
+  height: 166px;
+  font-family: 'Inter', 'Arial', sans-serif;
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 15px;
+  letter-spacing: 0px;
+  text-align: center;
+}
+
+.list__more {
+  width: 100%;
+  height: 36px;
+  border-radius: 6px;
+  background-color: #2F2F2F;
+  margin-top: 50px;
+  margin-bottom: 80px;
+  cursor: pointer;
+  border: none;
+  color: #fff;
+}
+
+.list__message {
+  font-family: 'Inter', 'Arial', sans-serif;
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 15px;
+  letter-spacing: 0px;
+  text-align: center;
+  color: #fff;
+  margin-top: 62px;
 }
 
 @media screen and (max-width:979px) {

@@ -1,98 +1,57 @@
-import "./SavedMovies.css";
-import React, { useState } from "react";
-// import unloved from "../../images/unsave.svg";
-// import MoviesCard from "./MoviesCard/MoviesCard";
-import SearchForm from "../Movies/SearchForm/SearchForm";
-// import api from "../../utils/MainApi";
+import './SavedMovies.css';
+import React, { useEffect, useState } from 'react';
+import SearchForm from '../Movies/SearchForm/SearchForm';
+import MoviesCardList from '../Movies/MoviesCardList/MoviesCardList';
 
-function SavedMovies(props) {
-  const [input, setInput] = useState('');
-  const [search, setSearch] = useState('');
-  const [isShorts, setIsShorts] = useState(false);
+function SavedMovies({ savedMovies, onDeleteMovie }) {
+  const [movies, setMovies] = useState(JSON.parse(localStorage.getItem('savedMovies')));
 
-  function handleSearch(e) {
-    setInput(e.target.value);
+  function filterSearchMovies(movies, movieName) {
+    let filteredMovies = [...movies]
+    filteredMovies = filteredMovies.filter((item) => item.nameRU.toLowerCase().includes(movieName.toLowerCase()) ||
+      item.nameEN.toLowerCase().includes(movieName.toLowerCase()));
+    return (filteredMovies);
   }
 
-  function handleChecked() {
-    setIsShorts(!isShorts);
-    // localStorage.setItem("isShort", JSON.stringify(!isShorts));
+  function filterMoviesDuration(movies) {
+    return movies.filter((item) => {
+      return item.duration <= 40
+    })
   }
 
+  function handleSearchMovies(movieName, shortFilms) {
+    const filteredMovies = filterSearchMovies(savedMovies, movieName);
+    localStorage.setItem('filteredSavedMovies', JSON.stringify(filteredMovies));
+    setMovies(filteredMovies);
+    filter(shortFilms);
+  }
 
-  // const [favoredMoves, setFavoredMoves] = React.useState(JSON.parse(localStorage.getItem("favoredMoves")) || []);
-  // const [search, setSearch] = React.useState('');
-  // const [isShorts, setIsShorts] = React.useState(false);
-  // const [film, setFilm] = React.useState('');
+  function filter(shortFilms) {
+    const filteredMovies = JSON.parse(localStorage.getItem('filteredSavedMovies')) || [];
+    const resultMovies = shortFilms
+      ? filterMoviesDuration(movies)
+      : filteredMovies;
+    setMovies(resultMovies);
+  }
 
-  // const buttonClass = (`card__panel_cross`);
-
-  // function newSearch() {
-  //   setSearch(film);
-  // };
-
-  // function handleRemoveFavored(movie) {
-  //   api.removeFavoredMoves(movie._id).catch(console.error)
-  // }
-
-  // React.useEffect(() => {
-  //   if (!favoredMoves.length === 0) {
-  //     props.setMessge('')
-  //   }
-  //   else {
-  //     props.setMessge('')
-  //   }
-  // favoredMoves.filter((item) =>
-  //       item.nameRU.toLowerCase().includes(search.toLowerCase()) ||
-  //       item.nameEN.toLowerCase().includes(search.toLowerCase())
-  //     )
-  //   })
-  //   .then((res) => {
-  //     if (isShorts) {
-  //       return res.filter((item) => item.duration <= 40);
-  //     } else {
-  //       return res;
-  //     }
-  //   })
-  //   .then((res) => {
-  //     localStorage.setItem("favoredMoves", JSON.stringify(res));
-  //     setFavoredMoves(res)
-  //   })
-
-  //   .catch(console.error);
-
-  // }, [])
+  useEffect(() => {
+    localStorage.setItem('savedMovies', JSON.stringify(savedMovies));
+    setMovies(JSON.parse(localStorage.getItem('savedMovies')));
+  }, [savedMovies]);
 
   return (
     <main className="saved">
       <SearchForm
-        input={input}
-        setInput={setInput}
-        search={search}
-        setSearch={setSearch}
-        handleSearch={handleSearch}
-        isShorts={isShorts}
-        handleChecked={handleChecked}
+        onSearch={handleSearchMovies}
+        filterCheckbox={filter}
+      />
+      <MoviesCardList
+        movies={movies}
+        savedMovies={savedMovies}
+        onDeleteMovie={onDeleteMovie}
       />
     </main>
   );
 }
+
 export default SavedMovies;
-
-
-//       <ul className="saved__list">
-// {favoredMoves.map((movie) => (
-//           <MoviesCard
-//             key={movie._id}
-//             movie={movie}
-//             movieId={movie.movieId}
-//             nameRU={movie.nameRU}
-//             image={movie.image}
-//             trailerLink={movie.trailerLink}
-//             duration={movie.duration}
-//             isFavored={true}
-//             buttonClass={buttonClass}
-//             handleRemoveFavored={handleRemoveFavored}
-//           />
-//         ))}
-//       </ul>
