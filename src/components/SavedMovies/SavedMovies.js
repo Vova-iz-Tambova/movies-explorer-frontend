@@ -2,7 +2,7 @@ import './SavedMovies.css';
 import React, { useEffect, useState } from 'react';
 import SearchForm from '../Movies/SearchForm/SearchForm';
 import MoviesCardList from '../Movies/MoviesCardList/MoviesCardList';
-import {DURATION_SHORTS} from '../../utils/constant'
+import { DURATION_SHORTS } from '../../utils/constant'
 
 function SavedMovies({ savedMovies, onDeleteMovie }) {
   const [shortFilms, setShortFilms] = useState(false);
@@ -19,7 +19,7 @@ function SavedMovies({ savedMovies, onDeleteMovie }) {
 
   function filterMoviesDuration(movies) {
     return movies.filter((item) => {
-      return item.duration <= DURATION_SHORTS
+      return item.duration <= DURATION_SHORTS;
     })
   }
 
