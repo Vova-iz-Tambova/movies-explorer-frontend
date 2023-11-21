@@ -33,10 +33,10 @@ function App() {
     }
   }, [loggedIn, navigate])
 
-  // useEffect(() => {
-  //   loggedIn &&
-  //     localStorage.setItem('savedMovies', JSON.stringify(savedMovies));
-  // }, [savedMovies, loggedIn]);
+  useEffect(() => {
+    loggedIn &&
+      localStorage.setItem('savedMovies', JSON.stringify(savedMovies));
+  }, [savedMovies, loggedIn]);
 
   function handleMovieLike(movie) {
     api.addFavoredMoves(movie).then((newMovie) => {
