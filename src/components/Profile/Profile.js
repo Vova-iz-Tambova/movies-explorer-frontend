@@ -40,7 +40,7 @@ function Profile({ setLoggedIn, setCurrentUser }) {
           return res.json()
         }
       }).then(res => {
-        setMessage('Сохранение...')
+        setMessage('Успех')
         localStorage.setItem("name", res.name);
         localStorage.setItem("email", res.email);
         setCurrentUser(res);

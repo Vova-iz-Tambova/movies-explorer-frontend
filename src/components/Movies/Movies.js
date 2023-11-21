@@ -11,8 +11,10 @@ function Movies({ savedMovies, favoredMovie, onDeleteMovie }) {
   const [movies, setMovies] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const [message, setMessage] = useState('');
+  const [searchMessage, setSearchMessage] = useState('Воспользуйтесь новым поиском');
 
   function getAllMovies(movieName, shortFilms) {
+    setSearchMessage('Ничего не найдено');
     setIsLoading(true);
     const allMovies = JSON.parse(localStorage.getItem('allMovies'));
     if (!allMovies) {
@@ -78,6 +80,7 @@ function Movies({ savedMovies, favoredMovie, onDeleteMovie }) {
           savedMovies={savedMovies}
           onLikeMovie={favoredMovie}
           onDeleteMovie={onDeleteMovie}
+          searchMessage={searchMessage}
         />
       }
     </main>

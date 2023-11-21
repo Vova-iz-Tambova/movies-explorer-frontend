@@ -7,6 +7,7 @@ function SavedMovies({ savedMovies, onDeleteMovie }) {
   const [shortFilms, setShortFilms] = useState(false);
   const [movieName, setMovieName] = useState('');
   const [movies, setMovies] = useState(JSON.parse(localStorage.getItem('savedMovies')));
+  const [searchMessage, setSearchMessage] = useState('Список пуст');
 
   function filterSearchMovies(movies, movieName) {
     let filteredMovies = [...movies]
@@ -22,6 +23,7 @@ function SavedMovies({ savedMovies, onDeleteMovie }) {
   }
 
   function handleSearchMovies(movieName, shortFilms) {
+    setSearchMessage('Ничего не найдено');
     const filteredMovies = filterSearchMovies(savedMovies, movieName);
     localStorage.setItem('filteredSavedMovies', JSON.stringify(filteredMovies));
     setMovies(filteredMovies);
@@ -68,6 +70,7 @@ function SavedMovies({ savedMovies, onDeleteMovie }) {
         movies={movies}
         savedMovies={savedMovies}
         onDeleteMovie={onDeleteMovie}
+        searchMessage={searchMessage}
       />
     </main>
   );

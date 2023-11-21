@@ -3,7 +3,7 @@ import React, { useState, useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
 import MoviesCard from '../MoviesCard/MoviesCard';
 
-function MoviesCardList({ movies, savedMovies, onLikeMovie, onDeleteMovie }) {
+function MoviesCardList({ movies, savedMovies, onLikeMovie, onDeleteMovie, searchMessage }) {
   const [renderMovies, setRenderMovies] = useState([]);
   const [quantity, setQuantity] = useState(12);
   const [showMoreFilms, setShowMoreFilms] = useState(3);
@@ -77,9 +77,8 @@ function MoviesCardList({ movies, savedMovies, onLikeMovie, onDeleteMovie }) {
         </>
       ) :
         (
-          <p className='list__message'>Ничего не найдено</p>
+          <p className='list__message'>{searchMessage}</p>
         )}
-
       {renderMovies.length === movies.length ? '' :
         <div className={pathname !== '/saved-movies' ? 'list__pagination' : 'list__pagination_disable'}>
           <button
