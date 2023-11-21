@@ -15,21 +15,29 @@ class Api {
   getFavoredMoves() {
     return fetch(`${this._baseUrl}/movies`, {
       method: "GET",
-      headers: this._headers,
-    }).then(this._checkResponse);
+      headers: {
+        'Authorization': `Bearer ${localStorage.jwt}`,
+        'Content-Type': 'application/json',
+      },
+    })
+    .then(this._checkResponse);
   }
 
   removeFavoredMoves(id) {
     return fetch(`${this._baseUrl}/movies/${id}`, {
       method: "DELETE",
       headers: this._headers,
-    }).then(this._checkResponse);
+    })
+    // .then(this._checkResponse);
   }
 
   addFavoredMoves(data) {
     return fetch(`${this._baseUrl}/movies`, {
       method: "POST",
-      headers: this._headers,
+      headers: {
+        'Authorization': `Bearer ${localStorage.jwt}`,
+        'Content-Type': 'application/json',
+      },
       body: JSON.stringify({
         movieId: data.id,
         country: data.country,
@@ -50,7 +58,10 @@ class Api {
   login({ email, password }) {
     return fetch(`${this._baseUrl}/signin`, {
       method: 'POST',
-      headers: this._headers,
+      headers: {
+        'Authorization': `Bearer ${localStorage.jwt}`,
+        'Content-Type': 'application/json',
+      },
       body: JSON.stringify({ email, password })
     })
     // .then(this._checkResponse);
@@ -59,7 +70,10 @@ class Api {
   register({ name, email, password }) {
     return fetch(`${this._baseUrl}/signup`, {
       method: 'POST',
-      headers: this._headers,
+      headers: {
+        'Authorization': `Bearer ${localStorage.jwt}`,
+        'Content-Type': 'application/json',
+      },
       body: JSON.stringify({ name, email, password })
     })
     // .then(this._checkResponse);
@@ -68,7 +82,10 @@ class Api {
   update({ name, email }) {
     return fetch(`${this._baseUrl}/users/me`, {
       method: 'PATCH',
-      headers: this._headers,
+      headers: {
+        'Authorization': `Bearer ${localStorage.jwt}`,
+        'Content-Type': 'application/json',
+      },
       body: JSON.stringify({ name, email })
     })
   }
@@ -76,7 +93,10 @@ class Api {
   getUserInfo() {
     return fetch(`${this._baseUrl}/users/me`, {
       method: 'GET',
-      headers: this._headers,
+      headers: {
+        'Authorization': `Bearer ${localStorage.jwt}`,
+        'Content-Type': 'application/json',
+      },
     })
       .then(this._checkResponse);
   }
@@ -85,10 +105,8 @@ class Api {
     return fetch(`${this._baseUrl}/users/me`, {
       method: 'GET',
       headers: {
-        Authorization: `Bearer ${token}`,
-        'Accept': 'application/json',
+        'Authorization': `Bearer ${localStorage.jwt}`,
         'Content-Type': 'application/json',
-
       },
     })
     // .then(this._checkResponse);
@@ -98,9 +116,8 @@ class Api {
 const api = new Api({
   baseUrl: "https://api.diplom69.nomoredomainsrocks.ru",
   headers: {
-    Authorization: `Bearer ${localStorage.getItem('jwt')}`,
-    "Content-Type": 'application/json',
-    "Accept": "application/json",
+    'Authorization': `Bearer ${localStorage.jwt}`,
+    'Content-Type': 'application/json',
   },
 });
 
