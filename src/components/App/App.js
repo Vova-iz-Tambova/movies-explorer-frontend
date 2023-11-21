@@ -1,6 +1,6 @@
 import './App.css';
 import React, { useEffect, useState } from 'react';
-import { Routes, Route, useNavigate } from 'react-router-dom';
+import { Routes, Route, useNavigate, Navigate } from 'react-router-dom';
 import Header from '../Header/Header';
 import Main from '../Main/Main';
 import Movies from '../Movies/Movies';
@@ -92,17 +92,24 @@ function App() {
             </ProtectedRoute>
           } />
           <Route path='/signin' element={
-            <Login
-              setLoggedIn={setLoggedIn}
-              setCurrentUser={setCurrentUser}
-            />
+            loggedIn
+              ? <Navigate to='/' replace />
+              : (
+                <Login
+                  setLoggedIn={setLoggedIn}
+                  setCurrentUser={setCurrentUser}
+                />
+              )
           } />
           <Route path='/signup' element={
-
-            <Register
-              setLoggedIn={setLoggedIn}
-              setCurrentUser={setCurrentUser}
-            />
+            loggedIn
+              ? <Navigate to='/' replace />
+              : (
+                <Register
+                  setLoggedIn={setLoggedIn}
+                  setCurrentUser={setCurrentUser}
+                />
+              )
           } />
           <Route path='*' element={<main><PageNotFound /></main>} />
         </Routes>
