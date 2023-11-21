@@ -6,6 +6,8 @@ import getBeatFilmMovies from '../../utils/MoviesApi';
 import Preloader from './Preloader/Preloader';
 
 function Movies({ savedMovies, favoredMovie, onDeleteMovie }) {
+  const [shortFilms, setShortFilms] = useState(false);
+  const [movieName, setMovieName] = useState('');
   const [movies, setMovies] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const [message, setMessage] = useState('');
@@ -64,6 +66,10 @@ function Movies({ savedMovies, favoredMovie, onDeleteMovie }) {
         onSearch={getAllMovies}
         filterCheckbox={filterDuration}
         onError={message}
+        shortFilms={shortFilms}
+        setShortFilms={setShortFilms}
+        movieName={movieName}
+        setMovieName={setMovieName}
       />
       {isLoading
         ? <Preloader />

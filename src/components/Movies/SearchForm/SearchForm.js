@@ -2,10 +2,10 @@ import './SearchForm.css';
 import React, { useState, useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
 
-function SearchForm({ onSearch, filterCheckbox}) {
+function SearchForm({ onSearch, filterCheckbox, shortFilms, setShortFilms, movieName, setMovieName}) {
   const [inputError, setInputError] = React.useState('');
-  const [shortFilms, setShortFilms] = useState(false);
-  const [movieName, setMovieName] = useState('');
+  // const [shortFilms, setShortFilms] = useState(false);
+  // const [movieName, setMovieName] = useState('');
 
   const { pathname } = useLocation();
 
