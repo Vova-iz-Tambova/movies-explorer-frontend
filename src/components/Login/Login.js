@@ -45,6 +45,8 @@ function Login({ setLoggedIn, setCurrentUser }) {
             return res;
           })
           .then(res => {
+            localStorage.setItem("name", res.name);
+            localStorage.setItem("email", res.email);
             setLoggedIn(true);
             localStorage.setItem("loggedIn", true);
             setMessage('Успех');

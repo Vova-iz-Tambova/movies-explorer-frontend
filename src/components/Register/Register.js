@@ -54,6 +54,8 @@ function Register({ setLoggedIn, setCurrentUser }) {
             localStorage.setItem("jwt", res.token);
             api.checkToken(res.token).then(res => res.json())
               .then((res) => {
+                localStorage.setItem("name", res.name);
+                localStorage.setItem("email", res.email);
                 setCurrentUser(res);
                 return res;
               })

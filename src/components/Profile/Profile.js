@@ -1,5 +1,5 @@
 import './Profile.css';
-import React, { useContext } from 'react';
+import React, { useEffect, useContext } from 'react';
 import { useNavigate, } from 'react-router-dom';
 import api from '../../utils/MainApi';
 import CurrentUserContext from '../../contexts/CurrentUserContext';
@@ -8,8 +8,8 @@ function Profile({ setLoggedIn, setCurrentUser }) {
 
   const currentUser = useContext(CurrentUserContext);
 
-  const [name, setName] = React.useState(currentUser.name);
-  const [email, setEmail] = React.useState(currentUser.email);
+  const [name, setName] = React.useState(localStorage.getItem("name") || currentUser.name);
+  const [email, setEmail] = React.useState(localStorage.getItem("email") || currentUser.email);
   const [message, setMessage] = React.useState('');
   const [nameError, setNameError] = React.useState('');
   const [emailError, setEmailError] = React.useState('');
@@ -17,7 +17,7 @@ function Profile({ setLoggedIn, setCurrentUser }) {
   const [render, setRender] = React.useState(false);
   const navigate = useNavigate();
 
-  React.useEffect(() => {
+  useEffect(() => {
     if (message) {
       setTimeout(() => {
         setMessage('');
@@ -41,8 +41,6 @@ function Profile({ setLoggedIn, setCurrentUser }) {
         setMessage('Успех')
         localStorage.setItem("name", res.name);
         localStorage.setItem("email", res.email);
-        setName(res.name);
-        setEmail(res.email);
         setCurrentUser(res);
         setTimeout(() => {
           setMessage('')

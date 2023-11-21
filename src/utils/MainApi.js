@@ -1,15 +1,13 @@
 class Api {
   constructor(options) {
     this._baseUrl = options.baseUrl;
-    this._headers = options.headers;
   }
   // Проверка ответа сервера
   _checkResponse(res) {
     if (res.ok) {
       return res.json();
-    } else {
-      return Promise.reject(`Ошибка: ${res}`);
     }
+    return Promise.reject(`Ошибка: ${res}`);
   }
 
   getFavoredMoves() {
@@ -20,7 +18,7 @@ class Api {
         'Content-Type': 'application/json',
       },
     })
-    .then(this._checkResponse);
+      .then(this._checkResponse);
   }
 
   removeFavoredMoves(id) {
@@ -115,10 +113,6 @@ class Api {
 
 const api = new Api({
   baseUrl: "https://api.diplom69.nomoredomainsrocks.ru",
-  headers: {
-    'Authorization': `Bearer ${localStorage.jwt}`,
-    'Content-Type': 'application/json',
-  },
 });
 
 export default api;
