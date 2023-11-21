@@ -27,10 +27,10 @@ function SearchForm({ onSearch, filterCheckbox}) {
   };
 
   const handleShortFilmsChange = () => {
-    setShortFilms(!shortFilms);
     if (!movieName) {
       return;
     }
+    setShortFilms(!shortFilms);
     filterCheckbox(!shortFilms);
     if (pathname === '/movies') {
       localStorage.setItem('shortFilms', !shortFilms);

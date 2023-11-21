@@ -93,29 +93,25 @@ function App() {
           <Route path='/profile' element={
             <ProtectedRoute loggedIn={loggedIn}>
               <Header loggedIn={loggedIn} />
-              <main>
-                <Profile
-                  setLoggedIn={setLoggedIn}
-                  setCurrentUser={setCurrentUser}
-                />
-              </main>
+              <Profile
+                setLoggedIn={setLoggedIn}
+                setCurrentUser={setCurrentUser}
+              />
             </ProtectedRoute>
           } />
           <Route path='/signin' element={
-            <main>
-              <Login
-                setLoggedIn={setLoggedIn}
-                setCurrentUser={setCurrentUser}
-              />
-            </main>}
-          />
+            <Login
+              setLoggedIn={setLoggedIn}
+              setCurrentUser={setCurrentUser}
+            />
+          } />
           <Route path='/signup' element={
-            <main>
-              <Register
-                setLoggedIn={setLoggedIn}
-                setCurrentUser={setCurrentUser}
-              />
-            </main>} />
+
+            <Register
+              setLoggedIn={setLoggedIn}
+              setCurrentUser={setCurrentUser}
+            />
+          } />
           <Route path='*' element={<main><PageNotFound /></main>} />
         </Routes>
       </div>

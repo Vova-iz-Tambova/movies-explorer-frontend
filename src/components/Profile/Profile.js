@@ -33,12 +33,14 @@ function Profile({ setLoggedIn, setCurrentUser }) {
           throw setMessage('Переданы некорректные данные при создании пользователя')
         } else if (res.status === 409) {
           throw setMessage('Пользователь с таким email уже существует')
+        } else if (res.status === 429) {
+          throw setMessage('Слишком частое обращение к серверу. Вы забанены на 15 минут.')
         }
         else if (res.status === 200) {
           return res.json()
         }
       }).then(res => {
-        setMessage('Успех')
+        setMessage('Сохранение...')
         localStorage.setItem("name", res.name);
         localStorage.setItem("email", res.email);
         setCurrentUser(res);
@@ -88,7 +90,7 @@ function Profile({ setLoggedIn, setCurrentUser }) {
   }
 
   return (
-    <section className="profile">
+    <main className="profile">
       <h1 className='profile__title'>Привет, {currentUser.name}!</h1>
       {/* <h1 className='profile__title'>Привет, {localStorage.getItem("name")}!</h1> */}
       <form className='profile__form' onSubmit={handleSubmit}>
@@ -98,7 +100,7 @@ function Profile({ setLoggedIn, setCurrentUser }) {
             value={name}
             type="text"
             minLength="2"
-            maxLength="40"
+            maxLength="30"
             placeholder='Имя'
             onChange={handleName}
             className='profile__input'
@@ -125,7 +127,7 @@ function Profile({ setLoggedIn, setCurrentUser }) {
       </form>
       <div className='profile__logout  effect'
         onClick={logOut}>Выйти из аккаунта</div>
-    </section >
+    </main >
   )
 }
 export default Profile;

@@ -103,7 +103,7 @@ function Register({ setLoggedIn, setCurrentUser }) {
   function handlePassword(e) { setPassword(e.target.value); setPasswordError(e.target.validationMessage); }
 
   return (
-    <section className='register'>
+    <main className='register'>
       <NavLink to="/" className="register__logo  animation">
         <img src={logo} alt="логотип" /></NavLink>
       <h1 className='register__title'>Добро пожаловать!</h1>
@@ -114,7 +114,7 @@ function Register({ setLoggedIn, setCurrentUser }) {
             value={name}
             type="text"
             minLength="2"
-            maxLength="40"
+            maxLength="30"
             placeholder='Имя'
             onChange={handleName}
             className='register__input'>
@@ -156,7 +156,7 @@ function Register({ setLoggedIn, setCurrentUser }) {
         <p >Уже зарегистрированы? <NavLink to="/signin" className='register__redirect  effect'
         >Войти</NavLink></p>
       </div>
-    </section >
+    </main >
   )
 }
 export default Register;

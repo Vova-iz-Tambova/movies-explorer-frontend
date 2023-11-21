@@ -82,7 +82,7 @@ function Login({ setLoggedIn, setCurrentUser }) {
   function handlePassword(e) { setPassword(e.target.value); setPasswordError(e.target.validationMessage); }
 
   return (
-    <section className='login'>
+    <main className='login'>
       <NavLink to="/" className="login__logo  animation">
         <img src={logo} alt="логотип" /></NavLink>
       <h1 className='login__title'>Рады видеть!</h1>
@@ -123,7 +123,7 @@ function Login({ setLoggedIn, setCurrentUser }) {
           to="/signup"
         >Регистрация</NavLink></p>
       </div>
-    </section>
+    </main>
   )
 }
 export default Login;
