@@ -6,47 +6,53 @@ import MoviesCard from '../MoviesCard/MoviesCard';
 function MoviesCardList({ movies, savedMovies, onLikeMovie, onDeleteMovie }) {
   const [renderMovies, setRenderMovies] = useState([]);
   const [quantity, setQuantity] = useState(12);
-  const [showMoreFilms, setShowMoreFilms] = useState(3);
+	const [showMoreFilms, setShowMoreFilms] = useState(3);
 
   const { pathname } = useLocation();
 
-  useEffect(() => {
-    onResize()
-    window.addEventListener("resize", onResize)
-    return () => {
-      window.removeEventListener("resize", onResize)
-    }
-  }, []);
+	useEffect(() => {
+		onResize()
+		window.addEventListener("resize", onResize)
+
+		return () => {
+			window.removeEventListener("resize", onResize)
+		}
+	}, []);
 
   let timeout = null;
 
   function onResize() {
-    timeout && clearTimeout(timeout);
+		timeout && clearTimeout(timeout);
 
-    timeout = setTimeout(() => {
-      if (pathname === '/saved-movies') {
-        setRenderMovies(movies);
-      }
-      if (window.innerWidth > 1281) { setQuantity(12); setShowMoreFilms(3) }
-      if (window.innerWidth < 1280) { setQuantity(8); setShowMoreFilms(2) }
-      if (window.innerWidth < 768) { setQuantity(5); setShowMoreFilms(2) }
-    }, 100);
-  };
+		timeout = setTimeout(() => {
+			const width = window.innerWidth;
+			if (pathname === '/saved-movies') {
+				setRenderMovies(movies);
+			}
+			if (width > 1280) {
+				setQuantity(12);
+				setShowMoreFilms(3);
+			} if (width < 1279) {
+				setQuantity(8);
+				setShowMoreFilms(2);
+			} if (width < 768) {
+				setQuantity(5);
+				setShowMoreFilms(2);
+			}
+		}, 100);
+	}
 
-  useEffect(() => {
-    if ((pathname === '/movies')) {
-      setRenderMovies(movies.slice(0, quantity));
-    }
-    setRenderMovies(movies);
-}, [movies, quantity]);
+	React.useEffect(() => {
+		setRenderMovies(movies.slice(0, quantity))
+	}, [movies, quantity]);
 
-function handleMoreClick() {
-  const newArray = [
-    ...movies.slice(0, (quantity + showMoreFilms))
-  ]
-  setQuantity(quantity + showMoreFilms);
-  setRenderMovies(newArray);
-};
+	function handleMoreClick() {
+		const newArray = [
+			...movies.slice(0, (quantity + showMoreFilms))
+		]
+		setQuantity(quantity + showMoreFilms);
+		setRenderMovies(newArray);
+	}
 
 return (
   <section>
