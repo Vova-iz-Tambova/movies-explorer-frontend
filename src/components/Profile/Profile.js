@@ -5,15 +5,16 @@ import api from '../../utils/MainApi';
 import CurrentUserContext from '../../contexts/CurrentUserContext';
 
 function Profile({ setLoggedIn, setCurrentUser }) {
-  const [name, setName] = React.useState(localStorage.getItem("name") || currentUser.name);
-  const [email, setEmail] = React.useState(localStorage.getItem("email") || currentUser.email);
+
+  const currentUser = useContext(CurrentUserContext);
+
+  const [name, setName] = React.useState(currentUser.name);
+  const [email, setEmail] = React.useState(currentUser.email);
   const [message, setMessage] = React.useState('');
   const [nameError, setNameError] = React.useState('');
   const [emailError, setEmailError] = React.useState('');
   const [formNotValid, setformNotValid] = React.useState(true);
   const [render, setRender] = React.useState(false);
-
-  const currentUser = useContext(CurrentUserContext);
   const navigate = useNavigate();
 
   React.useEffect(() => {
@@ -23,7 +24,6 @@ function Profile({ setLoggedIn, setCurrentUser }) {
       }, 4500)
     }
   }, [message])
-
 
   function handleSubmit(e) {
     e.preventDefault();
@@ -91,8 +91,8 @@ function Profile({ setLoggedIn, setCurrentUser }) {
 
   return (
     <section className="profile">
-      {/* <h1 className='profile__title'>Привет, {currentUser.name}!</h1> */}
-      <h1 className='profile__title'>Привет, {localStorage.getItem("name")}!</h1>
+      <h1 className='profile__title'>Привет, {currentUser.name}!</h1>
+      {/* <h1 className='profile__title'>Привет, {localStorage.getItem("name")}!</h1> */}
       <form className='profile__form' onSubmit={handleSubmit}>
         <div className='profile__field'>
           <label className='profile__info'>Имя</label>
