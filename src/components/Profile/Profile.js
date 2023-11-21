@@ -47,7 +47,7 @@ function Profile({ setLoggedIn, setCurrentUser }) {
         setTimeout(() => {
           setMessage('')
           setformNotValid(true);
-        }, 700)
+        }, 1500)
       }
       )
       .catch(() => {

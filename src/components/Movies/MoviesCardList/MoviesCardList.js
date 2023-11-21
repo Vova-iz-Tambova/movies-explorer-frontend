@@ -40,18 +40,16 @@ function MoviesCardList({ movies, savedMovies, onLikeMovie, onDeleteMovie, searc
       if (pathname === '/saved-movies') {
         setRenderMovies(movies);
       } else {
-        if (width < MOBILE_MAX_WIDTH) {
-          setQuantity(MOBILE_DEFAULT_MOVIES);
-          setShowMoreFilms(MOBILE_MORE_STEP);
-        } else {
-          setQuantity(TABLET_DEFAULT_MOVIES);
-          setShowMoreFilms(TABLET_MORE_STEP);
-        }
         if (width > TABLET_MAX_WIDTH) {
           setQuantity(DESKTOP_DEFAULT_MOVIES);
           setShowMoreFilms(DESKTOP_MORE_STEP);
+        } else if (width > MOBILE_MAX_WIDTH) {
+          setQuantity(TABLET_DEFAULT_MOVIES);
+          setShowMoreFilms(TABLET_MORE_STEP);
+        } else {
+          setQuantity(MOBILE_DEFAULT_MOVIES);
+          setShowMoreFilms(MOBILE_MORE_STEP);
         }
-        // (width < TABLET_MAX_WIDTH) {
       }
     }, 100);
   }
