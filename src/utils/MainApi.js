@@ -24,9 +24,12 @@ class Api {
   removeFavoredMoves(id) {
     return fetch(`${this._baseUrl}/movies/${id}`, {
       method: "DELETE",
-      headers: this._headers,
+      headers: {
+        'Authorization': `Bearer ${localStorage.jwt}`,
+        'Content-Type': 'application/json',
+      },
     })
-    // .then(this._checkResponse);
+      .then(this._checkResponse);
   }
 
   addFavoredMoves(data) {
