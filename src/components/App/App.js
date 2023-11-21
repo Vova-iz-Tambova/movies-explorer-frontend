@@ -17,22 +17,15 @@ import api from '../../utils/MainApi';
 function App() {
   const [loggedIn, setLoggedIn] = useState(JSON.parse(localStorage.getItem("loggedIn")) || false);
   const [currentUser, setCurrentUser] = useState({});
-  const [message, setMessage] = useState('');
   const [savedMovies, setSavedMovies] = useState([]);
 
   const navigate = useNavigate();
-
-  function resetServerMessage() { setMessage(''); }
-
-  useEffect(() => {
-    resetServerMessage();
-  }, [navigate]);
 
   useEffect(() => {
     if (loggedIn) {
       api.getUserInfo().then((res) => {
         setCurrentUser(res);
-      }).catch(console.error)
+      }).catch(console.error);
       api.getFavoredMoves().then((savedMovies) => {
         localStorage.setItem('savedMovies', JSON.stringify(savedMovies));
         setSavedMovies(savedMovies);
@@ -40,11 +33,10 @@ function App() {
     }
   }, [loggedIn, navigate])
 
-  useEffect(() => {
-    loggedIn &&
-      localStorage.setItem('savedMovies', JSON.stringify(savedMovies));
-  }, [savedMovies, loggedIn]);
-
+  // useEffect(() => {
+  //   loggedIn &&
+  //     localStorage.setItem('savedMovies', JSON.stringify(savedMovies));
+  // }, [savedMovies, loggedIn]);
 
   function handleMovieLike(movie) {
     api.addFavoredMoves(movie).then((newMovie) => {
