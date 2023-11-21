@@ -27,56 +27,59 @@ function MoviesCardList({ movies, savedMovies, onLikeMovie, onDeleteMovie }) {
       if (pathname === '/saved-movies') {
         setRenderMovies(movies);
       }
-    if (window.innerWidth > 1281) { setQuantity(12); setShowMoreFilms(3) }
-    if (window.innerWidth < 1280) { setQuantity(8); setShowMoreFilms(2) }
-    if (window.innerWidth < 768) { setQuantity(5); setShowMoreFilms(2) }
+      if (window.innerWidth > 1281) { setQuantity(12); setShowMoreFilms(3) }
+      if (window.innerWidth < 1280) { setQuantity(8); setShowMoreFilms(2) }
+      if (window.innerWidth < 768) { setQuantity(5); setShowMoreFilms(2) }
     }, 100);
   };
 
   useEffect(() => {
-    setRenderMovies(movies.slice(0, quantity))
-  }, [movies, quantity]);
+    if ((pathname === '/movies')) {
+      setRenderMovies(movies.slice(0, quantity));
+    }
+    setRenderMovies(movies);
+}, [movies, quantity]);
 
-  function handleMoreClick() {
-    const newArray = [
-      ...movies.slice(0, (quantity + showMoreFilms))
-    ]
-    setQuantity(quantity + showMoreFilms);
-    setRenderMovies(newArray);
-  };
+function handleMoreClick() {
+  const newArray = [
+    ...movies.slice(0, (quantity + showMoreFilms))
+  ]
+  setQuantity(quantity + showMoreFilms);
+  setRenderMovies(newArray);
+};
 
-  return (
-    <section>
-      {renderMovies.length > 0 ? (
-        <>
-          <ul className={`list ${(pathname === '/saved-movies') && `list__saved`}`}>
-            {renderMovies.map((movie) => (
-              <MoviesCard
-                key={movie.id || movie.movieId}
-                movie={movie}
-                savedMovies={savedMovies}
-                onLikeMovie={onLikeMovie}
-                onDeleteMovie={onDeleteMovie}
-              />
-            ))}
-          </ul>
-        </>
-      ) :
-        (
-          <p className='list__message'>Ничего не найдено</p>
-        )}
+return (
+  <section>
+    {renderMovies.length > 0 ? (
+      <>
+        <ul className={`list ${(pathname === '/saved-movies') && `list__saved`}`}>
+          {renderMovies.map((movie) => (
+            <MoviesCard
+              key={movie.id || movie.movieId}
+              movie={movie}
+              savedMovies={savedMovies}
+              onLikeMovie={onLikeMovie}
+              onDeleteMovie={onDeleteMovie}
+            />
+          ))}
+        </ul>
+      </>
+    ) :
+      (
+        <p className='list__message'>Ничего не найдено</p>
+      )}
 
-      {renderMovies.length === movies.length ? '' :
-        <div className={pathname !== '/saved-movies' ? 'list__pagination' : 'show-more_disable'}>
-          <button
-            className='list__more  animation'
-            type='button'
-            onClick={handleMoreClick}
-          >Ещё</button>
-        </div>
-      }
-    </section >
-  );
+    {renderMovies.length === movies.length ? '' :
+      <div className={pathname !== '/saved-movies' ? 'list__pagination' : 'list__pagination_disable'}>
+        <button
+          className='list__more  animation'
+          type='button'
+          onClick={handleMoreClick}
+        >Ещё</button>
+      </div>
+    }
+  </section >
+);
 };
 
 export default MoviesCardList;
