@@ -4,6 +4,7 @@ import SearchForm from '../Movies/SearchForm/SearchForm';
 import MoviesCardList from './MoviesCardList/MoviesCardList';
 import getBeatFilmMovies from '../../utils/MoviesApi';
 import Preloader from './Preloader/Preloader';
+import DURATION_SHORTS from '../../utils/MainApi'
 
 function Movies({ savedMovies, favoredMovie, onDeleteMovie }) {
   const [shortFilms, setShortFilms] = useState(false);
@@ -42,7 +43,7 @@ function Movies({ savedMovies, favoredMovie, onDeleteMovie }) {
 
   function filterMoviesDuration(movies) {
     return movies.filter((item) => {
-      return item.duration <= 40
+      return item.duration <= DURATION_SHORTS
     })
   };
 

@@ -2,10 +2,21 @@ import './MoviesCardList.css';
 import React, { useState, useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
 import MoviesCard from '../MoviesCard/MoviesCard';
+import {
+  DESKTOP_MAX_WIDTH,
+  DESKTOP_DEFAULT_MOVIES,
+  DESKTOP_MORE_STEP,
+  TABLET_MAX_WIDTH,
+  TABLET_DEFAULT_MOVIES,
+  TABLET_MORE_STEP,
+  MOBILE_MAX_WIDTH,
+  MOBILE_DEFAULT_MOVIES,
+  MOBILE_MORE_STEP,
+} from '../../../utils/constant';
 
 function MoviesCardList({ movies, savedMovies, onLikeMovie, onDeleteMovie, searchMessage }) {
   const [renderMovies, setRenderMovies] = useState([]);
-  const [quantity, setQuantity] = useState(12);
+  const [quantity, setQuantity] = useState(DESKTOP_DEFAULT_MOVIES);
   const [showMoreFilms, setShowMoreFilms] = useState(3);
 
   const { pathname } = useLocation();
@@ -29,15 +40,15 @@ function MoviesCardList({ movies, savedMovies, onLikeMovie, onDeleteMovie, searc
       if (pathname === '/saved-movies') {
         setRenderMovies(movies);
       } else {
-        if (width > 1280) {
-          setQuantity(12);
-          setShowMoreFilms(3);
-        } if (width < 1279) {
-          setQuantity(8);
-          setShowMoreFilms(2);
-        } if (width < 768) {
-          setQuantity(5);
-          setShowMoreFilms(2);
+        if (width > DESKTOP_MAX_WIDTH) {
+          setQuantity(DESKTOP_DEFAULT_MOVIES);
+          setShowMoreFilms(DESKTOP_MORE_STEP);
+        } if (width < TABLET_MAX_WIDTH) {
+          setQuantity(TABLET_DEFAULT_MOVIES);
+          setShowMoreFilms(TABLET_MORE_STEP);
+        } if (width < MOBILE_MAX_WIDTH) {
+          setQuantity(MOBILE_DEFAULT_MOVIES);
+          setShowMoreFilms(MOBILE_MORE_STEP);
         }
       }
     }, 100);
