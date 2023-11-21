@@ -52,7 +52,7 @@ function SavedMovies({ savedMovies, onDeleteMovie }) {
     else {
       setMovies(JSON.parse(localStorage.getItem('savedMovies')));
     }
-  }, [savedMovies, onDeleteMovie]);
+  }, [savedMovies, onDeleteMovie, setShortFilms]);
 
   return (
     <main className="saved">
