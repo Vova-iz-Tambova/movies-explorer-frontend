@@ -17,7 +17,7 @@ import {
 function MoviesCardList({ movies, savedMovies, onLikeMovie, onDeleteMovie, searchMessage }) {
   const [renderMovies, setRenderMovies] = useState([]);
   const [quantity, setQuantity] = useState(DESKTOP_DEFAULT_MOVIES);
-  const [showMoreFilms, setShowMoreFilms] = useState(3);
+  const [showMoreFilms, setShowMoreFilms] = useState(DESKTOP_MORE_STEP);
 
   const { pathname } = useLocation();
 
@@ -51,7 +51,7 @@ function MoviesCardList({ movies, savedMovies, onLikeMovie, onDeleteMovie, searc
           setShowMoreFilms(MOBILE_MORE_STEP);
         }
       }
-    }, 100);
+    }, 400);
   }
 
   React.useEffect(() => {
