@@ -1,0 +1,252 @@
+.project {
+  width: 100%;
+  min-height: 608px;
+  padding: 90px 70px 0;
+  box-sizing: border-box;
+}
+
+.project__title {
+  font-family: 'Inter', 'Arial', sans-serif;
+  font-size: 22px;
+  font-weight: 400;
+  line-height: 70px;
+  letter-spacing: -0.04em;
+  text-align: left;
+  color: #FFFFFF;
+  border-bottom: 1px solid #fff;
+  margin: 0 0 70px;
+}
+
+.project__table {
+  display: flex;
+  justify-content: space-between;
+  gap: 40px;
+}
+
+.project__column {
+  width: 550px;
+  display: flex;
+  flex-direction: column;
+}
+
+.project__table-title {
+  width: 100%;
+  font-family: 'Inter', 'Arial', sans-serif;
+  font-size: 20px;
+  font-weight: 400;
+  line-height: 24px;
+  letter-spacing: -0.04em;
+  text-align: left;
+  color: #fff;
+  padding: 0;
+  margin: 0;
+}
+
+.project__cell {
+  width: 100%;
+  font-family: 'Inter', 'Arial', sans-serif;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 20px;
+  letter-spacing: 0em;
+  text-align: left;
+  color: #fff;
+  margin: 26px 0 110px;
+  padding: 0;
+}
+
+.project__timeline {
+  width: 100%;
+  display: flex;
+}
+
+.project__backend {
+  width: 20%;
+  height: 36px;
+  font-family: 'Inter', 'Arial', sans-serif;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 36px;
+  letter-spacing: 0em;
+  text-align: center;
+  background-color: #3DDC84;
+  color: #000000;
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+.project__backend-title {
+  width: 20%;
+  font-family: 'Inter', 'Arial', sans-serif;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 17px;
+  letter-spacing: 0px;
+  text-align: center;
+  color: #8B8B8B;
+  margin-top: 14px;
+  margin-bottom: 0;
+}
+
+.project__frontend {
+  width: 80%;
+  height: 36px;
+  font-family: 'Inter', 'Arial', sans-serif;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 36px;
+  letter-spacing: 0em;
+  text-align: center;
+  background-color: #303030;
+  color: #FFFFFF;
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+.project__frontend-title {
+  width: 80%;
+  font-family: 'Inter', 'Arial', sans-serif;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 17px;
+  letter-spacing: 0px;
+  text-align: center;
+  color: #8B8B8B;
+  margin-top: 14px;
+  margin-bottom: 0;
+}
+
+@media screen and (max-width:979px) {
+  .project {
+    min-height: 585px;
+    padding: 70px 50px 0;
+  }
+
+  .project__title {
+    line-height: 70px;
+    margin: 0 0 70px;
+  }
+
+  .project__table {
+    gap: 30px;
+  }
+
+  .project__cell {
+    font-family: 'Inter', 'Arial', sans-serif;
+    font-size: 12px;
+    font-weight: 400;
+    line-height: 18px;
+    letter-spacing: 0em;
+    text-align: left;
+    margin-top: 22px;
+    margin-bottom: 93px;
+  }
+
+  .project__timeline {
+    margin-left: 1px;
+  }
+
+  .project__backend {
+    width: 21%;
+  }
+
+  .project__backend-title {
+    width: 21%;
+  }
+}
+
+@media screen and (max-width:633px) {
+  .project {
+    min-width: 320px;
+    min-height: 641px;
+    padding: 45px 18px 0;
+  }
+
+  .project__title {
+    font-family: 'Inter', 'Arial', sans-serif;
+    font-size: 18px;
+    font-weight: 400;
+    line-height: 75px;
+    letter-spacing: -0.04em;
+    text-align: left;
+    margin: 0 0 60px;
+  }
+
+  .project__table {
+    flex-direction: column;
+    gap: 57px;
+    margin-bottom: 59px;
+  }
+
+  .project__column {
+    width: 100%;
+  }
+
+  .project__table-title {
+    font-family: 'Inter', 'Arial', sans-serif;
+    font-size: 18px;
+    font-weight: 400;
+    line-height: 22px;
+    letter-spacing: -0.04em;
+    text-align: left;
+  }
+
+  .project__cell {
+    font-family: 'Inter', 'Arial', sans-serif;
+    font-size: 11px;
+    font-weight: 400;
+    line-height: 16px;
+    letter-spacing: 0em;
+    text-align: left;
+    margin-top: 15px;
+    margin-bottom: 0;
+  }
+
+  .project__backend {
+    max-width: 166px;
+    min-width: 100px;
+    width: 36%;
+    height: 35px;
+    font-family: 'Inter', 'Arial', sans-serif;
+    font-size: 11px;
+    font-weight: 400;
+    line-height: 36px;
+    letter-spacing: 0em;
+  }
+
+  .project__backend-title {
+    max-width: 166px;
+    min-width: 100px;
+    width: 36%;
+    font-family: 'Inter', 'Arial', sans-serif;
+    font-size: 11px;
+    font-weight: 400;
+    line-height: 13px;
+    letter-spacing: 0px;
+    text-align: center;
+    margin-top: 10px;
+    padding: 0;
+  }
+
+  .project__frontend {
+    width: 100%;
+    height: 35px;
+    font-family: 'Inter', 'Arial', sans-serif;
+    font-size: 11px;
+    font-weight: 400;
+    line-height: 36px;
+    letter-spacing: 0em;
+    text-align: center;
+  }
+
+  .project__frontend-title {
+    width: 100%;
+    font-family: 'Inter', 'Arial', sans-serif;
+    font-size: 11px;
+    font-weight: 400;
+    line-height: 13px;
+    letter-spacing: 0px;
+    text-align: center;
+    margin-top: 10px;
+  }
+}

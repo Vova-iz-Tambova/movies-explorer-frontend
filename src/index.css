@@ -1,0 +1,20 @@
+@import url(./vendor/normalize.css);
+@import url(./vendor/fonts/inter.css);
+
+.effect {
+  transition: opacity .4s ease-in-out;
+}
+
+.effect:hover {
+  opacity: 70%;
+}
+
+.animation {
+  transition: opacity .4s ease-in-out;
+}
+
+.animation:hover {
+  opacity: 80%;
+}
+
+/* * { outline: 1px solid red; } */
